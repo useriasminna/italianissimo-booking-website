@@ -1,0 +1,8 @@
+{
+    "python.autoComplete.extraPaths": [
+        "${Booking_System}"
+    ],
+    "python.analysis.extraPaths": [
+        "${Booking_System}"
+    ],
+}
