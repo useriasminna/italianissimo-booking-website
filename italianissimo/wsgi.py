@@ -1,5 +1,5 @@
 """
-WSGI config for Italianissimo project.
+WSGI config for italianissimo project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
