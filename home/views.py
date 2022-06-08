@@ -2,5 +2,5 @@ from django.shortcuts import render
 from django.views import View
 
 # Create your views here.
-class BaseTemplate(View):
-    template_name = "base.html"
+class Home(View):
+    template_name = "index.html"
