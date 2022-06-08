@@ -10,8 +10,10 @@ dj-database-url = "*"
 psycopg2 = "*"
 dj3-cloudinary-storage = "*"
 pylint-django = "*"
+whitenoise = "==2.0.6"
 
 [dev-packages]
+autopep8 = "*"
 
 [requires]
 python_version = "3.9"
