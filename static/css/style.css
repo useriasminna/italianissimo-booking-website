@@ -1,3 +1,86 @@
-.mobile-nav-style {
-   color: rgb(226, 43, 55);
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Courgette&display=swap');
+
+*{
+    box-sizing: border-box;
 }
+
+body{
+    color: #3a3a3a;
+    font-family: 'Courgette', cursive;
+}
+
+.flex{
+    display: flex;
+}
+
+.a-center{
+    align-items: center;
+}
+
+.size-m{
+ font-size: medium;
+}
+
+/* ----------------------NAVBAR----------------------------- */
+.logo{
+    font-family: 'Cinzel', serif;
+}
+
+.navigation {
+   padding-left: 20px;
+}
+
+.navigation i{
+    color: #3a3a3a;
+    margin-right: -2px;
+ }
+
+.navbar{
+    background-color: antiquewhite;
+    
+}
+
+.navbar li{
+    margin-right: 15px;
+    transition: all 0.5 ease-in-out;
+}
+
+
+.navbar li:hover:not(.active){
+    cursor: pointer;
+    transform: scale(1.1);
+    overflow: hidden;
+
+}
+.nav-link:focus, .nav-link:hover{
+    color: #3a3a3a;
+}
+
+.active{
+    transform: scale(1.1);
+}
+
+.active a{
+    color: #3a3a3a;
+}
+
+.offcanvas{
+    background-color: antiquewhite;
+}
+
+
+/* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
+@media (max-width: 992px) { 
+
+    
+    /* ----------------------NAVBAR----------------------------- */
+    .active{
+        transform: scale(1.1) translateX(17px);
+    }
+
+    .navbar li:hover:not(.active), .navbar li:focus:not(.active){
+        transform: scale(1.1) translateX(17px);
+
+    
+    }
+ }
