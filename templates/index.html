@@ -1,6 +1,42 @@
 {% extends "base.html" %} 
+{% load static %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
 {% block content %}
-<div>
-  <h1>HELLOOOOO</h1>
+<div id="home-background-container">
+    <div class="wrapper col-8 col-md-6 col-lg-4 flex f-column" >
+        <div class="row">
+            <div id="fade-container">
+                <div class="row ">
+                    <div><h1 class="logo">Italianissimo</h1></div>
+                    <div ><p class="decorated"><span>Since 2010</span></p></div>
+                </div>
+                <div class="row">   
+                    <div class="col"><h3 class="slogan">A taste you will remember</h3></div>
+                </div>
+            </div>
+                <div class="col bck-login"><p >To enjoy all the features please <a href="#"><b>LOGIN/REGISTER</b></a></p></div>
+            
+            <!-- <div class="row">   
+                <div class="col align-self-center">
+                    <button>Book a table</button>
+                </div>
+            </div> -->
+            <div class="row"> 
+                <a href="#"> 
+                    <div class="arrows-link-container d-none d-lg-block">
+                            <div class="arrow arrow-first"></div>
+                            <div class="arrow arrow-second"></div>
+                    </div> 
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
 </div>
+
 {%endblock%}
