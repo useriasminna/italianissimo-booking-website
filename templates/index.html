@@ -1,38 +1,78 @@
 {% extends "base.html" %} 
-{% load static %}
-
+{% load static %} 
 {% block content %}
 <div id="home-background-container">
-    <div class="wrapper col-8 col-md-6 col-lg-4 flex f-column" >
+  <div class="wrapper col-8 col-md-6 col-lg-4 flex f-column">
+    <div class="row">
+      <div id="fade-container">
         <div class="row">
-            <div id="fade-container">
-                <div class="row ">
-                    <div><h1 class="logo">Italianissimo</h1></div>
-                    <div ><p class="decorated"><span>Since 2010</span></p></div>
-                </div>
-                <div class="row">   
-                    <div class="col"><h3 class="slogan">A taste you will remember</h3></div>
-                </div>
-            </div>
-                <div class="col bck-login"><p >To enjoy all the features please <a href="#"><b>LOGIN/REGISTER</b></a></p></div>
-            
-            <!-- <div class="row">   
+          <div><h1 class="logo">Italianissimo</h1></div>
+          <div>
+            <p class="decorated"><span>Since 2010</span></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3 class="slogan">A taste you will remember</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col bck-login">
+        <p>
+          To enjoy all the features please <a href="#"><b>LOGIN/REGISTER</b></a>
+        </p>
+      </div>
+
+      <!-- <div class="row">   
                 <div class="col align-self-center">
                     <button>Book a table</button>
                 </div>
             </div> -->
-            <div class="row"> 
-                <a href="#"> 
-                    <div class="arrows-link-container d-none d-lg-block">
-                            <div class="arrow arrow-first"></div>
-                            <div class="arrow arrow-second"></div>
-                    </div> 
-                </a>
-                
+      <div class="row">
+        <a href="#about-us">
+          <div class="arrows-link-container d-none d-lg-block">
+            <div class="arrow arrow-first"></div>
+            <div class="arrow arrow-second"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content-wrapper">
+    <div class="row content col-10 col-lg-9">
+        <div class="home-container" id="about-us">
+            <h2>Why to choose us? <i class="fas fa-globe"></i></h2>
+            <div class="flex sp-around">
+                <img
+                src="{% static 'italianissimo/media/place_img.jpg' %}"
+                alt="home"
+                />
+                <img
+                class="d-none d-lg-block"
+                src="{% static 'italianissimo/media/place2_img.jpg' %}"
+                alt="home"
+                />
+            </div>
+            <div id="about-text">
+                <p>
+                The light Mediterranean cuisine of our Michelin-starred Italianissimo
+                restaurant is based on fresh local ingredients and inspired by the
+                great culinary traditions of Naples and the Amalfi Coast. Infused by
+                the leisured elegance of Positano’s dolce vita, Italianissimo is
+                illuminated, in the evening, by four hundred candles that create an
+                unforgettable atmosphere. 
+                </p>
             </div>
         </div>
-        
+        <div class="home-container" id="about-us">
+            <h2>Our most appreciated dishes <i class="fas fa-utensils"></i></h2>
+            
+        </div>
+        <div class="home-container" id="about-us">
+            <h2>From our clients <i class="fas fa-comment-dots"></i></h2>
+            
+        </div>
     </div>
 </div>
-
 {%endblock%}
