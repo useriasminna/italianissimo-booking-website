@@ -7,11 +7,34 @@
 body {
     color: #3a3a3a;
     font-family: 'Tiro Devanagari Marathi', serif;
+    scroll-behavior: smooth;
+
+
 }
 
+.content-wrapper {
+    background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1655288956/background_zunvm3.webp');
+    background-size: contain;
+
+    width: 100%;
+
+}
+
+.content {
+    margin: 0 auto;
+    color: antiquewhite;
+
+    background-color: #140c08b0;
+    box-shadow: 0px 0px 50px 50px #140c08b0;
+}
 
 .flex {
+
     display: flex;
+}
+
+.sp-around {
+    justify-content: space-around;
 }
 
 .f-colum {
@@ -116,7 +139,11 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, 
+                rgba(0, 0, 0, 0.09) 0px 4px 2px, 
+                rgba(0, 0, 0, 0.09) 0px 8px 4px, 
+                rgba(0, 0, 0, 0.09) 0px 16px 8px, 
+                rgba(0, 0, 0, 0.09) 0px 32px 16px;
     position: relative;
 }
 
@@ -259,7 +286,24 @@ body {
     }
 }
 
+.home-container {
+    text-align: center;
+    margin-top: 10vh;
+}
 
+.home-container h2 {
+    margin-bottom: 20px;
+}
+
+#about-us img {
+    height: 22vw;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    margin-bottom: 15px;
+}
+
+#about-us img:nth-child(2) {
+    margin-top: 50px;
+}
 
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
@@ -288,11 +332,25 @@ body {
     .slogan {
         font-size: 3vh;
     }
+
+    .content {
+        box-shadow: 0px 0px 40px 40px #140c08b0;
+    }
+
+    .home-container {
+        margin-top: 5vh;
+    }
+
+    #about-us img {
+        height: auto;
+        width: 100%;
+    }
+
 }
 
 
 /* --------------------------------------------------- SMALL DEVICES------------------------------------------------------------------*/
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
     #fade-container h1 {
         font-size: 3.6vh;
     }
@@ -300,4 +358,8 @@ body {
     .slogan {
         font-size: 3vh;
     }
-} */
+
+    .content {
+        box-shadow: 0px 0px 20px 20px #140c08b0;
+    }
+}
