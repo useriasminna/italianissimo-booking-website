@@ -12,6 +12,7 @@ dj3-cloudinary-storage = "*"
 pylint-django = "*"
 whitenoise = "==2.0.6"
 jinja2 = "*"
+django-allauth = "*"
 
 [dev-packages]
 autopep8 = "*"
