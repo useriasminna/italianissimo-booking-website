@@ -15,6 +15,7 @@ body {
 .content-wrapper {
     background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1655288956/background_zunvm3.webp');
     background-size: contain;
+    background-repeat: round;
 
     width: 100%;
 
@@ -145,6 +146,7 @@ body {
                 rgba(0, 0, 0, 0.09) 0px 16px 8px, 
                 rgba(0, 0, 0, 0.09) 0px 32px 16px;
     position: relative;
+    border-bottom: 5px solid antiquewhite;
 }
 
 .wrapper {
@@ -288,11 +290,10 @@ body {
 
 .home-container {
     text-align: center;
-    margin-top: 10vh;
 }
 
 .home-container h2 {
-    margin-bottom: 20px;
+    margin: 8vh auto 30px;
 }
 
 #about-us img {
@@ -305,6 +306,25 @@ body {
     margin-top: 50px;
 }
 
+.footer{
+    z-index: 1;
+    background-color: antiquewhite;
+    color: #3a3a3a;
+}
+
+footer a{
+    color: #3a3a3a;
+}
+
+footer a:hover{
+    color: #3a3a3a;
+}
+
+footer i:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    color: #3a3a3a;
+}
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
 
@@ -337,8 +357,9 @@ body {
         box-shadow: 0px 0px 40px 40px #140c08b0;
     }
 
-    .home-container {
+    .home-container h2{
         margin-top: 5vh;
+        width: 100%;
     }
 
     #about-us img {
