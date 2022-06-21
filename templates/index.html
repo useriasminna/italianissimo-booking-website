@@ -17,17 +17,19 @@
           </div>
         </div>
       </div>
+      {% if user.is_authenticated %}
+      <div class="row">   
+        <div class="col align-self-center">
+            <button class="book-btn">Book a table</button>
+        </div>
+      </div> 
+      {% else %}
       <div class="col bck-login">
         <p>
           To enjoy all the features please <a href="#"><b>LOGIN/REGISTER</b></a>
         </p>
       </div>
-
-      <!-- <div class="row">   
-                <div class="col align-self-center">
-                    <button>Book a table</button>
-                </div>
-            </div> -->
+      {% endif %}
       <div class="row">
         <a href="#about-us">
           <div class="arrows-link-container d-none d-lg-block">
@@ -42,7 +44,7 @@
 <div class="content-wrapper">
     <div class="row content col-10 col-lg-9">
         <div class="home-container" id="about-us">
-            <h2>Why to choose us? <i class="fas fa-globe"></i></h2>
+            <h2><span>Why to choose us? <i class="fas fa-globe"></i></span></h2>
             <div class="flex sp-around">
                 <img
                 src="{% static 'italianissimo/media/place_img.jpg' %}"
@@ -66,12 +68,10 @@
             </div>
         </div>
         <div class="home-container" id="about-us">
-            <h2>Our most appreciated dishes <i class="fas fa-utensils"></i></h2>
-            
+          <h2><span>Our most appreciated dishes <i class="fas fa-utensils"></i></span></h2>  
         </div>
         <div class="home-container" id="about-us">
-            <h2>From our clients <i class="fas fa-comment-dots"></i></h2>
-            
+          <h2><span>From our clients <i class="fas fa-comment-dots"></i></span></h2>  
         </div>
     </div>
 </div>
