@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-from tkinter import FALSE
+
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
@@ -35,7 +35,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 ALLOWED_HOSTS = ['italianissimo-booking-website.herokuapp.com',
                  'localhost', '127.0.0.1']
 
