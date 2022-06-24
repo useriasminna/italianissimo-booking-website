@@ -18,6 +18,7 @@ body {
     background-repeat: round;
 
     width: 100%;
+    min-height: 90vh;
 
 }
 
@@ -96,7 +97,11 @@ body {
 .navbar {
     background-color: antiquewhite;
     font-family: 'Courgette', cursive;
-    box-shadow: rgb(0 0 0 / 9%) 0px 2px 1px, rgb(0 0 0 / 9%) 0px 4px 2px, rgb(0 0 0 / 9%) 0px 8px 4px, rgb(0 0 0 / 9%) 0px 16px 8px, rgb(0 0 0 / 9%) 0px 32px 16px;
+    box-shadow: rgb(0 0 0 / 9%) 0px 2px 1px,
+        rgb(0 0 0 / 9%) 0px 4px 2px,
+        rgb(0 0 0 / 9%) 0px 8px 4px,
+        rgb(0 0 0 / 9%) 0px 16px 8px,
+        rgb(0 0 0 / 9%) 0px 32px 16px;
     z-index: 1;
 }
 
@@ -140,11 +145,11 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, 
-                rgba(0, 0, 0, 0.09) 0px 4px 2px, 
-                rgba(0, 0, 0, 0.09) 0px 8px 4px, 
-                rgba(0, 0, 0, 0.09) 0px 16px 8px, 
-                rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px,
+        rgba(0, 0, 0, 0.09) 0px 4px 2px,
+        rgba(0, 0, 0, 0.09) 0px 8px 4px,
+        rgba(0, 0, 0, 0.09) 0px 16px 8px,
+        rgba(0, 0, 0, 0.09) 0px 32px 16px;
     position: relative;
 }
 
@@ -219,7 +224,7 @@ body {
     }
 }
 
-.book-btn{
+.book-btn {
     border: 1px solid #fb5322;
     background-color: #f64c04db;
     padding: 8px;
@@ -228,30 +233,32 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px;
-    border-radius: 50%;
 
-    transform: scale(1);
+    border-radius: 50%;
+    border: 2px solid antiquewhite;
+
+    transform: scale(0.95);
     animation: btn-pulse 2.5s infinite;
 }
 
-.book-btn:hover{
-    animation: none;
+.book-btn:hover {
+
+    transform: scale(1);
 }
 
 @keyframes btn-pulse {
     0% {
-        transform: scale(0.95);
+
         box-shadow: 0 0 0 0 rgba(222, 71, 5, 0.7);
     }
 
     70% {
-        transform: scale(1);
+
         box-shadow: 0 0 0 15px rgba(237, 233, 215, 0);
     }
 
     100% {
-        transform: scale(0.95);
+
         box-shadow: 0 0 0 0 rgba(222, 71, 5, 0);
     }
 }
@@ -343,31 +350,174 @@ body {
     margin-top: 50px;
 }
 
-.footer{
+.footer {
     z-index: 1;
     background-color: antiquewhite;
     color: #3a3a3a;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
-footer a{
+footer a {
     color: #3a3a3a;
 }
 
-footer a:hover{
+footer a:hover {
     color: #3a3a3a;
 }
 
-footer i:hover{
+footer i:hover {
     cursor: pointer;
     transform: scale(1.1);
     color: #3a3a3a;
 }
+
+.center-container {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+.auth-form {
+    text-align: center;
+    background-color: #140c08b0;
+    padding: 50px 20px;
+    color: antiquewhite;
+
+    box-shadow: #ffffff 0px 0px 0px 2px,
+        rgb(70 42 28) 0px 0px 0px 6px,
+        #482b1d 0px 0px 0px 9px,
+        rgb(70 42 29) 0px 0px 0px 12px,
+        #ffffff 0px 0px 0px 14px;
+
+    position: relative;
+    left: 15%;
+}
+
+
+
+.auth-form h1 {
+    width: 80%;
+    margin: 0px auto 25px auto;
+}
+
+.auth-form a {
+    color: #ddeda9;
+    animation: pulse 3s infinite;
+}
+
+.auth-form a:hover {
+    animation: none;
+    color: #caec5c;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    margin: 0 auto;
+
+}
+
+.auth-submit {
+    background-color: antiquewhite;
+    padding: 5px 8px;
+    border: 1px solid #f6d19f;
+
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.auth-submit:hover {
+    background-color: rgb(249, 212, 163);
+}
+
+.auth-submit:focus-visible {
+    outline: none;
+}
+
+.errorlist {
+    font-size: smaller;
+    padding: 0px 14px;
+    text-align: start;
+    color: burlywood;
+}
+
+.modal {
+    background-color: #00000052;
+
+    --bs-modal-bg: antiquewhite;
+    --bs-modal-header-border-color: #adb5bd6e;
+    --bs-modal-footer-border-color: #adb5bd6e;
+}
+
+.close {
+    border: 1px solid #adb5bd6e;
+    background-color: lightgray;
+    font-size: large;
+    font-weight: bold;
+    padding: 0px 9px;
+    border-radius: 50%;
+    transition: 0.2s all;
+}
+
+.close:hover {
+    background-color: rgb(195, 194, 194);
+}
+
+.btn-secondary {
+    padding: 5px 15px;
+    text-transform: uppercase;
+    color: white;
+    border: transparent;
+}
+
+#btn-submit {
+    background-color: green;
+}
+
+#btn-submit:hover {
+    background-color: darkgreen;
+}
+
+#btn-cancel {
+    background-color: #f64c04db;
+
+}
+
+#btn-cancel:hover {
+    background-color: #ce4205db;
+}
+
+.background-container {
+
+    padding: 80px 0px;
+}
+
+.ilustrate-logo {
+    height: 55vh;
+    position: absolute;
+    left: 55%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
 
 
     /* ----------------------NAVBAR----------------------------- */
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer {
+        margin-top: auto;
+    }
+
     .active {
         transform: scale(1.1) translateX(17px);
     }
@@ -395,7 +545,7 @@ footer i:hover{
         box-shadow: 0px 0px 40px 40px #140c08b0;
     }
 
-    .home-container h2{
+    .home-container h2 {
         margin-top: 5vh;
         width: 100%;
     }
@@ -405,6 +555,23 @@ footer i:hover{
         width: 100%;
     }
 
+    .background-container {
+        padding: 40px 0px;
+    }
+
+    .auth-form {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .ilustrate-logo {
+        height: 30vh;
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        /* transform: translateY(-50%); */
+        transform: translateX(-50%);
+    }
 }
 
 
@@ -421,4 +588,27 @@ footer i:hover{
     .content {
         box-shadow: 0px 0px 20px 20px #140c08b0;
     }
+
+    .content-wrapper {
+        min-height: auto;
+    }
+
+    .input-container {
+        align-items: stretch;
+        width: 90%;
+    }
+
+    .input-container input {
+
+        width: 100%;
+    }
+
+    .background-container {
+        padding: 20px 0px;
+    }
+
+    .auth-form {
+        min-height: 80vh;
+    }
+
 }
