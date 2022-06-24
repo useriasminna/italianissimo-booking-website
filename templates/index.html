@@ -18,15 +18,13 @@
         </div>
       </div>
       {% if user.is_authenticated %}
-      <div class="row">   
         <div class="col align-self-center">
-            <button class="book-btn">Book a table</button>
-        </div>
+            <a href="#"><button class="book-btn">Book a table</button></a>
       </div> 
       {% else %}
       <div class="col bck-login">
         <p>
-          To enjoy all the features please <a href="#"><b>LOGIN/REGISTER</b></a>
+          To enjoy all the features please <span><a href="{% url 'account_login' %}"><b>LOGIN</b></a> / <a href="{% url 'account_signup' %}"><b>REGISTER</b></a></span>
         </p>
       </div>
       {% endif %}
@@ -41,38 +39,36 @@
     </div>
   </div>
 </div>
-<div class="content-wrapper">
-    <div class="row content col-10 col-lg-9">
-        <div class="home-container" id="about-us">
-            <h2><span>Why to choose us? <i class="fas fa-globe"></i></span></h2>
-            <div class="flex sp-around">
-                <img
-                src="{% static 'italianissimo/media/place_img.jpg' %}"
-                alt="home"
-                />
-                <img
-                class="d-none d-lg-block"
-                src="{% static 'italianissimo/media/place2_img.jpg' %}"
-                alt="home"
-                />
-            </div>
-            <div id="about-text">
-                <p>
-                The light Mediterranean cuisine of our Michelin-starred Italianissimo
-                restaurant is based on fresh local ingredients and inspired by the
-                great culinary traditions of Naples and the Amalfi Coast. Infused by
-                the leisured elegance of Positano’s dolce vita, Italianissimo is
-                illuminated, in the evening, by four hundred candles that create an
-                unforgettable atmosphere. 
-                </p>
-            </div>
-        </div>
-        <div class="home-container" id="about-us">
-          <h2><span>Our most appreciated dishes <i class="fas fa-utensils"></i></span></h2>  
-        </div>
-        <div class="home-container" id="about-us">
-          <h2><span>From our clients <i class="fas fa-comment-dots"></i></span></h2>  
-        </div>
+<div class="row content col-10 col-lg-9">
+  <div class="home-container" id="about-us">
+    <h2><span>Why to choose us? <i class="fas fa-globe"></i></span></h2>
+    <div class="flex sp-around">
+      <img
+      src="{% static 'italianissimo/media/place_img.jpg' %}"
+      alt="picture with one of the restaurant's saloons"
+      />
+      <img
+      class="d-none d-lg-block"
+      src="{% static 'italianissimo/media/place2_img.jpg' %}"
+      alt="picture with one of the restaurant's saloons"
+      />
     </div>
+    <div id="about-text">
+      <p>
+      The light Mediterranean cuisine of our Michelin-starred Italianissimo
+      restaurant is based on fresh local ingredients and inspired by the
+      great culinary traditions of Naples and the Amalfi Coast. Infused by
+      the leisured elegance of Positano’s dolce vita, Italianissimo is
+      illuminated, in the evening, by four hundred candles that create an
+      unforgettable atmosphere. 
+      </p>
+    </div>
+  </div>
+  <div class="home-container" id="about-us">
+    <h2><span>Our most appreciated dishes <i class="fas fa-utensils"></i></span></h2>  
+  </div>
+  <div class="home-container" id="about-us">
+    <h2><span>From our clients <i class="fas fa-comment-dots"></i></span></h2>  
+  </div>
 </div>
-{%endblock%}
+{% endblock %}
