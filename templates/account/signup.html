@@ -1,21 +1,41 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+{% load static %} 
+{% load i18n %} 
 
-{% load i18n %}
-
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block head_title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<div class="background-container">
+  <img  class="ilustrate-logo d-none d-sm-none d-md-block" src="{% static 'italianissimo/media/ilustrate-logo.png' %}" >
+  <div class="auth-form col-11 col-lg-4">
+    <h3 class="decorated"><span>{% trans "Sign Up" %}</span></h3>
+    <p>
+      <small
+        >{% blocktrans %}Already have an account? Then please
+        <a href="{{ login_url }}">SIGN IN</a>.{% endblocktrans %}</small
+      >
+    </p>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+    <form
+      class="signup"
+      id="signup_form"
+      method="post"
+      action="{% url 'account_signup' %}"
+    >
+      <div class="input-container">
+        {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
+        <input
+          type="hidden"
+          name="{{ redirect_field_name }}"
+          value="{{ redirect_field_value }}"
+        />
+        {% endif %}
+      </div>
+      <button class="auth-submit" type="submit">
+        {% trans "Sign Up" %} &raquo;
+      </button>
+    </form>
+  </div>
+</div>
 
 {% endblock %}
