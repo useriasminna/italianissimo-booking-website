@@ -67,12 +67,12 @@
               {% if user.is_authenticated %}
               <li class="nav-item flex a-center">
                   <i class="fas fa-sign-in-alt d-none d-lg-block"></i>
-                  <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                  <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a>
               </li>
               {% else %}
               <li class="nav-item flex a-center">
                   <i class="fas fa-sign-in-alt d-none d-lg-block"></i>
-                  <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                  <a class="nav-link" href="{% url 'account_login' %}" >Login</a>
               </li>
               <li class="nav-item flex a-center">
                 <i class="fas fa-sign-in-alt d-none d-lg-block"></i>
@@ -85,9 +85,41 @@
       </nav>
     </header>
     <main class="flex-shrink-0 main-bg">
-      {% block content %}
-      <!-- Content Goes here -->
-      {% endblock content %}
+      <div class="content-wrapper">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sign Out</h5>
+
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                <p>Are you sure you want to sign out?</p> 
+              </div>
+
+              <div class="modal-footer">
+                <form method="post" action="{% url 'account_logout' %}">
+                  {% csrf_token %}
+                  {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                  {% endif %}
+                  <button type="submit" class="btn btn-secondary" id="btn-submit">Yes</button>
+                  <button type="button" class="btn btn-secondary" id="btn-cancel" data-bs-dismiss="modal">No</button>
+                </form>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        {% block content %}
+        <!-- Content Goes here -->
+        {% endblock content %}
+      </div>  
     </main>
     <footer class="footer mt-auto py-4 ">
       <p class="m-0 text-center ">Copyright &copy;Pal Iasmina 2022</p>
@@ -104,10 +136,11 @@
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
     crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://kit.fontawesome.com/c8dffb0544.js"
-    crossorigin="anonymous"
-  ></script>
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/c8dffb0544.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/script.js' %}"></script>
   </body>
 </html>
