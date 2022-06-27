@@ -15,12 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from allauth.account.views import login, signup, logout
 
 try:
     urlpatterns = [
         path('admin/', admin.site.urls),
         path("", include("home.urls"), name="home-urls"),
-        path('accounts/', include('allauth.urls')),
+        path('accounts/signup/', signup, name='account_signup'),
+        path('accounts/login/', login, name='account_login'),
+        path('accounts/logout/', logout, name='account_logout')
     ]
 except:
     urlpatterns=[]
