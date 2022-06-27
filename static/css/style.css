@@ -424,6 +424,7 @@ footer i:hover {
     background-color: antiquewhite;
     padding: 5px 8px;
     border: 1px solid #f6d19f;
+    color: black;
 
     border-radius: 8px;
     margin-top: 20px;
@@ -564,12 +565,15 @@ footer i:hover {
         transform: translateX(-50%);
     }
 
+    .auth-submit:hover {
+        background-color: antiquewhite;
+    }
+
     .ilustrate-logo {
         height: 30vh;
         position: absolute;
         left: 50%;
-        top: 60%;
-        /* transform: translateY(-50%); */
+        top: 57%;
         transform: translateX(-50%);
     }
 }
@@ -601,6 +605,10 @@ footer i:hover {
     .input-container input {
 
         width: 100%;
+    }
+    #id_remember{
+        position: relative;
+        left: 50%
     }
 
     .background-container {
