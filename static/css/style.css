@@ -225,7 +225,6 @@ body {
 }
 
 .book-btn {
-    border: 1px solid #fb5322;
     background-color: #f64c04db;
     padding: 8px;
     color: #ffffff;
@@ -504,6 +503,26 @@ footer i:hover {
     transform: translateY(-50%);
 }
 
+#btn-back-to-top {
+    
+    margin: 30px auto;
+    border-radius: 50%;
+    background-color: #4b2612;
+    border: 2px solid antiquewhite;
+    width: auto;
+    color: antiquewhite;
+
+}
+
+#btn-back-to-top:hover {   
+    background-color: #381d0e;
+}
+
+#btn-back-to-top:focus, 
+#btn-back-to-top:focus-visible{
+    outline: none;
+} 
+
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
 
@@ -576,6 +595,11 @@ footer i:hover {
         top: 57%;
         transform: translateX(-50%);
     }
+
+    #btn-back-to-top:hover {   
+    background-color: #4b2612;
+      }
+
 }
 
 
