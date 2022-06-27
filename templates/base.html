@@ -65,10 +65,21 @@
               </li>
 
               {% if user.is_authenticated %}
-              <li class="nav-item flex a-center">
-                  <i class="fas fa-sign-in-alt d-none d-lg-block"></i>
-                  <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a>
+              {% if user.staff %}
+              <li class="nav-item flex a-center ">
+                <i class="fas fa-database d-none d-lg-block"></i>
+                <a class="nav-link" href="#">Manage bookings</a>
+            </li>
+              {% else %}
+              <li class="nav-item flex a-center ">
+                  <i class="fas fa-user-circle d-none d-lg-block"></i>
+                  <a class="nav-link" href="#">Profile</a>
               </li>
+              {% endif %}
+              <li class="nav-item flex a-center">
+                <i class="fas fa-sign-in-alt d-none d-lg-block"></i>
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a>
+            </li>
               {% else %}
               <li class="nav-item flex a-center">
                   <i class="fas fa-sign-in-alt d-none d-lg-block"></i>
