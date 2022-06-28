@@ -1,0 +1,38 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+<div class="row content col-10 col-lg-9">
+    <div class="center-container">
+        <h2>Book your table now</h2>
+        <p>Choose the date, time and number of persons for your booking and we will show you the available places</p>
+        <form>
+            <div class="row">
+                <div class="col">
+                    <label for="Date"><i class="far fa-calendar-alt"></i> Choose Date:</label><br>
+                    <input id="Date" class="form-control" type="date" />
+                </div>
+                <div class="col">
+                    <label for="startTime"><i class="fas fa-clock"></i> Starting at:</label><br>
+                    <input class="form-control" type="time" id="startTime" name="startTime" min="09:00" max="23:00" required>
+                </div>
+                <div class="col">
+                    <label for="endTime"><i class="fas fa-clock"></i> Until:</label><br>
+                    <input class="form-control" type="time" id="endTime" name="endTime" min="09:00" max="23:00" required>
+                </div>
+                <div class="col">
+                    <label for="persons"><i class="fas fa-users"></i> Number Of Persons:</label><br>
+                    <input class="form-control" type="number" id="persons" name="persons" min="1" max="20" value="1" required>
+                </div>
+            </div>
+            <button  type="button" class="btn btn-simple " data-toggle="collapse" data-target="#tableContentCollapse" aria-expanded="false" 
+            aria-controls="tableContentCollapse">Find a table</button>
+            <div class="collapse multi-collapse" id="tableContentCollapse">
+                <div class="card card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
+                Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
