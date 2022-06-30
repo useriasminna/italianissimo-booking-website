@@ -4,35 +4,68 @@
 <div class="row content col-10 col-lg-9">
     <div class="center-container">
         <h2>Book your table now</h2>
-        <p>Choose the date, time and number of persons for your booking and we will show you the available places</p>
-        <form>
-            <div class="row">
-                <div class="col">
-                    <label for="Date"><i class="far fa-calendar-alt"></i> Choose Date:</label><br>
-                    <input id="Date" class="form-control" type="date" />
+            <form id="bookingForm" >
+                <p>Choose the date, time and number of persons for your booking and we will show you the available places</p>
+                <div class="row" id="bookingDetails">
+                    <div class="col form-field">
+                        <label for="datePicker"><i class="far fa-calendar-alt"></i> Choose Date:</label><br>
+                        <input id="datePicker" class="form-control" type="date" name="date"  />
+                        <div class="error-container">
+                            <small class="errorlist"></small>
+                        </div>
+                    </div>
+                    <div class="col form-field">
+                        <label for="startTime"><i class="fas fa-clock"></i> Starting At:</label><br>
+                        <input class="form-control" type="time" id="startTime" name="startTime" />
+                        <div class="error-container">
+                            <small class="errorlist"></small>
+                        </div>
+                    </div>
+                    <div class="col form-field">
+                        <label for="endTime"><i class="fas fa-clock"></i> Until:</label><br>
+                        <input class="form-control" type="time" id="endTime" name="endTime" />
+                        <div class="error-container">
+                            <small class="errorlist"></small>
+                        </div>
+                    </div>
+                    <div class="col form-field">
+                        <label for="persons"><i class="fas fa-users"></i> Number Of Persons:</label>
+                        <div class="number-input form-control">
+                            <button type="button" id="decrease" ></button>
+                            <input id="persons" name="persons" min="1" max="20" value="1" type="number">
+                            <button type="button" id="increase" class="plus"></button>
+                        </div>
+                        <div class="error-container">
+                            <small class="errorlist"></small>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <label for="startTime"><i class="fas fa-clock"></i> Starting at:</label><br>
-                    <input class="form-control" type="time" id="startTime" name="startTime" min="09:00" max="23:00" required>
+                <button type="button" class="btn btn-simple continue">Find a table</button>
+                <div class="flex f-column a-center p-center" id="tableContentCollapse">
+                    <div class="card card-body">
+                        Table picking content
+                    </div><br>
+                    <button type="button" class="btn btn-simple continue">Continue</button>
+                </div> 
+                <div class="flex f-column a-center p-center col-12 col-md-6 col-lg-3" id="bookingContactCollapse">
+                    <p>CONTACT DETAILS</p>
+                    <label for="fullName"><i class="fas fa-user"></i> Customer Full Name:</label>
+                    <input class="form-control" type="text" id="fullName" name="fullName" required>
+                    <label for="email"><i class="fas fa-envelope"></i> Customer Email:</label>
+                    <input class="form-control" type="email" id="email" name="email" required><br>
+                    <p><b><strong>OR</strong></b></p>
+                    <input type="checkbox" id="bookAuthenticate" name="bookAuthenticate" required>
+                    <label for="bookAuthenticate">Book It On My Name</label><br>
+                    <button type="button" class="btn btn-simple continue">Finish</button>
+                </div> 
+                <div id="overviewCollapse" class="flex f-column a-center p-center">
+                    <p>BOOKING OVERVIEW</p>
+                    <span id="bookingOverview"></span><br>
+                    <span>Do you want to proceed?</span><br>
+                    <button type="submit" class="btn form-submit" >Yes</button>
+                    <button type="submit" class="btn form-submit" >No</button>
                 </div>
-                <div class="col">
-                    <label for="endTime"><i class="fas fa-clock"></i> Until:</label><br>
-                    <input class="form-control" type="time" id="endTime" name="endTime" min="09:00" max="23:00" required>
-                </div>
-                <div class="col">
-                    <label for="persons"><i class="fas fa-users"></i> Number Of Persons:</label><br>
-                    <input class="form-control" type="number" id="persons" name="persons" min="1" max="20" value="1" required>
-                </div>
-            </div>
-            <button  type="button" class="btn btn-simple " data-toggle="collapse" data-target="#tableContentCollapse" aria-expanded="false" 
-            aria-controls="tableContentCollapse">Find a table</button>
-            <div class="collapse multi-collapse" id="tableContentCollapse">
-                <div class="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
-                Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-            </div>
-        </form>
+            </form>
     </div>
 </div>
 {% endblock %}
