@@ -22,9 +22,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const datePicker = document.querySelector("#datePicker");
     const startTime = document.querySelector("#startTime");
     const endTime = document.querySelector("#endTime");
-    const personsNumber = document.querySelector("#persons");
-    const additionButton = document.getElementsByClassName("number-input")[0].getElementsByTagName("button")[0];
-    const substractionButton = document.getElementsByClassName("number-input")[0].getElementsByTagName("button")[1];
     const findTableButton = document.getElementsByClassName("continue")[0];
     const continueButton = document.getElementsByClassName("continue")[1];
     const finishButton = document.getElementsByClassName("continue")[2];
@@ -32,20 +29,49 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // --------------------------SET DATE PICKER INPUT MIN VALUE TO TODAY DATE--------------------------
     datePicker.min = new Date().toLocaleDateString('en-ca')
 
-    // --------------------------ADD EVENT LISTENERS FOR NUMBER INPUT BUTTONS--------------------------
-    additionButton.addEventListener('click', () => {
-      personsNumber.stepDown();
-    })
 
-    substractionButton.addEventListener('click', () => {
-      personsNumber.stepUp()
+    // --------------------------SET DATE PICKER DEFAULT VALUE TO TODAY DATE--------------------------
+    datePicker.min = new Date().toLocaleDateString('en-ca')
+    var currentDay = new Date();
+    var dd = String(currentDay.getDate()).padStart(2, '0');
+    var MM = String(currentDay.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = currentDay.getFullYear();
+    currentDay = yyyy + '-' + MM + '-' + dd;
+    datePicker.value = currentDay
 
-    })
+
+    // --------------------------SET TIME INPUT VALUE TO :00 FORMAT FOR MINUTES--------------------------
+    startTime.addEventListener("change", function(evt) {
+      var match = this.value.match(/^(\d{2})/);
+      if (match) this.value = match[1] + ":00";
+    });
+
+    endTime.addEventListener("change", function(evt) {
+      var match = this.value.match(/^(\d{2})/);
+      if (match) this.value = match[1] + ":00";
+    });
 
     const isRequired = value => value === '' ? false : true;
 
     const isBetween = (length, min, max) => length < min || length > max ? false : true;
 
+
+    // --------------------------CHECK IF DATE SELECTED IS BEFORE CURRENT DAY--------------------------
+    const isDateValid = (date) => {
+
+      // get input value date 
+      var inputDate = new Date(date);
+      inputDate.setHours(0,0,0,0);
+
+      // get current day
+      var today = new Date();
+      today.setHours(0,0,0,0);
+
+      if( inputDate.getTime() < today.getTime() )
+        return false
+      else  
+        return true
+    }
 
      // --------------------------CHECK IF START TIME IS AFTER CURRENT TIME FOR TODAY BOOKINGS--------------------------
     const isStartTimeTodayValid = (startTime) => {
@@ -127,6 +153,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       if (!isRequired(date)) {
           showError(datePicker, 'Please choose a date');
+      } else if(!isDateValid){
+          showError(datePicker, 'A date before current day is not valid');
       } else {
           showSuccess(datePicker);
           valid = true;
@@ -201,9 +229,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         datePicker.disabled = true;
         startTime.disabled = true;
         endTime.disabled = true;
-        personsNumber.disabled = true;
-        additionButton.disabled = true;
-        substractionButton.disabled = true;
         findTableButton.style.display = "none";
         document.querySelector('#tableContentCollapse').style.display = 'block';
         
