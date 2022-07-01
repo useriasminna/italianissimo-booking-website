@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
     // --------------------------CHECK IF DATE SELECTED IS BEFORE CURRENT DAY--------------------------
-    const isDateValid = (date) => {
+    const isDateValueValid = (date) => {
 
       // get input value date 
       var inputDate = new Date(date);
@@ -67,10 +67,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var today = new Date();
       today.setHours(0,0,0,0);
 
-      if( inputDate.getTime() < today.getTime() )
-        return false
-      else  
+      if( inputDate >= today )
         return true
+      else  
+        return false
     }
 
      // --------------------------CHECK IF START TIME IS AFTER CURRENT TIME FOR TODAY BOOKINGS--------------------------
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       if (!isRequired(date)) {
           showError(datePicker, 'Please choose a date');
-      } else if(!isDateValid){
+      } else if(!isDateValueValid(date)){
           showError(datePicker, 'A date before current day is not valid');
       } else {
           showSuccess(datePicker);
