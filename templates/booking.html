@@ -1,15 +1,17 @@
 {% extends "base.html" %} 
 {% load static %} 
 {% block content %}
+{% load crispy_forms_tags %}
 <div class="row content col-10 col-lg-9">
     <div class="center-container max-h-100 h-100vh scroll">
         <h2>Book your table now</h2>
-            <form id="bookingForm" >
+            <form id="bookingForm" method="post" >
                 <div class="row justify-content-center" id="bookingDetails">
                     <p>Choose the date, time and number of persons for your booking and we will show you the available places</p>
                     <div class="col form-field col-12 col-md-4 col-lg-3">
                         <label for="datePicker"><i class="far fa-calendar-alt"></i> Choose Date:</label><br>
-                        <input id="datePicker" class="form-control" type="date" name="date"  />
+                        {{ booking_form.date | crispy}}
+                        {% csrf_token %}
                         <div class="error-container">
                             <small class="errorlist"></small>
                         </div>
