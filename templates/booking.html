@@ -1,7 +1,6 @@
 {% extends "base.html" %} 
 {% load static %} 
 {% block content %}
-{% load crispy_forms_tags %}
 <div class="row content col-10 col-lg-9">
     <div class="center-container max-h-100 h-100vh scroll">
         <h2>Book your table now</h2>
@@ -10,22 +9,21 @@
                     <p>Choose the date, time and number of persons for your booking and we will show you the available places</p>
                     <div class="col form-field col-12 col-md-4 col-lg-3">
                         <label for="datePicker"><i class="far fa-calendar-alt"></i> Choose Date:</label><br>
-                        {{ booking_form.date | crispy}}
-                        {% csrf_token %}
+                        {{ form.date }}
                         <div class="error-container">
                             <small class="errorlist"></small>
                         </div>
                     </div>
                     <div class="col form-field col-lg-3">
                         <label for="startTime"><i class="fas fa-clock"></i> Starting At:</label><br>
-                        <input class="form-control" type="time" id="startTime" name="startTime" step="3600" />
+                        {{ form.start_time }}
                         <div class="error-container">
                             <small class="errorlist"></small>
                         </div>
                     </div>
                     <div class="col form-field col-lg-3">
                         <label for="endTime"><i class="fas fa-clock"></i> Until:</label><br>
-                        <input class="form-control" type="time" id="endTime" name="endTime" step="3600" />
+                        {{ form.end_time }}
                         <div class="error-container">
                             <small class="errorlist"></small>
                         </div>
@@ -40,12 +38,22 @@
                 </div> 
                 <div class="flex f-column a-center p-center col-12 col-md-6 col-lg-3" id="bookingContactCollapse">
                     <p>CONTACT DETAILS</p>
-                    <label for="fullName"><i class="fas fa-user"></i> Customer Full Name:</label>
-                    <input class="form-control" type="text" id="fullName" name="fullName" required>
-                    <label for="email"><i class="fas fa-envelope"></i> Customer Email:</label>
-                    <input class="form-control" type="email" id="email" name="email" required><br>
+                    <div class="form-field">
+                        <label for="fullName"><i class="fas fa-user"></i> Customer Full Name:</label>
+                        {{ form.customer_full_name }}
+                        <div class="error-container">
+                            <small class="errorlist"></small>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="email"><i class="fas fa-envelope"></i> Customer Email:</label>
+                        {{ form.customer_email }}
+                        <div class="error-container">
+                            <small class="errorlist"></small>
+                        </div>
+                    </div>
                     <p><b><strong>OR</strong></b></p>
-                    <input type="checkbox" id="bookAuthenticate" name="bookAuthenticate" required>
+                    {{ form.book_on_user }}
                     <label for="bookAuthenticate">Book It On My Name</label><br>
                     <button type="button" class="btn btn-simple continue">Finish</button>
                 </div> 
