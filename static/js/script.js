@@ -18,10 +18,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   }
 
-  if (window.location.pathname=='/%2Fbooking/booking') {
+  if (window.location.pathname=='/bookings/createbookings') {
     const datePicker = document.querySelector("#datePicker");
     const startTime = document.querySelector("#startTime");
     const endTime = document.querySelector("#endTime");
+    const customer_name = document.querySelector("#fullName");
+    const customer_email = document.querySelector("#email");
+    const book_auth = document.querySelector("#bookAuthenticate");
     const findTableButton = document.getElementsByClassName("continue")[0];
     const continueButton = document.getElementsByClassName("continue")[1];
     const finishButton = document.getElementsByClassName("continue")[2];
@@ -50,6 +53,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var match = this.value.match(/^(\d{2})/);
       if (match) this.value = match[1] + ":00";
     });
+
+    // --------------------------ENABLE/DISABLE CONTACT INPUTS WHEN 'BOOK IT ON MY NAME' IS CHECKED--------------------------
+    book_auth.addEventListener('click', () => {
+      if(book_auth.checked == true){
+        customer_name.disabled = true;
+        customer_email.disabled = true;
+      }
+      else{
+        customer_name.disabled = false;
+        customer_email.disabled = false;
+      }
+    })
+
+
+
 
     const isRequired = value => value === '' ? false : true;
 
@@ -115,13 +133,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // --------------------------CHECK IF BOOKING TIME IS GREATER THAN 60 MIN--------------------------
     const isTimeIntervalCorrect = (startTime, endTime) => {
-      let startInMinutes =(parseInt(startTime.split(":")[0]) * 60 + parseInt(startTime.split(":")[1])) 
-      let endInMinutes =(parseInt(endTime.split(":")[0]) * 60 + parseInt(endTime.split(":")[1])) 
+      let startInMinutes = (parseInt(startTime.split(":")[0]) * 60 + parseInt(startTime.split(":")[1])) 
+      let endInMinutes = (parseInt(endTime.split(":")[0]) * 60 + parseInt(endTime.split(":")[1])) 
       let diffInMin = endInMinutes - startInMinutes
       if( diffInMin < 60 )
         return false
       else
         return true  
+    }
+
+    // --------------------------CHECK IF STRING HAS A LENGTH GREATER THAN VALUE GIVEN AS ARGUMENT--------------------------
+    const isStringLengthValid = (string, value) => {
+
+      if(string.length > value)
+        return false
+      else
+        return true  
+    }
+
+    // --------------------------CHECK IF STRING CONTAINS SPECILA CHARACTERS--------------------------
+    const containsSpecialChars = (string) => {
+      const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+      return specialChars.test(string);
+    }
+
+    // --------------------------CHECK IF EMAIL RESPECTS EMAIL PATTERN--------------------------
+    const isEmailValid = (email) => {
+      const email_expression = /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
+
+      if(email_expression.test(email) == false)
+      {
+        return false;
+      }
+      return true;
+
     }
 
     // --------------------------DISPLAY ERROR--------------------------
@@ -210,22 +256,63 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } 
 
 
+     // --------------------------CHECK NAME INPUT AND SET ERROR MESSAGES--------------------------
+    const checkCustomerName = () => {
+
+      let valid = false;
+
+      const name = customer_name.value.trim();
+    
+      if (!isRequired(name)) {
+          showError(customer_name, 'Please type a name');
+      } else if(!isStringLengthValid(name, 30)){
+        showError(customer_name, 'No more than 30 characters');
+      } else if(containsSpecialChars(name)){
+          showError(customer_name, 'No special characters');
+      } else{
+          showSuccess(customer_name);
+          valid = true;
+      }
+      return valid;
+    } 
+
+     // --------------------------CHECK EMAIL AND SET ERROR MESSAGES--------------------------
+    const checkEmail = () => {
+
+      let valid = false;
+
+      const email = customer_email.value.trim();
+    
+      if (!isRequired(email)) {
+          showError(customer_email, 'Please type an email');
+      } else if(!isEmailValid(email)){
+          showError(customer_email, 'Email is invalid');
+      } else{
+          showSuccess(customer_email);
+          valid = true;
+      }
+      return valid;
+    } 
+
+
+
     // -------------------------CHECK FIRST BOOKING SECTION VALIDITY --------------------------
     findTableButton.addEventListener("click", () => {
+      console.log("daaa")
 
       let isdateValid = checkDate();
       let isStartValid = checkStartTime();
       let isEndValid = checkEndTime();
  
 
-      let isInputsSection = isdateValid &&
+      let isDetailsSectionValid = isdateValid &&
           isStartValid &&
           isEndValid;
 
 
       // display next section if inputs are valid
-      if (isInputsSection) {
-        console.log("VALID")
+      if (isDetailsSectionValid) {
+
         datePicker.disabled = true;
         startTime.disabled = true;
         endTime.disabled = true;
@@ -252,13 +339,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       // check validity
 
+      if(book_auth.checked == false){
+        
+        let isNameValid = checkCustomerName();
+        let isEmailValid = checkEmail();
+  
+        let isContactSectionValid = isNameValid && isEmailValid;
+  
+        // display next section if inputs are valid
+        if ( isContactSectionValid) {
+  
+          // display next section
+          finishButton.style.display="none";
+          document.querySelector('#bookingDetails').style.display = 'none';
+          document.querySelector('#tableContentCollapse').style.display = 'none';
+          document.querySelector('#bookingContactCollapse').style.display = 'none';
+          document.querySelector('#overviewCollapse').style.display = 'block';
+        }
+      } else{
+            // display next section
+          finishButton.style.display="none";
+          document.querySelector('#bookingDetails').style.display = 'none';
+          document.querySelector('#tableContentCollapse').style.display = 'none';
+          document.querySelector('#bookingContactCollapse').style.display = 'none';
+          document.querySelector('#overviewCollapse').style.display = 'block';
+      }
+      
 
-      // display next section
-      finishButton.style.display="none";
-      document.querySelector('#bookingDetails').style.display = 'none';
-      document.querySelector('#tableContentCollapse').style.display = 'none';
-      document.querySelector('#bookingContactCollapse').style.display = 'none';
-      document.querySelector('#overviewCollapse').style.display = 'block';
+       
+
 
     })
 
