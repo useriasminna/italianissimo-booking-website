@@ -1,6 +1,16 @@
 
 
 document.addEventListener("DOMContentLoaded", function(event) { 
+  
+  // --------------------------ON REFRESH DELETE HASH IF EXISTS AND RELOAD--------------------------
+  if (performance.getEntriesByType('navigation')[0].type != 'navigate') {
+    if(window.location.hash){
+      history.pushState("", document.title, window.location.pathname);
+      window.location = history.state;
+      sessionStorage.setItem('pageHasBeenLoaded', 'true');
+    }
+  }
+  
 
   if (window.location.pathname=='/') {
 
@@ -12,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     mybutton.addEventListener("click", backToTop);
 
     function backToTop() {
+      history.pushState("", document.title, window.location.pathname);
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
@@ -27,7 +38,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const book_auth = document.querySelector("#bookAuthenticate");
     const findTableButton = document.getElementsByClassName("continue")[0];
     const continueButton = document.getElementsByClassName("continue")[1];
+    const restartButtons = document.getElementsByClassName("restart");
     const finishButton = document.getElementsByClassName("continue")[2];
+    const flexButtons = document.querySelector("#flexButtons");
+    const booking_form = document.querySelector("#booking_form");
+    const bookingOverview = document.querySelector("#bookingOverview");
 
     // --------------------------SET DATE PICKER INPUT MIN VALUE TO TODAY DATE--------------------------
     datePicker.min = new Date().toLocaleDateString('en-ca')
@@ -54,11 +69,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
       if (match) this.value = match[1] + ":00";
     });
 
+
+    // --------------------------RELOAD PAGE ON RESTART BUTTON CLICK--------------------------
+    Array.from(restartButtons).forEach(button => {
+      button.addEventListener('click', () => {
+        window.location = "/bookings/createbookings"
+      })
+    });
+    
+
+
     // --------------------------ENABLE/DISABLE CONTACT INPUTS WHEN 'BOOK IT ON MY NAME' IS CHECKED--------------------------
     book_auth.addEventListener('click', () => {
       if(book_auth.checked == true){
-        customer_name.disabled = true;
-        customer_email.disabled = true;
+        customer_name.readOnly = true;
+        customer_email.readOnly = true;
       }
       else{
         customer_name.disabled = false;
@@ -111,9 +136,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var h = d.getHours();
         if(h == '0') {h = 24}
         
-        var currentTime = h+":"+m;
-
+        if(h < 10)
+          if(m < 10)
+            var currentTime = "0"+h+":0"+m;
+          else
+            var currentTime = "0"+h+":"+m;
+        else
+          if(m < 10)
+            var currentTime = h+":0"+m;
+          else
+            var currentTime = h+":"+m;
         
+
+
         if(startTime <= currentTime)
           return false
         else
@@ -298,7 +333,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // -------------------------CHECK FIRST BOOKING SECTION VALIDITY --------------------------
     findTableButton.addEventListener("click", () => {
-      console.log("daaa")
 
       let isdateValid = checkDate();
       let isStartValid = checkStartTime();
@@ -313,10 +347,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // display next section if inputs are valid
       if (isDetailsSectionValid) {
 
-        datePicker.disabled = true;
-        startTime.disabled = true;
-        endTime.disabled = true;
+        datePicker.readOnly = true;
+        startTime.readOnly = true;
+        endTime.readOnly = true;
         findTableButton.style.display = "none";
+        window.location = "/bookings/createbookings#tableContentCollapse"
         document.querySelector('#tableContentCollapse').style.display = 'block';
         
       }
@@ -329,7 +364,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
         // display next section
-        continueButton.style.display="none";  
+        flexButtons.style.display = "none";
+        window.location = "/bookings/createbookings#bookingContactCollapse"  
         document.querySelector('#bookingContactCollapse').style.display = 'block';
  
     })
@@ -340,7 +376,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // check validity
 
       if(book_auth.checked == false){
-        
+
         let isNameValid = checkCustomerName();
         let isEmailValid = checkEmail();
   
@@ -351,24 +387,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
           // display next section
           finishButton.style.display="none";
-          document.querySelector('#bookingDetails').style.display = 'none';
-          document.querySelector('#tableContentCollapse').style.display = 'none';
-          document.querySelector('#bookingContactCollapse').style.display = 'none';
           document.querySelector('#overviewCollapse').style.display = 'block';
         }
       } else{
             // display next section
           finishButton.style.display="none";
-          document.querySelector('#bookingDetails').style.display = 'none';
-          document.querySelector('#tableContentCollapse').style.display = 'none';
-          document.querySelector('#bookingContactCollapse').style.display = 'none';
           document.querySelector('#overviewCollapse').style.display = 'block';
       }
       
-
-       
-
-
+      window.location = "/bookings/createbookings#overviewCollapse"  
+      bookingOverview.textContent = "You have selected a booking on " + datePicker.value + ", from " + startTime.value + " to " + endTime.value +
+                                    ", table for " + "x" + " persons."     
     })
 
 
