@@ -4,26 +4,28 @@
 <div class="row content col-10 col-lg-9">
     <div class="center-container max-h-100 h-100vh scroll">
         <h2>Book your table now</h2>
-            <form id="bookingForm" method="post" >
+            <form id="bookingForm" method="post" action="">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
                 <div class="row justify-content-center" id="bookingDetails">
                     <p>Choose the date, time and number of persons for your booking and we will show you the available places</p>
                     <div class="col form-field col-12 col-md-4 col-lg-3">
                         <label for="datePicker"><i class="far fa-calendar-alt"></i> Choose Date:</label><br>
-                        {{ form.date }}
+                        {{ booking_form.date }}
                         <div class="error-container">
                             <small class="errorlist"></small>
                         </div>
                     </div>
                     <div class="col form-field col-lg-3">
                         <label for="startTime"><i class="fas fa-clock"></i> Starting At:</label><br>
-                        {{ form.start_time }}
+                        {{ booking_form.start_time }}
                         <div class="error-container">
                             <small class="errorlist"></small>
                         </div>
                     </div>
                     <div class="col form-field col-lg-3">
                         <label for="endTime"><i class="fas fa-clock"></i> Until:</label><br>
-                        {{ form.end_time }}
+                        {{ booking_form.end_time }}
                         <div class="error-container">
                             <small class="errorlist"></small>
                         </div>
@@ -34,36 +36,49 @@
                     <div class="card card-body">
                         Table picking content
                     </div><br>
-                    <button type="button" class="btn btn-simple continue">Continue</button>
+                    <div class="flex p-center" id="flexButtons">
+                        <button type="button" class="btn btn-simple continue">Continue</button>
+                        <button type="button" class="btn btn-simple restart">Restart</button>
+                    </div>
+                    
                 </div> 
                 <div class="flex f-column a-center p-center col-12 col-md-6 col-lg-3" id="bookingContactCollapse">
                     <p>CONTACT DETAILS</p>
                     <div class="form-field">
                         <label for="fullName"><i class="fas fa-user"></i> Customer Full Name:</label>
-                        {{ form.customer_full_name }}
+                        {{ booking_form.customer_full_name }}
                         <div class="error-container">
                             <small class="errorlist"></small>
                         </div>
                     </div>
                     <div class="form-field">
                         <label for="email"><i class="fas fa-envelope"></i> Customer Email:</label>
-                        {{ form.customer_email }}
+                        {{ booking_form.customer_email }}
                         <div class="error-container">
                             <small class="errorlist"></small>
                         </div>
                     </div>
                     <p><b><strong>OR</strong></b></p>
-                    {{ form.book_on_user }}
+                    {{ booking_form.book_on_user }}
                     <label for="bookAuthenticate">Book It On My Name</label><br>
-                    <button type="button" class="btn btn-simple continue">Finish</button>
+                    <button type="button" class="btn btn-simple continue">Finish</button><br>
                 </div> 
                 <div id="overviewCollapse" class="flex f-column a-center p-center">
                     <p>BOOKING OVERVIEW</p>
                     <span id="bookingOverview"></span><br>
                     <span>Do you want to proceed?</span><br>
                     <button type="submit" class="btn form-submit" >Yes</button>
-                    <button type="submit" class="btn form-submit" >No</button>
+                    <button type="button" class="btn form-submit restart" >No</button>
                 </div>
+                {% if messages %}
+                <div class="alert alert-success" role="alert" id="formAlert">
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li> {{ message }} </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
             </form>
     </div>
 </div>
