@@ -90,6 +90,7 @@ body {
     padding: 1px 2px;
    
     box-shadow: rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px;
+    position: relative;
 }
 
 .form-control input:hover{
@@ -259,11 +260,16 @@ input[type="number" i] {
     font-size: 14px;
 }
 
-.bck-login a {
+
+.authenticate-link{
     color: #ddeda9;
     box-shadow: 0 0 0 0 rgb(234, 229, 229);
     transform: scale(1);
     animation: pulse 3s infinite;
+    letter-spacing: 2px;
+}
+.authenticate-link:hover{
+    color: #cdff28;;
 }
 
 @keyframes pulse {
@@ -453,15 +459,6 @@ footer i:hover {
     margin: 0px auto 25px auto;
 }
 
-.auth-form a {
-    color: #ddeda9;
-    animation: pulse 3s infinite;
-}
-
-.auth-form a:hover {
-    animation: none;
-    color: #caec5c;
-}
 
 .input-container {
     display: flex;
@@ -702,6 +699,13 @@ input[type=checkbox]:hover {
     color: #ddeda9;
 }
 
+.ilustrate{
+    height: 45vh;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
@@ -774,6 +778,11 @@ input[type=checkbox]:hover {
         left: 50%;
         top: 57%;
         transform: translateX(-50%);
+    }
+
+    .ilustrate{
+        height: 35vh;
+        top: 25%;
     }
 
 }
