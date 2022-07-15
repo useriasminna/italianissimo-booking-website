@@ -1,4 +1,5 @@
 from operator import ne
+from random import choices
 from django import forms
 from .models import Booking
 
@@ -9,9 +10,11 @@ class newBookingForm(forms.ModelForm):
     customer_full_name = forms.CharField (widget=forms.TextInput(attrs={'id':'fullName', 'class':'form-control', 'type':'text', 'name':'fullName'}))
     customer_email = forms.EmailField(widget=forms.EmailInput(attrs={'id':'email', 'class':'form-control', 'type':'email', 'name':'email'}))
     book_on_user = forms.BooleanField(widget=forms.CheckboxInput(attrs={'id':'bookAuthenticate', 'type':'checkbox', 'name':'bookAuthenticate'}))
-
+    table_code = forms.ChoiceField (widget=forms.Select(attrs={'id':'tableCode', 'class':'form-select', 'type':'select', 'name':'tableCode'}),
+                                    choices=(("A1","A1"), ("A2","A2"), ("A3","A3"),("B1","B1"), ("B2","B2"), ("B3","B3"),("C1","C1"), ("C2","C2"), ("C3","C3")) )    
+    
     def __init__(self, *args, **kwargs):
-
+        
         super(newBookingForm, self).__init__(*args, **kwargs)
 
         self.fields['book_on_user'].required = False
