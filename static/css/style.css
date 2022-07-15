@@ -73,6 +73,14 @@ body {
     color: black;
 }
 
+.free-color{
+    color: #fdeca6;
+}
+
+.busy-color{
+    color: #c3c3c3;
+}
+
 .h-100vh{
     height: 100vh;
 }
@@ -89,7 +97,7 @@ body {
     border: 2px solid #c2c4c6;
     padding: 1px 2px;
    
-    box-shadow: rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     position: relative;
 }
 
@@ -490,9 +498,14 @@ footer i:hover {
 
 .errorlist {
     font-size: smaller;
+    color: burlywood;
     padding: 0px 14px;
     text-align: start;
-    color: burlywood;
+}
+
+.booking-error{
+    padding: 0px;
+    text-align: center;
 }
 
 .modal {
@@ -644,6 +657,8 @@ input[type=number]::-webkit-outer-spin-button {
     height: 40px;
 }
 
+
+
 #tableContentCollapse{
     display: none;
 }
@@ -701,12 +716,35 @@ input[type=checkbox]:hover {
 
 .ilustrate{
     height: 45vh;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
+.table-container{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    grid-template-columns: 30% 25% 25%;
+    grid-template-rows: 29% 31% 35%;;
+    overflow: hidden;
+}
+
+.table-container img {
+    transform: scale(0.26);
+}
+
+.card{
+    background: transparent;
+    height: 66vh;
+}
+
+.form-select{
+    padding: 1px 2px;
+}
+
+.form-select:focus {
+    border: 2px solid #c2c4c6;
+    box-shadow: none;
+}
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
 
@@ -782,7 +820,15 @@ input[type=checkbox]:hover {
 
     .ilustrate{
         height: 35vh;
-        top: 25%;
+    }
+
+    .card{
+        height: 50vh;
+    }
+
+    .table-container{
+        grid-template-columns: 35% 30% 25%;
+        grid-template-rows: 28% 29% 35%;
     }
 
 }
@@ -815,10 +861,6 @@ input[type=checkbox]:hover {
 
         width: 100%;
     }
-    #id_remember{
-        position: relative;
-        left: 50%
-    }
 
     .background-container {
         padding: 20px 0px;
@@ -826,6 +868,15 @@ input[type=checkbox]:hover {
 
     .auth-form {
         min-height: 80vh;
+    }
+
+
+    .table-container {
+        grid-template-columns: 40% 30% 31%;
+        grid-template-rows: 28% 31% 33%;
+    }
+    .table-container img {
+        transform: scale(0.15);
     }
 
 }
