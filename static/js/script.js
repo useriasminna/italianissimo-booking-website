@@ -343,6 +343,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       findTableButton.addEventListener("click", () => {
 
         scrollToBottom(continueButton);
+        window.scrollTo(0, document.body.scrollHeight);
         let isdateValid = checkDate();
         let isStartValid = checkStartTime();
         let isEndValid = checkEndTime();
@@ -450,6 +451,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
           // display next section
           scrollToBottom(finishButton);
+          window.scrollTo(0, document.body.scrollHeight);
           flexButtons.style.display = "none";
           window.location = "/bookings/createbookings/#bookingContactCollapse"  
           document.querySelector('#bookingContactCollapse').style.display = 'block';
@@ -459,7 +461,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // -------------------------CHECK THIRD BOOKING SECTION VALIDITY --------------------------
       finishButton.addEventListener("click", () => {
 
-        scrollToBottom(bookingOverview);
+        window.scrollTo(0, formContainer.scrollHeight);
+        window.scrollTo(0, document.body.scrollHeight);
         book_auth.removeEventListener("click", manipulateInputs)
         
 
