@@ -333,17 +333,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return valid;
       } 
 
-      //define method to scroll form to bottom
-      const scrollToBottom = (element) => {
-        element.scrollIntoView(false);
-      }
-
-
+    
       // -------------------------CHECK FIRST BOOKING SECTION VALIDITY --------------------------
       findTableButton.addEventListener("click", () => {
+        formContainer.scrollTop = element.scrollHeight
 
-        scrollToBottom(continueButton);
-        window.scrollTo(0, document.body.scrollHeight);
         let isdateValid = checkDate();
         let isStartValid = checkStartTime();
         let isEndValid = checkEndTime();
@@ -450,7 +444,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
           // display next section
-          scrollToBottom(finishButton);
+          formContainer.scrollTop = element.scrollHeight
           window.scrollTo(0, document.body.scrollHeight);
           flexButtons.style.display = "none";
           window.location = "/bookings/createbookings/#bookingContactCollapse"  
@@ -461,8 +455,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // -------------------------CHECK THIRD BOOKING SECTION VALIDITY --------------------------
       finishButton.addEventListener("click", () => {
 
-        window.scrollTo(0, formContainer.scrollHeight);
         window.scrollTo(0, document.body.scrollHeight);
+        formContainer.scrollTop = element.scrollHeight
         book_auth.removeEventListener("click", manipulateInputs)
         
 
