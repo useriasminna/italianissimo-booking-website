@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       const flexButtons = document.querySelector("#flexButtons");
       const bookingOverview = document.querySelector("#bookingOverview");
       const noOfPersons = document.querySelector("#tablePersons");
+      const formContainer = document.getElementsByClassName("center-container")[0]
 
       // --------------------------SET DATE PICKER INPUT MIN VALUE TO TODAY DATE--------------------------
       datePicker.min = new Date().toLocaleDateString('en-ca')
@@ -332,11 +333,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return valid;
       } 
 
+      //define method to scroll form to bottom
+      const scrollToBottom = (element) => {
+        element.scrollIntoView(false);
+      }
 
 
       // -------------------------CHECK FIRST BOOKING SECTION VALIDITY --------------------------
       findTableButton.addEventListener("click", () => {
 
+        scrollToBottom(formContainer);
         let isdateValid = checkDate();
         let isStartValid = checkStartTime();
         let isEndValid = checkEndTime();
@@ -443,6 +449,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
           // display next section
+          scrollToBottom(formContainer);
           flexButtons.style.display = "none";
           window.location = "/bookings/createbookings/#bookingContactCollapse"  
           document.querySelector('#bookingContactCollapse').style.display = 'block';
@@ -452,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // -------------------------CHECK THIRD BOOKING SECTION VALIDITY --------------------------
       finishButton.addEventListener("click", () => {
 
-        
+        scrollToBottom(formContainer);
         book_auth.removeEventListener("click", manipulateInputs)
         
 
