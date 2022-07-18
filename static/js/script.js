@@ -336,8 +336,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
       // -------------------------CHECK FIRST BOOKING SECTION VALIDITY --------------------------
       findTableButton.addEventListener("click", () => {
-        formContainer.scrollTop = element.scrollHeight
-
+        formContainer.scrollTop = formContainer.scrollHeight
         let isdateValid = checkDate();
         let isStartValid = checkStartTime();
         let isEndValid = checkEndTime();
@@ -444,7 +443,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
           // display next section
-          formContainer.scrollTop = element.scrollHeight
+          formContainer.scrollTop = formContainer.scrollHeight
           window.scrollTo(0, document.body.scrollHeight);
           flexButtons.style.display = "none";
           window.location = "/bookings/createbookings/#bookingContactCollapse"  
@@ -456,7 +455,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       finishButton.addEventListener("click", () => {
 
         window.scrollTo(0, document.body.scrollHeight);
-        formContainer.scrollTop = element.scrollHeight
+        formContainer.scrollTop = formContainer.scrollHeight
         book_auth.removeEventListener("click", manipulateInputs)
         
 
