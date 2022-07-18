@@ -406,6 +406,7 @@ input[type="number" i] {
 
 .center-container {
     text-align: center;
+    overflow-y: scroll;
 }
 
 .center-container h2 {
