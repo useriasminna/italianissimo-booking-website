@@ -2,6 +2,9 @@ from operator import truediv
 from django.db import models
 
 from cloudinary.models import CloudinaryField
+from django.conf import settings
+
+from users.models import User
 
 
 # Create your models here.
@@ -23,6 +26,7 @@ class Booking(models.Model):
     customer_full_name = models.CharField(max_length=200, blank=True)
     customer_email = models.EmailField(max_length=200, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, to_field='email', blank=True)
     
     class Meta:
-        ordering = ['date']
+        ordering = ['date', 'start_time']
