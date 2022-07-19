@@ -12,3 +12,20 @@ class CustomSignupForm(SignupForm):
         user.last_name = self.cleaned_data['last_name']
         user.save()
         return user
+    
+    def clean_first_name(self):
+        first_name = self.cleaned_data['first_name']
+
+        if any(not c.isalnum() for c in first_name):
+            raise forms.ValidationError("No special characters allowed")
+        elif any(c.isdigit() for c in first_name):
+            raise forms.ValidationError("No numbers allowed")
+        
+    def clean_last_name(self):
+        last_name = self.cleaned_data['last_name']
+
+        if any(not c.isalnum() for c in last_name):
+            raise forms.ValidationError("No special characters allowed")
+        elif any(c.isdigit() for c in last_name):
+            raise forms.ValidationError("No numbers allowed")
+       
