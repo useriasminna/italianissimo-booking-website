@@ -80,3 +80,6 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return self.staff
+    
+    def __str__(self):
+        return self.email
