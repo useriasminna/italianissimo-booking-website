@@ -456,25 +456,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         window.scrollTo(0, document.body.scrollHeight);
         formContainer.scrollTop = formContainer.scrollHeight
-        book_auth.removeEventListener("click", manipulateInputs)
+        
         
 
         // check validity
         if(book_auth.checked == false){
-          customer_name.readOnly = true
-          customer_email.readOnly = true
+          
 
-          //prevent user from changing checbox state
-          book_auth.addEventListener("click", (event)=>{
-
-            setTimeout(function() {
-              this.removeAttr('checked');
-            }, 0);
-  
-            event.preventDefault();
-            event.stopPropagation();
-          })
-
+          
           // book_auth.style.display = "none"
           let isNameValid = checkCustomerName();
           let isEmailValid = checkEmail();
@@ -484,8 +473,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
           // display next section if inputs are valid
           if ( isContactSectionValid) {
     
-            // display next section
+            book_auth.removeEventListener("click", manipulateInputs)
+            
+            //prevent user from changing checbox state
+            book_auth.addEventListener("click", (event)=>{
+
+              setTimeout(function() {
+                this.removeAttr('checked');
+              }, 0);
+    
+              event.preventDefault();
+              event.stopPropagation();
+            })
+
+            customer_name.readOnly = true
+            customer_email.readOnly = true
             finishButton.style.display="none";
+
+            // display next section
             document.querySelector('#overviewCollapse').style.display = 'block';
           }
         } else{
