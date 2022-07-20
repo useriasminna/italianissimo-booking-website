@@ -19,7 +19,7 @@
       </div>
       {% if user.is_authenticated %}
         <div class="col align-self-center">
-            <a href="#"><button class="book-btn">Book a table</button></a>
+            <a href="{% url 'booking' %}#"><button class="book-btn">Book a table</button></a>
       </div> 
       {% else %}
       <div class="col bck-login">
