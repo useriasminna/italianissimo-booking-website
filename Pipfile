@@ -15,6 +15,7 @@ jinja2 = "*"
 django-allauth = "*"
 django-crispy-forms = "*"
 django-braces = "*"
+django-filter = "*"
 
 [dev-packages]
 autopep8 = "*"
