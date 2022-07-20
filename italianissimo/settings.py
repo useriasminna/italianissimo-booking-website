@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    'django_filters',
     'crispy_forms',
     'home',
     'users',
