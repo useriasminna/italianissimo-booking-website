@@ -3,7 +3,7 @@
 {% block content %}
 {% load pagination_tags %}
 <div class="row content col-10 col-lg-9">
-    <div class="center-container max-h-100 h-100vh">
+    <div class="center-container scroll max-h-100 h-100vh">
         <div class="center-container">
             <h2>Welcome back, {{ user.first_name }}</h2>
             <div>
@@ -63,7 +63,7 @@
                             {% if page_obj.has_next %}
                             <a class="authenticate-link" href='{% url "booking_list" %}?page={{ page_obj.next_page_number }}' > Next</a>
                             {% endif %}
-                        </div>
+                        </div><br>
                         {% endif %}
                 </div> 
             </div>
