@@ -48,8 +48,16 @@ body {
     justify-content: space-around;
 }
 
+.j-center{
+    justify-content: center;
+}
+
 .f-column {
     flex-direction: column;
+}
+
+.f-wrap{
+    flex-wrap: wrap;
 }
 
 .a-center {
@@ -90,7 +98,7 @@ body {
 }
 
 .scroll{
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .form-control {
@@ -406,7 +414,6 @@ input[type="number" i] {
 
 .center-container {
     text-align: center;
-    overflow-y: scroll;
 }
 
 .center-container h2 {
@@ -515,6 +522,7 @@ footer i:hover {
     --bs-modal-bg: antiquewhite;
     --bs-modal-header-border-color: #adb5bd6e;
     --bs-modal-footer-border-color: #adb5bd6e;
+    color: #3a3a3a;
 }
 
 .close {
@@ -745,6 +753,42 @@ input[type=checkbox]:hover {
 .form-select:focus {
     border: 2px solid #c2c4c6;
     box-shadow: none;
+}
+
+.booking-container{
+    margin: 10px 17px 10px 20px;
+    position: relative;
+}
+
+.booking-container img{
+    height: 30vh;
+}
+#booking-details{
+    position: absolute;
+    top: 16%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    color: #3a3a3a;
+    font-size: small;
+    width: fit-content;
+}
+
+.note-btn{
+    transform: scale(0.8);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.note-btn:hover{
+    background-color: #515356;
+    color: white;
+}
+.note-btn:focus{
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background-color: #6c757d;
+}
+
+.pagination a{
+    animation: none;
 }
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
