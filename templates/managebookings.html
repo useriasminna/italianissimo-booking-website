@@ -1,0 +1,76 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+<div class="row content col-10 col-lg-9">
+    <div class="center-container scroll max-h-100 h-100vh">
+        <div class="center-container profile">
+            <h2>Welcome back,<br>STAFF MEMBER</h2>
+            <small>{{ user.email }}</small><br><br>
+            <div class="flex sp-between a-end upper_manage">
+                <h4>Bookings for {{ date }} ({{ booking_list|length }})</h4>
+                <form class="flex a-center" method="GET" action="">
+                    {% csrf_token %}
+                    {{ date_form.as_p }}
+                    <button type="submit" class="btn btn-sm btn-simple" id="filterSubmit">Submit</button>
+                </form>
+            </div>
+            {% if booking_list|length > 0 %}
+            <div class="overflow-x">
+                <table class="table table-bordered">
+                    <thead class="thead">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Table</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Customer Email</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for booking in booking_list %}
+                    <tr>
+                        <td>{{ booking.pk }}</td>
+                        <td>{{ booking.date }}</td>
+                        <td>{{ booking.start_time }} - {{ booking.end_time }}</td>
+                        <td>{{ booking.table }}</td>
+                        <td>{{ booking.customer_full_name }}</td>
+                        <td>{{ booking.customer_email}}</td>
+                        <td><button type="button" class="btn btn-secondary note-btn"  data-bs-toggle="modal" data-bs-target="#deleteBookingModal{{ booking.pk }}"><small>DELETE BOOKING</small></button></td>
+                    </tr>
+                    <div class="modal fade" id="deleteBookingModal{{ booking.pk }}" tabindex="-1" role="dialog" aria-labelledby="deleteBookingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                        
+                                <div class="modal-body">
+                                <p>Are you sure you want to delete booking {{ booking.pk }}?</p> 
+                                </div>
+                        
+                                <div class="modal-footer">
+                                    <form method="post" action="{% url 'booking_remove_admin' pk=booking.pk %}">
+                                        {% csrf_token %}
+                                        {% if redirect_field_value %}
+                                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                        {% endif %}
+                                        <button type="submit" class="btn btn-secondary" id="btn-submit">Yes</button>
+                                        <button type="button" class="btn btn-secondary" id="btn-cancel" data-bs-dismiss="modal">No</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p><b>There are no bookings for this date</b></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
