@@ -30,3 +30,6 @@ class Booking(models.Model):
     
     class Meta:
         ordering = ['date', 'start_time']
+
+class BookingQuery(models.Model):
+    date = models.DateField()
