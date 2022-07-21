@@ -790,6 +790,10 @@ input[type=checkbox]:hover {
 .pagination a{
     animation: none;
 }
+
+.profile h2{
+    margin-bottom: 0px;
+}
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
 
@@ -876,6 +880,10 @@ input[type=checkbox]:hover {
         grid-template-rows: 28% 29% 35%;
     }
 
+    .booking-container img{
+        height: 24vh;
+    }
+
 }
 
 
@@ -922,6 +930,10 @@ input[type=checkbox]:hover {
     }
     .table-container img {
         transform: scale(0.15);
+    }
+
+    .booking-container img{
+        height: 30vh;
     }
 
 }
