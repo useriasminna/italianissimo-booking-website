@@ -1,7 +1,7 @@
-from operator import ne
 from random import choices
 from django import forms
-from .models import Booking
+from .models import Booking, BookingQuery
+from datetime import date
 
 class newBookingForm(forms.ModelForm):
     date = forms.DateField(widget=forms.DateInput(attrs={'id':'datePicker', 'class':'form-control', 'type':'date', 'name':'datePicker'}))
@@ -23,13 +23,25 @@ class newBookingForm(forms.ModelForm):
 
     def clean(self):
         user_book = self.cleaned_data.get('book_on_user', False)
-        # make contact inputs not required when book_on_user is checked
         if user_book:
             del self.errors['customer_full_name']
             del self.errors['customer_email']
         return self.cleaned_data
     
     class Meta:
-        # specify model to be used
         model = Booking
         fields = "__all__"
+        
+class dateBookingForm(forms.ModelForm): 
+    date = forms.DateField(widget=forms.DateInput(attrs={'id':'datePicker', 'class':'form-control', 'type':'date', 'name':'datePicker', 'value':date.today()}), initial=date.today())
+    
+    def __init__(self, *args, **kwargs):
+        
+        super(dateBookingForm, self).__init__(*args, **kwargs)
+        self.fields['date'].required = False
+        self.fields['date'].label = "Filter By Date:"
+        self.fields['date'].initial = date.today()
+        
+    class Meta:
+        model = BookingQuery
+        fields = ['date']
