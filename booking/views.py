@@ -2,6 +2,7 @@ from datetime import date, datetime
 from multiprocessing import context
 from django.views.generic import TemplateView, ListView
 from booking.filters import BookingFilter
+from italianissimo.decorators import customer_required, staff_required
 from users.models import User
 from .forms import dateBookingForm, newBookingForm
 from .models import Table
@@ -16,7 +17,7 @@ from datetime import date
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from django_filters.views import FilterView
-from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
     
@@ -79,7 +80,8 @@ class Booking(LoginRequiredMixin, TemplateView):
         
         return render(request, 'booking.html', {'booking_form': booking_form,})
     
-
+    
+@method_decorator(customer_required, name='dispatch')
 class BookingList(LoginRequiredMixin, FilterView):
     template_name = 'profile.html'
     paginate_by =  2
@@ -91,12 +93,14 @@ class BookingList(LoginRequiredMixin, FilterView):
         return BookingModel.objects.filter(Q(created_by=self.request.user.email) & Q(date__gte=today) )
 
 
+@method_decorator(customer_required, name='dispatch')
 class BookingDeleteView(DeleteView, LoginRequiredMixin):
     model = BookingModel
     success_url = reverse_lazy('booking_list')
     template_name = 'profile.html'
     
     
+@method_decorator(staff_required, name='dispatch')   
 class BookingListAdmin(LoginRequiredMixin, ListView):
     model = BookingModel
     template_name = 'managebookings.html'
@@ -120,8 +124,9 @@ class BookingListAdmin(LoginRequiredMixin, ListView):
             
                       
         return render(request, 'managebookings.html', context)
+ 
     
-     
+@method_decorator(staff_required, name='dispatch')   
 class BookingDeleteViewAdmin(DeleteView, LoginRequiredMixin):
     model = BookingModel
     success_url = reverse_lazy('booking_list_admin')
