@@ -1,8 +1,9 @@
-from datetime import date
+from datetime import date, datetime
+from multiprocessing import context
 from django.views.generic import TemplateView, ListView
 from booking.filters import BookingFilter
 from users.models import User
-from .forms import newBookingForm
+from .forms import dateBookingForm, newBookingForm
 from .models import Table
 from .models import Booking as BookingModel
 from django.shortcuts import render
@@ -15,6 +16,7 @@ from datetime import date
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from django_filters.views import FilterView
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
     
@@ -82,14 +84,45 @@ class BookingList(LoginRequiredMixin, FilterView):
     template_name = 'profile.html'
     paginate_by =  2
     filterset_class = BookingFilter
-    list=BookingFilter()
     context_object_name ='booking_list'
+    
     def get_queryset(self):
         today=date.today()
         return BookingModel.objects.filter(Q(created_by=self.request.user.email) & Q(date__gte=today) )
 
-    
+
 class BookingDeleteView(DeleteView, LoginRequiredMixin):
     model = BookingModel
     success_url = reverse_lazy('booking_list')
     template_name = 'profile.html'
+    
+    
+class BookingListAdmin(LoginRequiredMixin, ListView):
+    model = BookingModel
+    template_name = 'managebookings.html'
+
+    def get(self, request):
+        if request.method =='GET':
+            today = date.today()
+            date_form = dateBookingForm(data=request.GET) 
+
+            if date_form.is_valid(): 
+                bdate = date_form.cleaned_data['date']
+                print(bdate)
+                if bdate:
+                    query = BookingModel.objects.filter(date=bdate)
+                else:
+                    bdate = today
+                    query = BookingModel.objects.filter(date=bdate)
+                context = {'date_form': date_form,
+                    'date': bdate,
+                    'booking_list': query} 
+            
+                      
+        return render(request, 'managebookings.html', context)
+    
+     
+class BookingDeleteViewAdmin(DeleteView, LoginRequiredMixin):
+    model = BookingModel
+    success_url = reverse_lazy('booking_list_admin')
+    template_name = 'managebookings.html'
