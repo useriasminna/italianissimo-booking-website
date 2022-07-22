@@ -112,7 +112,6 @@ class BookingListAdmin(LoginRequiredMixin, ListView):
 
             if date_form.is_valid(): 
                 bdate = date_form.cleaned_data['date']
-                print(bdate)
                 if bdate:
                     query = BookingModel.objects.filter(date=bdate)
                 else:
