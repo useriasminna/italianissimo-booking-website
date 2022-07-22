@@ -95,13 +95,19 @@
                 <button type="button" class="btn form-submit restart" >No</button>
             </div>
             {% if messages %}
-            <div class="alert alert-success" role="alert" id="formAlert">
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li> {{ message }} </li>
-                    {% endfor %}
-                </ul>
-            </div>
+                {% for message in messages %}
+                    {% if forloop.last %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <div class="alert alert-success" role="alert" >
+                            {{ message }}
+                        </div>
+                        {% else %}
+                        <div class="alert alert-danger" role="alert" >
+                            {{ message }}
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
             {% endif %}
         </form>
         {% else %}
