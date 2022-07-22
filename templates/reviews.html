@@ -1,0 +1,46 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+<div class="row content col-10 col-lg-9">
+    <div class="center-container scroll max-h-100 h-100vh">
+        <div class="center-container">
+            <h2>Reviews <i class="far fa-comment-alt"></i></h2>
+            <div class="col-lg-8"></div>
+            <div class="col-lg-4 flex f-column a-start">
+                <h4>Add your review:</h4>
+                <form action="" method="POST" class="flex f-column a-start">
+                    {% csrf_token %}
+                    <div class="rating">
+                        <button type="button">★</button>
+                        <button type="button">★</button>
+                        <button type="button">★</button>
+                        <button type="button">★</button>
+                        <button type="button">★</button>
+                    </div>  
+                    {{ review_form.as_p }} 
+                    <button type="submit" class="btn form-submit" >Submit</button>
+                </form>                
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if forloop.last %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="alert alert-success" role="alert" >
+                        {{ message }}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-danger" role="alert" >
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
