@@ -529,15 +529,45 @@ document.addEventListener("DOMContentLoaded", function(event) {
         })                              
       })
     }
-    
-
-
-
-
-
-
    
   }
+
+  if (window.location.pathname.includes('/reviews/')) {
+    const rating = document.getElementsByClassName('rating')[0]
+    const stars = rating.getElementsByTagName('button')
+    const rateValue = document.querySelector('#rateValue')
+
+    stars[0].clicked = true
+    for(let i=0; i<stars.length; i++){
+      stars[i].addEventListener('mouseover', () => {
+        for(let j=0; j<=i; j++){
+          stars[j].style.color = "yellow"
+      }
+      })
+      stars[i].addEventListener('mouseleave', () => {
+        for(let j=0; j<=i; j++){
+          if(!stars[j].clicked)
+            stars[j].style.color = "gray"
+        }
+      })
+
+      stars[i].addEventListener('click', () => {
+        rateValue.value = i+1;
+        rateValue.innerHTML = i+1;
+        for(let j=0; j<=i; j++){
+          stars[j].style.color = "yellow"
+          stars[j].clicked = true
+        }
+        if(i != stars.length-1)
+          for(let z=i+1; z<stars.length; z++){
+            stars[z].style.color = "gray"
+            stars[z].clicked = false
+          }
+      })
+
+    }
+  }
+
   
 
 });
