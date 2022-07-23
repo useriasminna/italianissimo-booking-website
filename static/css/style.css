@@ -46,6 +46,9 @@ body {
 .a-end{
     align-items: flex-end;
 }
+.a-start{
+    align-items: flex-start;
+}
 
 .sp-around {
     justify-content: space-around;
@@ -102,6 +105,9 @@ body {
 .h-100vh{
     height: 100vh;
 }
+.h-80vh{
+    height: 80vh;
+}
 
 .max-h-100{
     max-height: 100vh;
@@ -109,6 +115,7 @@ body {
 
 .scroll{
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .form-control {
@@ -819,6 +826,49 @@ input[type=checkbox]:hover {
 .thead{
     background-color: #000;
 }
+
+.rating{
+    font-size: x-large;
+    margin-bottom: 15px;
+}
+
+.rating button:nth-child(1){
+    color: yellow;
+}
+
+.ratings-generated{
+    margin-top: -10px;
+    margin-left: 10px;
+}
+.star{
+    background-color: transparent;
+    border: none;
+    color: gray;
+    font-size: x-large;
+    padding: 0px;
+    transition: color 0.1s ease-in-out;
+}
+
+.review img{
+    height: 12vh;
+}
+
+.review h6{
+    text-transform: uppercase;
+}
+.review p{
+    text-align: justify;
+}
+
+.reviews-container{
+    margin-bottom: 20px;
+}
+
+.review-header small{
+    color: #ddeda9;
+}
+
+
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
 
@@ -909,6 +959,26 @@ input[type=checkbox]:hover {
         height: 24vh;
     }
 
+    .reviews-main-container{
+        flex-direction: column-reverse;
+    }
+
+    .review-header{
+        flex-direction: column;
+    }
+    .review h6{
+        text-align: left;
+    }
+
+    .reviews-container>div{
+        height: 48vh;
+    }
+
+    .review img {
+        height: 8vh;
+    }
+    
+
 }
 
 
@@ -969,5 +1039,11 @@ input[type=checkbox]:hover {
     .table{
         width: max-content;
     }
+
+    .review img {
+        height: 6vh;
+    }
+    
+
 
 }
