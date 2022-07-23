@@ -2,25 +2,55 @@
 {% load static %} 
 {% block content %}
 <div class="row content col-10 col-lg-9">
-    <div class="center-container scroll max-h-100 h-100vh">
+    <div class="center-container height-100vh max-h-100">
         <div class="center-container">
             <h2>Reviews <i class="far fa-comment-alt"></i></h2>
-            <div class="col-lg-8"></div>
-            <div class="col-lg-4 flex f-column a-start">
-                <h4>Add your review:</h4>
-                <form action="" method="POST" class="flex f-column a-start">
-                    {% csrf_token %}
-                    <div class="rating">
-                        <button type="button">★</button>
-                        <button type="button">★</button>
-                        <button type="button">★</button>
-                        <button type="button">★</button>
-                        <button type="button">★</button>
-                    </div>  
-                    {{ review_form.as_p }} 
-                    <button type="submit" class="btn form-submit" >Submit</button>
-                </form>                
+            <div class="flex sp-between reviews-main-container">
+                <div class="col-lg-7 reviews-container">
+                    <div class="scroll h-80vh">
+                        {% for review in review_list %}
+                            <div class="row flex review">
+                                <img class="col-2" src="{% static 'italianissimo/media/user.png' %}" alt="">
+                                <div class="col-10" >
+                                    {% for user in users %}
+                                    {% if user.email == review.author_id %}
+                                    <div class="flex sp-between review-header">
+                                        <h6><b>{{ user.get_full_name }}</b></h6>
+                                        <div class="flex sp-between">
+                                            <small>{{ review.date_updated_on }}</small>
+                                            <input type="hidden" name="rate" class="rate" value="{{review.rate}}">
+                                            <div class="ratings-generated flex a-end "></div>
+                                        </div>    
+                                    </div>
+                                    <div class="row">
+                                        <p class="flex a-start">{{ review.review_text}}</p>
+                                    </div>
+                                    
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                         <br>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-4 flex f-column a-start">
+                    <h5>Add your review:</h5>
+                    <form action="" method="POST" class="flex f-column a-start">
+                        {% csrf_token %}
+                        <div class="rating">
+                            <button type="button" class="star">★</button>
+                            <button type="button" class="star">★</button>
+                            <button type="button" class="star">★</button>
+                            <button type="button" class="star">★</button>
+                            <button type="button" class="star">★</button>
+                        </div>  
+                        {{ review_form.as_p }} 
+                        <button type="submit" class="btn form-submit" >Submit</button>
+                    </form>                
+                </div>
             </div>
+            
             {% if messages %}
                 {% for message in messages %}
                     {% if forloop.last %}
