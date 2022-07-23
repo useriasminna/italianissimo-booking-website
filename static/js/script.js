@@ -536,6 +536,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const rating = document.getElementsByClassName('rating')[0]
     const stars = rating.getElementsByTagName('button')
     const rateValue = document.querySelector('#rateValue')
+    const generateStarsContainers = document.getElementsByClassName('ratings-generated')
 
     stars[0].clicked = true
     for(let i=0; i<stars.length; i++){
@@ -566,6 +567,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
       })
 
     }
+
+    for(container of generateStarsContainers){
+      const rateHidden = container.previousElementSibling
+
+
+      for(i=0; i<rateHidden.value; i++){
+        let star = document.createElement("button");
+        star.textContent = '★'
+        star.classList.add('star')
+        star.style.color = "yellow"
+        container.appendChild(star)
+   
+       }
+   
+       for(i=0; i<5-rateHidden.value; i++){
+         let star = document.createElement("button");
+         star.textContent = '★'
+         star.classList.add('star')
+         container.appendChild(star)
+    
+        }
+    }
+
+    
+
+
   }
 
   
