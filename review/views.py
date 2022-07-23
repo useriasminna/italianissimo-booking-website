@@ -2,6 +2,8 @@ from datetime import date, datetime
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView
+
+from users.models import User
 from .models import Review as ReviewModel
 from django.contrib import messages
 from review.forms import newReviewForm
@@ -11,7 +13,7 @@ import time
 
 
 # Create your views here.
-class Review(LoginRequiredMixin, TemplateView):
+class Review(ListView):
 
     template_name = "reviews.html"
     model = ReviewModel
@@ -19,7 +21,9 @@ class Review(LoginRequiredMixin, TemplateView):
     
     def get_context_data(self,*args, **kwargs):
         context = super(Review, self).get_context_data(*args,**kwargs)
-        context['review_form'] = newReviewForm      
+        context['review_form'] = newReviewForm 
+        context['review_list'] = ReviewModel.objects.order_by('-date_updated_on')    
+        context['users'] = User.objects.all()    
         return context
     
     def post(self, request):
@@ -40,12 +44,14 @@ class Review(LoginRequiredMixin, TemplateView):
                 review = ReviewModel(rate = rateValue, review_text = text, author = user,)
                 review.save()
                 messages.success(request, 'Your review was successfully added to the list')
-                return HttpResponseRedirect('/reviews/addreview/') 
+                return HttpResponseRedirect('/reviews') 
             
             else:
                 messages.error(request, 'There was a problem submiting your review. Please try again!')
-                return HttpResponseRedirect('/reviews/addreview/') 
+                return HttpResponseRedirect('/reviews') 
         else:
             review_form = newReviewForm(request.GET) 
         
-        return render(request, 'booking.html', {'review_form': review_form,})
+        return render(request, 'reviews.html', {'review_form': review_form,})
+    
+    
