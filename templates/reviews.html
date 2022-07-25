@@ -23,7 +23,7 @@
                                         </div>    
                                     </div>
                                     <div class="row">
-                                        <p class="flex a-start">{{ review.review_text}}</p>
+                                        <p class="flex a-start"><q>{{ review.review_text}}</q></p>
                                     </div>
                                     
                                     {% endif %}
@@ -35,22 +35,62 @@
                     </div>
                 </div>
                 <div class="col-lg-4 flex f-column a-start">
-                    <h5>Add your review:</h5>
-                    <form action="" method="POST" class="flex f-column a-start">
-                        {% csrf_token %}
-                        <div class="rating">
-                            <button type="button" class="star">★</button>
-                            <button type="button" class="star">★</button>
-                            <button type="button" class="star">★</button>
-                            <button type="button" class="star">★</button>
-                            <button type="button" class="star">★</button>
-                        </div>  
-                        {{ review_form.as_p }} 
-                        <button type="submit" class="btn form-submit" >Submit</button>
-                    </form>                
+                    {% if user.is_authenticated %}
+                        {% for review in review_list %}
+                            {% if review.author_id == user.email %}
+                                <p id="reviewExists"></p>
+                                <div id="myReview">
+                                    <div class="row">
+                                        <h5>Your review:</h5><br>
+                                            <div class="flex sp-between">
+                                                <input type="hidden" name="rate" class="rate" value="{{review.rate}}">
+                                                <div class="ratings-generated flex a-end "></div>
+                                                <small>{{ review.date_updated_on }}</small>
+                                            </div>
+                                        <p><q>{{ review.review_text }}</q></p>
+                                    </div>
+                                    
+                                    <button class="btn btn-simple" type="button" id="displayUpdateForm">Update</button>
+                                </div>
+                                <div id="updateReviewForm">
+                                    <h5>Update your review:</h5>
+                                    <form action="{% url 'review_update' pk=review.pk %}" method="POST" class="flex f-column a-start">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="rate" class="rate" value="{{review.rate}}">
+                                        <div class="rating">
+                                            <button type="button" class="star">★</button>
+                                            <button type="button" class="star">★</button>
+                                            <button type="button" class="star">★</button>
+                                            <button type="button" class="star">★</button>
+                                            <button type="button" class="star">★</button>
+                                        </div>  
+                                        <input type="hidden" id="reviewTextHidden" value="{{ review.review_text }}"></input>
+                                        {{ review_form.as_p }}
+                                        <button type="submit" class="btn form-submit" >Submit</button>
+                                    </form> 
+                                </div>  
+                            {% endif %}
+                        {% endfor %}
+                        <div id="addReviewForm">
+                            <h5>Add your review:</h5>
+                            <form action="" method="POST" class="flex f-column a-start">
+                                {% csrf_token %}
+                                <div class="rating">
+                                    <button type="button" class="star">★</button>
+                                    <button type="button" class="star">★</button>
+                                    <button type="button" class="star">★</button>
+                                    <button type="button" class="star">★</button>
+                                    <button type="button" class="star">★</button>
+                                </div>  
+                                {{ review_form.as_p }} 
+                                <button type="submit" class="btn form-submit" >Submit</button>
+                            </form> 
+                        </div>
+                    {% else %}
+                    <p>If you want to add or edit your review, please <span><a class="authenticate-link" href="{% url 'account_login' %}"><b>LOGIN</b></a> / <a  class="authenticate-link" href="{% url 'account_signup' %}"><b>REGISTER</b></a></span>
+                    {% endif %}               
                 </div>
             </div>
-            
             {% if messages %}
                 {% for message in messages %}
                     {% if forloop.last %}
