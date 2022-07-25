@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView
 
@@ -8,7 +8,8 @@ from .models import Review as ReviewModel
 from django.contrib import messages
 from review.forms import newReviewForm
 from django.http import HttpResponse, HttpResponseRedirect
-import time
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
 
 
 
@@ -54,4 +55,33 @@ class Review(ListView):
         
         return render(request, 'reviews.html', {'review_form': review_form,})
     
+    
+class ReviewUpdate(UpdateView):
+    model = ReviewModel 
+    template_name = "reviews.html"
+    success_url = ('/reviews')
+    
+    fields = ['rate', 'review_text']
+    
+    def post(self, request, pk):
+        
+        review = get_object_or_404(ReviewModel , pk=pk)
+        if request.method=='POST':
+            
+            review_form = newReviewForm(data=request.POST, instance=review)             
+            
+            if review_form.is_valid():
+                review_form.instance.date_created_on = datetime.now()
+                review_form.instance.date_updated_on = datetime.now()
+                 
+                review = ReviewModel()
+                review_form.save()
+                messages.success(request, 'Your review was successfully updated')
+                return HttpResponseRedirect('/reviews') 
+            
+            else:
+                messages.error(request, 'There was a problem submiting your review. Please try again!')
+                return HttpResponseRedirect('/reviews') 
+        
+        return render(request, 'reviews.html', {'review_form': review_form,})
     
