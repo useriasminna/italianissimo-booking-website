@@ -533,11 +533,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   if (window.location.pathname.includes('/reviews/')) {
-    const rating = document.getElementsByClassName('rating')[0]
-    const stars = rating.getElementsByTagName('button')
-    const rateValue = document.querySelector('#rateValue')
-    const generateStarsContainers = document.getElementsByClassName('ratings-generated')
+    const rating = document.getElementsByClassName('rating')[0];
+    const stars = rating.getElementsByTagName('button');
+    const rateValue = document.querySelector('#rateValue');
+    const generateStarsContainers = document.getElementsByClassName('ratings-generated');
+    const displayUpdateForm = document.querySelector('#displayUpdateForm');
+    const myReview = document.querySelector('#myReview');
+    const reviewExists = document.querySelector('#reviewExists');
+    const addReviewForm = document.querySelector('#addReviewForm')
 
+    //add event listeners for rating stars
     stars[0].clicked = true
     for(let i=0; i<stars.length; i++){
       stars[i].addEventListener('mouseover', () => {
@@ -568,6 +573,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     }
 
+    //generate stars for reviews rating after rate value
     for(container of generateStarsContainers){
       const rateHidden = container.previousElementSibling
 
@@ -589,6 +595,37 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
         }
     }
+
+    //on update button click display update form and fill it with existing values of the review coresponding to the authenticated user
+    if(displayUpdateForm)
+        displayUpdateForm.addEventListener("click", () => {
+          const updateReviewForm = document.querySelector('#updateReviewForm');
+          const reviewText = document.querySelector('#reviewTextHidden');
+          const reviewTextInput = updateReviewForm.querySelector('#reviewText');
+          const updateRating = updateReviewForm.querySelectorAll('.rating')[0].querySelectorAll('button')
+          const updateRate = updateReviewForm.getElementsByClassName("rate")[0];
+          const formRate = updateReviewForm.querySelector('#rateValue');
+
+          myReview.style.display = "none";
+          updateReviewForm.style.display = "block";
+          displayUpdateForm.style.display = "none";
+
+          formRate.value = updateRate.value
+          reviewTextInput.textContent = reviewText.value
+
+          console.log(updateRate)
+          for(let i=0; i<updateRate.value; i++){
+            updateRating[i].style.color = "yellow"
+          }
+        
+        })
+
+    //don't display add review form if review already exists for authenticated user
+    if(reviewExists)
+    {
+      addReviewForm.style.display = 'none'
+    }
+
 
     
 
