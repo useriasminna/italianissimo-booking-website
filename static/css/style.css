@@ -868,6 +868,29 @@ input[type=checkbox]:hover {
     color: #ddeda9;
 }
 
+#updateReviewForm{
+    display: none;
+    text-align: left;
+}
+
+#myReview{
+    text-align: left;
+}
+
+#myReview p{
+    text-align: justify;
+}
+
+#myReview .ratings-generated{
+    margin-left: 0px;
+    margin-top: -5px;
+}
+
+#myReview small{
+   color: #ddeda9;
+
+}
+
 
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
@@ -971,7 +994,7 @@ input[type=checkbox]:hover {
     }
 
     .reviews-container>div{
-        height: 48vh;
+        height: 54vh;
     }
 
     .review img {
@@ -1042,6 +1065,10 @@ input[type=checkbox]:hover {
 
     .review img {
         height: 6vh;
+    }
+
+    .reviews-container>div{
+        height: 43vh;
     }
     
 
