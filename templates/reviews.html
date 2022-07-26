@@ -2,43 +2,55 @@
 {% load static %} 
 {% block content %}
 <div class="row content col-10 col-lg-9">
-    <div class="center-container height-100vh max-h-100">
+    <div class="center-container  min-h-100">
         <div class="center-container">
             <h2>Reviews <i class="far fa-comment-alt"></i></h2>
             <div class="flex sp-between reviews-main-container">
                 <div class="col-lg-7 reviews-container">
-                    <div class="scroll h-80vh">
-                        {% for review in review_list %}
-                            <div class="row flex review">
-                                <img class="col-2" src="{% static 'italianissimo/media/user.png' %}" alt="">
-                                <div class="col-10" >
-                                    {% for user in users %}
-                                    {% if user.email == review.author_id %}
-                                    <div class="flex sp-between review-header">
-                                        <h6><b>{{ user.get_full_name }}</b></h6>
-                                        <div class="flex sp-between">
-                                            <small>{{ review.date_updated_on }}</small>
-                                            <input type="hidden" name="rate" class="rate" value="{{review.rate}}">
-                                            <div class="ratings-generated flex a-end "></div>
-                                        </div>    
-                                    </div>
-                                    <div class="row">
-                                        <p class="flex a-start"><q>{{ review.review_text}}</q></p>
-                                    </div>
-                                    
-                                    {% endif %}
-                                    {% endfor %}
+                    {% for review in review_list %}
+                        <div class="row flex review">
+                            <img class="col-2" src="{% static 'italianissimo/media/user.png' %}" alt="">
+                            <div class="col-10" >
+                                {% for user in users %}
+                                {% if user.email == review.author_id %}
+                                <div class="flex sp-between review-header">
+                                    <h6><b>{{ user.get_full_name }}</b></h6>
+                                    <div class="flex sp-between">
+                                        <small>{{ review.date_updated_on }}</small>
+                                        <input type="hidden" name="rate" class="rate" value="{{review.rate}}">
+                                        <div class="ratings-generated flex a-end "></div>
+                                    </div>    
                                 </div>
+                                <div class="row">
+                                    <p class="flex a-start"><q>{{ review.review_text}}</q></p>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
                             </div>
-                         <br>
-                        {% endfor %}
-                    </div>
+                        </div>
+                        <br>
+                    {% endfor %}
+                    {% if is_paginated %}
+                    <div class='pagination justify-content-center'>
+                        {% if page_obj.has_previous %}
+                        <a class="authenticate-link" href='{% url "reviews" %}?page={{ page_obj.previous_page_number }}'>Previous </a>
+                        {% endif %}
+                    
+                        <span class='mx-4'>
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                        </span>
+                    
+                        {% if page_obj.has_next %}
+                        <a class="authenticate-link" href='{% url "reviews" %}?page={{ page_obj.next_page_number }}' > Next</a>
+                        {% endif %}
+                    </div><br>
+                    {% endif %}
                 </div>
                 <div class="col-lg-4 flex f-column a-start">
                     {% if user.is_authenticated %}
                         {% for review in review_list %}
                             {% if review.author_id == user.email %}
-                                <p id="reviewExists"></p>
+                                <p id="reviewExists" hidden></p>
                                 <div id="myReview">
                                     <div class="row">
                                         <h5>Your review:</h5><br>
