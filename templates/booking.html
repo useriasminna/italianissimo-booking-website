@@ -2,120 +2,117 @@
 {% load static %} 
 {% block content %}
 <div class="row content col-10 col-lg-9">
-    <div class="center-container ">
+    <div class="center-container min-h-100">
         <h2>Book your table now <i class="fas fa-pencil-alt"></i></h2>
-        <div class="scroll max-h-100 h-100vh">
-            
-            {% if user.is_authenticated %}
-            <input class="user" type="text" hidden value="authenticated">
-            <form id="bookingForm" method="post" action="">
-                {% csrf_token %}
-                {{ form.non_field_errors }}
-                <div class="row justify-content-center" id="bookingDetails">
-                    <p>Choose the date, time and number of persons for your booking and we will show you the available places</p>
-                    <div class="col form-field col-12 col-md-4 col-lg-3">
-                        <label for="datePicker"><i class="far fa-calendar-alt"></i> Choose Date:</label><br>
-                        {{ booking_form.date }}
-                        <div class="error-container">
-                            <small class="errorlist booking-error"></small>
-                        </div>
-                    </div>
-                    <div class="col form-field col-lg-3">
-                        <label for="startTime"><i class="fas fa-clock"></i> Starting At:</label><br>
-                        {{ booking_form.start_time }}
-                        <div class="error-container">
-                            <small class="errorlist booking-error"></small>
-                        </div>
-                    </div>
-                    <div class="col form-field col-lg-3">
-                        <label for="endTime"><i class="fas fa-clock"></i> Until:</label><br>
-                        {{ booking_form.end_time }}
-                        <div class="error-container">
-                            <small class="errorlist booking-error"></small>
-                        </div>
+        {% if user.is_authenticated %}
+        <input class="user" type="text" hidden value="authenticated">
+        <form id="bookingForm" method="post" action="">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="row justify-content-center" id="bookingDetails">
+                <p>Choose the date, time and number of persons for your booking and we will show you the available places</p>
+                <div class="col form-field col-12 col-md-4 col-lg-3">
+                    <label for="datePicker"><i class="far fa-calendar-alt"></i> Choose Date:</label><br>
+                    {{ booking_form.date }}
+                    <div class="error-container">
+                        <small class="errorlist booking-error"></small>
                     </div>
                 </div>
-                <button type="button" class="btn btn-simple continue">Find a table</button>
-                <div class="flex f-column a-center p-center" id="tableContentCollapse">
-                    <br><h5>CHOOSE A TABLE</h5>
-                    <div class="col col-8 col-lg-3 p-center">
-                        <div class="flex sp-around">
-                            <p><i class="fas fa-square free-color"></i> FREE</p>
-                            <p><i class="fas fa-square busy-color"></i> BUSY</p>
-                        </div>
+                <div class="col form-field col-lg-3">
+                    <label for="startTime"><i class="fas fa-clock"></i> Starting At:</label><br>
+                    {{ booking_form.start_time }}
+                    <div class="error-container">
+                        <small class="errorlist booking-error"></small>
                     </div>
-                    <div class="card col-12 col-lg-8 p-center">
-                        <div class="table-container">
-                            {{ bookings_list|json_script:"bookings_data" }}
-                            {{ tables_list|json_script:"tables_data" }}
-                        </div>
+                </div>
+                <div class="col form-field col-lg-3">
+                    <label for="endTime"><i class="fas fa-clock"></i> Until:</label><br>
+                    {{ booking_form.end_time }}
+                    <div class="error-container">
+                        <small class="errorlist booking-error"></small>
                     </div>
-                    <div class="row justify-content-center col-lg-6 p-center">
-                        <div class="form-field col-12 col-md-5">
-                            <label for="tableCode"><i class="fas fa-check"></i>Select a table</label><br>
-                            {{ booking_form.table_code }}
-                            <br>
-                        </div>
-                        <div class="form-field col-12 col-md-5">
-                            <label for="tablePersons"><i class="fas fa-users"></i>Number of persons</label>
-                            <input id="tablePersons" class="form-control" type="text" disabled >
+                </div>
+            </div>
+            <button type="button" class="btn btn-simple continue">Find a table</button>
+            <div class="flex f-column a-center p-center" id="tableContentCollapse">
+                <br><h5>CHOOSE A TABLE</h5>
+                <div class="col col-8 col-lg-3 p-center">
+                    <div class="flex sp-around">
+                        <p><i class="fas fa-square free-color"></i> FREE</p>
+                        <p><i class="fas fa-square busy-color"></i> BUSY</p>
+                    </div>
+                </div>
+                <div class="card col-12 col-lg-8 p-center">
+                    <div class="table-container">
+                        {{ bookings_list|json_script:"bookings_data" }}
+                        {{ tables_list|json_script:"tables_data" }}
+                    </div>
+                </div>
+                <div class="row justify-content-center col-lg-6 p-center">
+                    <div class="form-field col-12 col-md-5">
+                        <label for="tableCode"><i class="fas fa-check"></i>Select a table</label><br>
+                        {{ booking_form.table_code }}
+                        <br>
+                    </div>
+                    <div class="form-field col-12 col-md-5">
+                        <label for="tablePersons"><i class="fas fa-users"></i>Number of persons</label>
+                        <input id="tablePersons" class="form-control" type="text" disabled >
 
-                        </div>
-                    </div><br>
-                    <div class="flex p-center" id="flexButtons">
-                        <button type="button" class="btn btn-simple continue">Continue</button>
-                        <button type="button" class="btn btn-simple restart">Restart</button>
-                    </div><br>
-                    
-                </div> 
-                <div class="flex f-column a-center p-center col-12 col-md-6 col-lg-3" id="bookingContactCollapse">
-                    <h5>CONTACT DETAILS</h5>
-                    <div class="form-field">
-                        <label for="fullName"><i class="fas fa-user"></i> Customer Full Name:</label>
-                        {{ booking_form.customer_full_name }}
-                        <div class="error-container">
-                            <small class="errorlist"></small>
-                        </div>
                     </div>
-                    <div class="form-field">
-                        <label for="email"><i class="fas fa-envelope"></i> Customer Email:</label>
-                        {{ booking_form.customer_email }}
-                        <div class="error-container">
-                            <small class="errorlist"></small>
-                        </div>
-                        <p><b><strong>OR</strong></b></p>
+                </div><br>
+                <div class="flex p-center" id="flexButtons">
+                    <button type="button" class="btn btn-simple continue">Continue</button>
+                    <button type="button" class="btn btn-simple restart">Restart</button>
+                </div><br>
+                
+            </div> 
+            <div class="flex f-column a-center p-center col-12 col-md-6 col-lg-3" id="bookingContactCollapse">
+                <h5>CONTACT DETAILS</h5>
+                <div class="form-field">
+                    <label for="fullName"><i class="fas fa-user"></i> Customer Full Name:</label>
+                    {{ booking_form.customer_full_name }}
+                    <div class="error-container">
+                        <small class="errorlist"></small>
                     </div>
-                    {{ booking_form.book_on_user }}
-                    <label for="bookAuthenticate">Book It On My Name</label><br>
-                    <button type="button" class="btn btn-simple continue" >Finish</button><br>
-                </div> 
-                <div id="overviewCollapse" class="flex f-column a-center p-center">
-                    <h5>BOOKING OVERVIEW</h5>
-                    <span id="bookingOverview"></span><br>
-                    <span>Do you want to proceed?</span><br>
-                    <button type="submit" class="btn form-submit" >Yes</button>
-                    <button type="button" class="btn form-submit restart" >No</button>
                 </div>
-                {% if messages %}
-                    {% for message in messages %}
-                        {% if forloop.last %}
-                            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                            <div class="alert alert-success" role="alert" >
-                                {{ message }}
-                            </div>
-                            {% else %}
-                            <div class="alert alert-danger" role="alert" >
-                                {{ message }}
-                            </div>
-                            {% endif %}
+                <div class="form-field">
+                    <label for="email"><i class="fas fa-envelope"></i> Customer Email:</label>
+                    {{ booking_form.customer_email }}
+                    <div class="error-container">
+                        <small class="errorlist"></small>
+                    </div>
+                    <p><b><strong>OR</strong></b></p>
+                </div>
+                {{ booking_form.book_on_user }}
+                <label for="bookAuthenticate">Book It On My Name</label><br>
+                <button type="button" class="btn btn-simple continue" >Finish</button><br>
+            </div> 
+            <div id="overviewCollapse" class="flex f-column a-center p-center">
+                <h5>BOOKING OVERVIEW</h5>
+                <span id="bookingOverview"></span><br>
+                <span>Do you want to proceed?</span><br>
+                <button type="submit" class="btn form-submit" >Yes</button>
+                <button type="button" class="btn form-submit restart" >No</button>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if forloop.last %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <div class="alert alert-success" role="alert" >
+                            {{ message }}
+                        </div>
+                        {% else %}
+                        <div class="alert alert-danger" role="alert" >
+                            {{ message }}
+                        </div>
                         {% endif %}
-                    {% endfor %}
-                {% endif %}
-            </form>
-            {% else %}
-            <input class="user" type="text" hidden value="neauthenticated">
+                    {% endif %}
+                {% endfor %}
             {% endif %}
-        </div>  
+        </form>
+        {% else %}
+        <input class="user" type="text" hidden value="neauthenticated">
+        {% endif %}
     </div>
 </div>
 {% endblock %}
