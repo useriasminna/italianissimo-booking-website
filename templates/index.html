@@ -67,9 +67,23 @@
     <div>
       <h2><span>Our most appreciated dishes <i class="fas fa-utensils"></i></span></h2>  
     </div>
+    {% if review_list.count >= 3%}
     <div>
       <h2><span>From our clients <i class="fas fa-comment-dots"></i></span></h2>  
+      {% for review in review_list|slice:"0:3" %}
+      <div class="home-review flex f-column a-center">
+        {% for user in users %}
+        {% if user.email == review.author_id %}
+        <h5>{{user.get_full_name}}</h5>
+        {% endif %}
+        {% endfor %}
+        <input type="hidden" name="rate" class="rate" value="{{review.rate}}">
+        <div class="ratings-generated flex a-end "></div>
+        <p><q><em>{{ review.review_text }}</em></q></p>
+      </div><br>
+      {% endfor %}
     </div>
+    {% endif %}
   </div>
   <button
         type="button"
