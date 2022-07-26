@@ -13,13 +13,7 @@ body {
 }
 
 .content-wrapper {
-    background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1655288956/background_zunvm3.webp');
-    background-size: contain;
-    background-repeat: round;
-
-    width: 100%;
-    min-height: 90vh;
-
+    background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1658839586/b_fnqjfn.jpg');
 }
 
 .content {
@@ -109,8 +103,8 @@ body {
     height: 80vh;
 }
 
-.max-h-100{
-    max-height: 100vh;
+.min-h-100{
+    min-height: 100vh;
 }
 
 .scroll{
@@ -993,10 +987,6 @@ input[type=checkbox]:hover {
         text-align: left;
     }
 
-    .reviews-container>div{
-        height: 54vh;
-    }
-
     .review img {
         height: 8vh;
     }
@@ -1066,11 +1056,6 @@ input[type=checkbox]:hover {
     .review img {
         height: 6vh;
     }
-
-    .reviews-container>div{
-        height: 43vh;
-    }
-    
 
 
 }
