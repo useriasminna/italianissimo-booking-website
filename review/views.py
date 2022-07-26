@@ -19,12 +19,16 @@ class Review(ListView):
     template_name = "reviews.html"
     model = ReviewModel
     form_class = newReviewForm
+    context_object_name = "review_list"
+    paginate_by = 4
+    
+    def get_queryset(self):
+        return ReviewModel.objects.order_by('-date_updated_on') 
     
     def get_context_data(self,*args, **kwargs):
         context = super(Review, self).get_context_data(*args,**kwargs)
         context['review_form'] = newReviewForm 
-        context['review_list'] = ReviewModel.objects.order_by('-date_updated_on')    
-        context['users'] = User.objects.all()    
+        context['users'] = User.objects.all() 
         return context
     
     def post(self, request):
