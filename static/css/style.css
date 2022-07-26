@@ -33,6 +33,10 @@ body {
     background: #FF0000;
 }
 
+.burlywood{
+    color: burlywood;
+}
+
 .flex {
 
     display: flex;
@@ -882,6 +886,13 @@ input[type=checkbox]:hover {
 
 #myReview small{
    color: #ddeda9;
+
+}
+
+.home-review{
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #faebd757;
 
 }
 
