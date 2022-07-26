@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       sessionStorage.setItem('pageHasBeenLoaded', 'true');
     }
   }
-  
 
   if (window.location.pathname=='/') {
 
@@ -26,8 +25,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
+    const generateStarsContainers = document.getElementsByClassName('ratings-generated');
+    for(container of generateStarsContainers){
+      const rateHidden = container.previousElementSibling
+
+
+      for(i=0; i<rateHidden.value; i++){
+        let star = document.createElement("button");
+        star.textContent = '★'
+        star.classList.add('star')
+        star.style.color = "yellow"
+        container.appendChild(star)
+   
+       }
+   
+       for(i=0; i<5-rateHidden.value; i++){
+         let star = document.createElement("button");
+         star.textContent = '★'
+         star.classList.add('star')
+         container.appendChild(star)
+    
+        }
+    }
 
   }
+  
 
   if (window.location.pathname=='/bookings/createbookings/') {
     const user = document.getElementsByClassName('user')[0];
@@ -574,27 +596,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     //generate stars for reviews rating after rate value
-    for(container of generateStarsContainers){
-      const rateHidden = container.previousElementSibling
-
-
-      for(i=0; i<rateHidden.value; i++){
-        let star = document.createElement("button");
-        star.textContent = '★'
-        star.classList.add('star')
-        star.style.color = "yellow"
-        container.appendChild(star)
    
-       }
-   
-       for(i=0; i<5-rateHidden.value; i++){
-         let star = document.createElement("button");
-         star.textContent = '★'
-         star.classList.add('star')
-         container.appendChild(star)
-    
-        }
-    }
+      for(container of generateStarsContainers){
+        const rateHidden = container.previousElementSibling
+  
+  
+        for(i=0; i<rateHidden.value; i++){
+          let star = document.createElement("button");
+          star.textContent = '★'
+          star.classList.add('star')
+          star.style.color = "yellow"
+          container.appendChild(star)
+     
+         }
+     
+         for(i=0; i<5-rateHidden.value; i++){
+           let star = document.createElement("button");
+           star.textContent = '★'
+           star.classList.add('star')
+           container.appendChild(star)
+      
+          }
+      }
+
 
     //on update button click display update form and fill it with existing values of the review coresponding to the authenticated user
     if(displayUpdateForm)
@@ -631,6 +655,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
   }
+
+  
 
   
 
