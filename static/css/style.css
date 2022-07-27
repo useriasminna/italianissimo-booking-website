@@ -897,6 +897,31 @@ input[type=checkbox]:hover {
 }
 
 
+.meal{
+    text-align: left;
+}
+
+.meal h5{
+    margin-right: 20px;
+    
+}
+.menu img{
+    height: 18vh;
+    margin-top: -10px;
+}
+
+.heart{
+    background-color: transparent;
+    border: none;
+    color: antiquewhite;
+    font-size: x-large;
+}
+
+/* .heart i:nth-child(2){
+    display: none;
+} */
+
+
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
 
