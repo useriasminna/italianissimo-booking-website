@@ -3,15 +3,15 @@
 {% block content %}
 
 <div class="row content col-10 col-lg-9">
-    <div class="center-container  min-h-100 flex f-column a-center">
+    <div class="center-container  min-h-100 ">
         <div class="flex f-column a-center">
             <h2>Menu <i class="fas fa-utensils"></i></h2>
             {% for meal in menu_list %}
-                <div class="row flex meal col-lg-10">
-                    <img class="col-2" src="{{ meal.cover.url }}" alt="">
-                    <div class="col-10 overflow-h" >
+                <div class="row flex meal col-12 col-lg-10">
+                    <img class="col-6 col-md-3 col-lg-2" src="{{ meal.cover.url }}" alt="">
+                    <div class="col-12 col-md-9 col-lg-10 overflow-h" >
                         <div class="flex sp-between ">
-                            <div class="flex">
+                            <div class="flex meal-header">
                                 <h5>{{ meal.name }}</h5>
                                 <p class="green larger"><b>€{{ meal.price }}</b></p>
                             </div>
@@ -25,7 +25,7 @@
                                     {% csrf_token %}
                                     <input class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden></input>
                                     {{ favourite_form.as_p }}
-                                    <button type="submit" class="heart">Add to favourites <i class="far fa-heart"></i></button> 
+                                    <button type="submit" class="heart"><span class="d-none d-lg-block">Add to favourites</span> <i class="far fa-heart"></i></button> 
                                 </form>
                                 {% for favourite in favourites %}
                                     {% if favourite.meal_id == meal.pk and favourite.user_id == user.email %}
@@ -33,7 +33,7 @@
                                         {% csrf_token %}
                                         <input class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden></input>
                                         {{ favourite_form.as_p }}
-                                        <button type="submit" class="heart">Remove from favourites<i class="fas fa-heart"></i></button> 
+                                        <button type="submit" class="heart"><span class="d-none d-lg-block">Remove from favourites</span><i class="fas fa-heart"></i></button> 
                                     </form>
                                     {% endif %}
                                 {% endfor %}   
