@@ -3,6 +3,7 @@ from multiprocessing import context
 from django.views.generic import TemplateView, ListView
 from booking.filters import BookingFilter
 from italianissimo.decorators import customer_required, staff_required
+from menu.models import Favourite, Meal
 from users.models import User
 from .forms import dateBookingForm, newBookingForm
 from .models import Table
@@ -82,11 +83,17 @@ class Booking(LoginRequiredMixin, TemplateView):
     
     
 @method_decorator(customer_required, name='dispatch')
-class BookingList(LoginRequiredMixin, FilterView):
+class BookingMealsList(LoginRequiredMixin, FilterView):
     template_name = 'profile.html'
     paginate_by =  2
     filterset_class = BookingFilter
     context_object_name ='booking_list'
+    
+    def get_context_data(self,*args, **kwargs):
+        context = super(BookingMealsList, self).get_context_data(*args,**kwargs)
+        favourites = Favourite.objects.filter(user_id=self.request.user.email).values_list('meal')
+        context['fav_meals'] = Meal.objects.filter(pk__in=favourites)
+        return context 
     
     def get_queryset(self):
         today=date.today()
