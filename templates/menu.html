@@ -8,11 +8,11 @@
         {% for meal in menu_list %}
             <div class="row flex meal col-lg-10">
                 <img class="col-2" src="{{ meal.cover.url }}" alt="">
-                <div class="col-10" >
+                <div class="col-10 overflow-h" >
                     <div class="flex sp-between ">
                         <div class="flex">
                             <h5>{{ meal.name }}</h5>
-                            <p><b>€{{ meal.price }}</b></p>
+                            <p class="green larger"><b>€{{ meal.price }}</b></p>
                         </div>
                         {% if not user.staff %}
                             {% for favourite in favourites %}
@@ -41,6 +41,10 @@
                     <div class="row">
                         <p><b>Ingredients:</b> {{ meal.ingredients }}</p>
                     </div>
+                    <div class="row">
+                        <p>............................................................................................................................................................................</p>
+                    </div>
+                    
                 </div>
             </div><br>
         {% endfor %}
