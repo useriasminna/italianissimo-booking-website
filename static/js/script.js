@@ -637,7 +637,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
           formRate.value = updateRate.value
           reviewTextInput.textContent = reviewText.value
 
-          console.log(updateRate)
           for(let i=0; i<updateRate.value; i++){
             updateRating[i].style.color = "yellow"
           }
@@ -667,7 +666,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     //display favourite forms depending on p hidden element value that is generated only if favourite exists for user and specific meal
     for(meal of mealList){
-      console.log(meal)
       const favouriteExists = meal.getElementsByClassName('favourite-exists')[0]
       const addFavouriteForm = meal.getElementsByClassName('add-favourite-form')[0]
       const removeFavouriteForm = meal.getElementsByClassName('remove-favourite-form')[0]
