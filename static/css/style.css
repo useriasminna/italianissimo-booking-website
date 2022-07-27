@@ -926,12 +926,17 @@ input[type=checkbox]:hover {
     background-color: transparent;
     border: none;
     color: antiquewhite;
-    font-size: x-large;
+    
 }
 
-/* .heart i:nth-child(2){
-    display: none;
-} */
+.heart i{
+    font-size: x-large;
+    margin-left: 5px;
+}
+
+.fav-meal-container img{
+    height: 15vh;
+}
 
 
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
@@ -1038,6 +1043,14 @@ input[type=checkbox]:hover {
     .review img {
         height: 8vh;
     }
+
+    .profile-container{
+        flex-direction: column;
+    }
+
+    #booking-details {
+        font-size: inherit;
+    }
     
 
 }
@@ -1103,6 +1116,10 @@ input[type=checkbox]:hover {
 
     .review img {
         height: 6vh;
+    }
+
+    .meal-header{
+        flex-direction: column;
     }
 
 
