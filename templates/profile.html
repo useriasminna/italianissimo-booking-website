@@ -7,75 +7,94 @@
         <div class="center-container profile">
             <h2>Welcome back, {{ user.first_name }}</h2>
             <small>{{ user.email }}</small><br><br>
-            <div class="col-12 col-lg-6 ">
-                <p class="decorated"><span>Your upcoming bookings <i class="far fa-calendar-alt"></i></span></p>
-                <div class="flex j-center f-wrap">
-                    {% if booking_list %}
-                    {% for booking in booking_list%}
-                    <div class="booking-container">
-                        <img  src="{% static 'italianissimo/media/booking_note.png' %}">
-                        <div id="booking-details">
-                            <p><b>Date: </b>{{ booking.date }}</p>
-                            <p><b>From: </b>{{ booking.start_time }} <b>To: </b>{{ booking.end_time }}</p>
-                            <p><b>Table: </b>{{ booking.table }}</p>
-                            <p><small><b>Customer: </b>{{ booking.customer_full_name }}</small></p>
-                        </div>
-                        <div class="flex j-center">
-                            <button type="button" class="btn btn-secondary note-btn"  data-bs-toggle="modal" data-bs-target="#deleteBookingModal{{ booking.pk }}"><small>DELETE BOOKING</small></button>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="deleteBookingModal{{ booking.pk }}" tabindex="-1" role="dialog" aria-labelledby="deleteBookingModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                    
-                            <div class="modal-body">
-                            <p>Are you sure you want to delete booking for {{ booking.date }}, from {{ booking.start_time}} to {{ booking.end_time }}?</p> 
+            <div class="flex sp-between profile-container">
+                <div class="col-12 col-lg-6 ">
+                    <p class="decorated"><span>Your upcoming bookings <i class="far fa-calendar-alt"></i></span></p>
+                    <div class="flex j-center f-wrap">
+                        {% if booking_list %}
+                        {% for booking in booking_list%}
+                        <div class="booking-container">
+                            <img  src="{% static 'italianissimo/media/booking_note.png' %}">
+                            <div id="booking-details">
+                                <p><b>Date: </b>{{ booking.date }}</p>
+                                <p><b>From: </b>{{ booking.start_time }} <b>To: </b>{{ booking.end_time }}</p>
+                                <p><b>Table: </b>{{ booking.table }}</p>
+                                <p><small><b>Customer: </b>{{ booking.customer_full_name }}</small></p>
                             </div>
-                    
-                            <div class="modal-footer">
-                                <form method="post" action="{% url 'booking_remove' pk=booking.pk %}">
-                                    {% csrf_token %}
-                                    {% if redirect_field_value %}
-                                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-                                    {% endif %}
-                                    <button type="submit" class="btn btn-secondary" id="btn-submit">Yes</button>
-                                    <button type="button" class="btn btn-secondary" id="btn-cancel" data-bs-dismiss="modal">No</button>
-                                </form>
+                            <div class="flex j-center">
+                                <button type="button" class="btn btn-secondary note-btn"  data-bs-toggle="modal" data-bs-target="#deleteBookingModal{{ booking.pk }}"><small>DELETE BOOKING</small></button>
                             </div>
                         </div>
+                        <div class="modal fade" id="deleteBookingModal{{ booking.pk }}" tabindex="-1" role="dialog" aria-labelledby="deleteBookingModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                        
+                                <div class="modal-body">
+                                <p>Are you sure you want to delete booking for {{ booking.date }}, from {{ booking.start_time}} to {{ booking.end_time }}?</p> 
+                                </div>
+                        
+                                <div class="modal-footer">
+                                    <form method="post" action="{% url 'booking_remove' pk=booking.pk %}">
+                                        {% csrf_token %}
+                                        {% if redirect_field_value %}
+                                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                        {% endif %}
+                                        <button type="submit" class="btn btn-secondary" id="btn-submit">Yes</button>
+                                        <button type="button" class="btn btn-secondary" id="btn-cancel" data-bs-dismiss="modal">No</button>
+                                    </form>
+                                </div>
+                            </div>
+                            </div>
                         </div>
-                    </div>
-                    {% endfor %}
-                    {% else %}
-                    <p><b>There are no bookings made on this account</b></p>
-                    {% endif %}
-                </div><br>
-                {% if is_paginated %}
-                    <div class='pagination justify-content-center'>
-                        {% if page_obj.has_previous %}
-                        <a class="authenticate-link" href='{% url "booking_list" %}?page={{ page_obj.previous_page_number }}'>Previous </a>
-                        {% endif %}
-                    
-                        <span class='mx-4'>
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                        </span>
-                    
-                        {% if page_obj.has_next %}
-                        <a class="authenticate-link" href='{% url "booking_list" %}?page={{ page_obj.next_page_number }}' > Next</a>
+                        {% endfor %}
+                        {% else %}
+                        <p><b>There are no bookings made on this account</b></p>
                         {% endif %}
                     </div><br>
-                {% endif %}
-            </div> 
-            {% if messages %}
-            <div class="alert alert-danger" role="alert" id="formAlert">
-                {% for message in messages %}
-                    {% if forloop.last %}
-                        {{ message }}
+                    {% if is_paginated %}
+                        <div class='pagination justify-content-center'>
+                            {% if page_obj.has_previous %}
+                            <a class="authenticate-link" href='{% url "booking_list" %}?page={{ page_obj.previous_page_number }}'>Previous </a>
+                            {% endif %}
+                        
+                            <span class='mx-4'>
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                            </span>
+                        
+                            {% if page_obj.has_next %}
+                            <a class="authenticate-link" href='{% url "booking_list" %}?page={{ page_obj.next_page_number }}' > Next</a>
+                            {% endif %}
+                        </div><br>
                     {% endif %}
-                {% endfor %}
-
+                </div> 
+                {% if messages %}
+                <div class="alert alert-danger" role="alert" id="formAlert">
+                    {% for message in messages %}
+                        {% if forloop.last %}
+                            {{ message }}
+                        {% endif %}
+                    {% endfor %}    
+                </div>
+                {% endif %}
+                <div class="col-12 col-lg-5">
+                    <p class="decorated"><span>Your favourite dishes <i class="fas fa-utensils"></i></span></p>
+                    {% if fav_meals %}
+                        <div class="flex f-wrap sp-between">
+                            {% for meal in fav_meals %}
+                            <div class="col-6 col-md-4">
+                                <div class="fav-meal-container col-11">
+                                    <img src="{{ meal.cover.url }}" alt="">
+                                    <p class="burlywood">{{ meal.name }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                    <p><b>There are no meals added to favourites</b></p>
+                    {% endif %}
+                </div>
             </div>
-            {% endif %}
+            
         </div>
     </div>
 </div>
