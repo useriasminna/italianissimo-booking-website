@@ -83,6 +83,18 @@ body {
     overflow-x: auto;
 }
 
+.overflow-h{
+    overflow: hidden;
+}
+
+.larger{
+    font-size: larger;
+}
+
+.green{
+    color: #ddeda9;
+}
+
 .btn{
     letter-spacing: 1.5px;
 
