@@ -25,7 +25,7 @@
                                     {% csrf_token %}
                                     <input class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden></input>
                                     {{ favourite_form.as_p }}
-                                    <button type="submit" class="heart"><span class="d-none d-lg-block">Add to favourites</span> <i class="far fa-heart"></i></button> 
+                                    <button type="submit" class="heart flex"><span class="d-none d-lg-block">Add to favourites </span><i class="far fa-heart"></i></button> 
                                 </form>
                                 {% for favourite in favourites %}
                                     {% if favourite.meal_id == meal.pk and favourite.user_id == user.email %}
@@ -33,7 +33,7 @@
                                         {% csrf_token %}
                                         <input class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden></input>
                                         {{ favourite_form.as_p }}
-                                        <button type="submit" class="heart"><span class="d-none d-lg-block">Remove from favourites</span><i class="fas fa-heart"></i></button> 
+                                        <button type="submit" class="heart flex"><span class="d-none d-lg-block">Remove from favourites</span><i class="fas fa-heart"></i></button> 
                                     </form>
                                     {% endif %}
                                 {% endfor %}   
