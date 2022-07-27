@@ -1,0 +1,49 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+
+<div class="row content col-10 col-lg-9">
+    <div class="center-container  min-h-100 flex f-column a-center">
+        <h2>Menu <i class="fas fa-utensils"></i></h2>
+        {% for meal in menu_list %}
+            <div class="row flex meal col-lg-10">
+                <img class="col-2" src="{{ meal.cover.url }}" alt="">
+                <div class="col-10" >
+                    <div class="flex sp-between ">
+                        <div class="flex">
+                            <h5>{{ meal.name }}</h5>
+                            <p><b>€{{ meal.price }}</b></p>
+                        </div>
+                        {% if not user.staff %}
+                            {% for favourite in favourites %}
+                                {% if favourite.meal_id == meal.pk and favourite.user_id == user.email %}
+                                    <p class="favourite-exists" hidden></p>
+                                {% endif %}
+                            {% endfor %}
+                            <form method="POST" class="add-favourite-form">
+                                {% csrf_token %}
+                                <input class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden></input>
+                                {{ favourite_form.as_p }}
+                                <button type="submit" class="heart"><i class="far fa-heart"></i></button> 
+                            </form>
+                            {% for favourite in favourites %}
+                                {% if favourite.meal_id == meal.pk and favourite.user_id == user.email %}
+                                <form method="POST" action="{% url 'favourite_remove' pk=favourite.pk %}" class="remove-favourite-form">
+                                    {% csrf_token %}
+                                    <input class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden></input>
+                                    {{ favourite_form.as_p }}
+                                    <button type="submit" class="heart"><i class="fas fa-heart"></i></button> 
+                                </form>
+                                {% endif %}
+                            {% endfor %}   
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <p><b>Ingredients:</b> {{ meal.ingredients }}</p>
+                    </div>
+                </div>
+            </div><br>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
