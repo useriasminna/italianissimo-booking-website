@@ -28,6 +28,7 @@ class Review(ListView):
     def get_context_data(self,*args, **kwargs):
         context = super(Review, self).get_context_data(*args,**kwargs)
         context['review_form'] = newReviewForm 
+        context['reviews'] = ReviewModel.objects.all()
         context['users'] = User.objects.all() 
         return context
     
