@@ -790,7 +790,7 @@ input[type=checkbox]:hover {
 .booking-container img{
     height: 30vh;
 }
-#booking-details{
+.booking-details{
     position: absolute;
     top: 16%;
     left: 50%;
@@ -799,6 +799,11 @@ input[type=checkbox]:hover {
     color: #3a3a3a;
     font-size: small;
     width: fit-content;
+}
+
+.booking-details p small{
+    display: flex;
+    flex-direction: column;
 }
 
 .note-btn{
