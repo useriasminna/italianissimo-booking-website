@@ -24,8 +24,13 @@ class newBookingForm(forms.ModelForm):
     def clean(self):
         user_book = self.cleaned_data.get('book_on_user', False)
         if user_book:
-            del self.errors['customer_full_name']
-            del self.errors['customer_email']
+            name = self.cleaned_data.get('customer_full_name', False)
+            email = self.cleaned_data.get('customer_email', False)
+            if name == False:
+                del self.errors['customer_full_name']
+            if email == False:
+                del self.errors['customer_email']
+
         return self.cleaned_data
     
     class Meta:
