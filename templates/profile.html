@@ -15,7 +15,7 @@
                         {% for booking in booking_list%}
                         <div class="booking-container">
                             <img  src="{% static 'italianissimo/media/booking_note.png' %}">
-                            <div id="booking-details">
+                            <div class="booking-details">
                                 <p><b>Date: </b>{{ booking.date }}</p>
                                 <p><b>From: </b>{{ booking.start_time }} <b>To: </b>{{ booking.end_time }}</p>
                                 <p><b>Table: </b>{{ booking.table }}</p>
@@ -79,7 +79,7 @@
                 <div class="col-12 col-lg-5">
                     <p class="decorated"><span>Your favourite dishes <i class="fas fa-utensils"></i></span></p>
                     {% if fav_meals %}
-                        <div class="flex f-wrap sp-between">
+                        <div class="flex f-wrap">
                             {% for meal in fav_meals %}
                             <div class="col-6 col-md-4">
                                 <div class="fav-meal-container col-11">
@@ -92,7 +92,7 @@
                     {% else %}
                     <p><b>There are no meals added to favourites</b></p>
                     {% endif %}
-                </div>
+                </div><br>
             </div>
             
         </div>
