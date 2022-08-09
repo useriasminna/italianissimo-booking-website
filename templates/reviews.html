@@ -48,8 +48,8 @@
                 </div>
                 <div class="col-lg-4 flex f-column a-start">
                     {% if user.is_authenticated %}
-                        {% if review_list %}
-                            {% for review in review_list %}
+                        {% if reviews %}
+                            {% for review in reviews %}
                                 {% if review.author_id == user.email %}
                                     <p id="reviewExists" hidden></p>
                                     <div id="myReview">
