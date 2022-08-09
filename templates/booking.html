@@ -10,7 +10,7 @@
             {% csrf_token %}
             {{ form.non_field_errors }}
             <div class="row justify-content-center" id="bookingDetails">
-                <p>Choose the date, time and number of persons for your booking and we will show you the available places</p>
+                <p>Choose the date and time for your booking and we will show you the available places</p>
                 <div class="col form-field col-12 col-md-4 col-lg-3">
                     <label for="datePicker"><i class="far fa-calendar-alt"></i> Choose Date:</label><br>
                     {{ booking_form.date }}
