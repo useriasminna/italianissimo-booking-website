@@ -128,6 +128,11 @@
             </div>
           </div>
         </div>
+        {% if user.is_authenticated %}
+          <input class="user" type="text" hidden value="authenticated">
+          {% else %}
+          <input class="user" type="text" hidden value="neauthenticated">
+          {% endif %}
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
