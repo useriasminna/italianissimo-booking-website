@@ -966,6 +966,44 @@ input[type=checkbox]:hover {
     right: 5%;
 }
 
+.timetable{
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #faebd757;
+}
+
+.timetable h5{
+    margin: 0 auto;
+}
+
+.timetable>div{
+    width: 100%;
+}
+
+.timetable>div>div:nth-child(1){
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+.timetable>div>div:nth-child(1)>span::after{
+    position: absolute;
+    padding-left: .25ch;
+    content: " . . . . . . . . . . . . . . . . . . . "
+        ". . . . . . . . . . . . . . . . . . . . . . . "
+        ". . . . . . . . . . . . . . . . . . . . . . . "
+        ". . . . . . . . . . . . . . . . . . . . . . . "
+        ". . . . . . . . . . . . . . . . . . . . . . . "
+        ". . . . . . . . . . . . . . . . . . . . . . . "
+        ". . . . . . . . . . . . . . . . . . . . . . . ";
+    text-align: right;
+} 
+
+#map{
+    height: 327px;
+    width: 100%;
+}
+
 
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
@@ -1082,6 +1120,10 @@ input[type=checkbox]:hover {
     
     #fav-dishes img {
         height: 15vh;
+    }
+
+    .contact-responsive{
+        flex-direction: column;
     }
 
 }
