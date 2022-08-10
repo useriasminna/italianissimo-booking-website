@@ -58,7 +58,7 @@
               </li>
               <li class="nav-item flex a-center">
                 <i class="fas fa-map-marker-alt d-none d-lg-block"></i>
-                <a class="nav-link" href="#">Where to find us</a>
+                <a class="nav-link" href="{% url 'contact' %}">Where to find us</a>
               </li>
               <li class="nav-item flex a-center">
                 <i class="fas fa-comments d-none d-lg-block"></i>
@@ -157,5 +157,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="{% static 'js/script.js' %}"></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVxUclTq8GCW8VhruSGYe9mcUyel-ZhJM"
+    ></script>
+    
   </body>
 </html>
