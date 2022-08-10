@@ -52,8 +52,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
 
   if (window.location.pathname=='/bookings/createbookings/') {
-    const user = document.getElementsByClassName('user')[0];
-    if(user.value == "authenticated"){
       const datePicker = document.querySelector("#datePicker");
       const startTime = document.querySelector("#startTime");
       const endTime = document.querySelector("#endTime");
@@ -550,50 +548,85 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         })                              
       })
-    }
+    
    
   }
 
   if (window.location.pathname.includes('/reviews/')) {
-    const rating = document.getElementsByClassName('rating')[0];
-    const stars = rating.getElementsByTagName('button');
-    const rateValue = document.querySelector('#rateValue');
-    const generateStarsContainers = document.getElementsByClassName('ratings-generated');
-    const displayUpdateForm = document.querySelector('#displayUpdateForm');
-    const myReview = document.querySelector('#myReview');
-    const reviewExists = document.querySelector('#reviewExists');
-    const addReviewForm = document.querySelector('#addReviewForm')
 
-    //add event listeners for rating stars
-    stars[0].clicked = true
-    for(let i=0; i<stars.length; i++){
-      stars[i].addEventListener('mouseover', () => {
-        for(let j=0; j<=i; j++){
-          stars[j].style.color = "yellow"
-      }
-      })
-      stars[i].addEventListener('mouseleave', () => {
-        for(let j=0; j<=i; j++){
-          if(!stars[j].clicked)
-            stars[j].style.color = "gray"
-        }
-      })
+    const user = document.getElementsByClassName('user')[0];
+    if(user.value == "authenticated"){
+      const rating = document.getElementsByClassName('rating')[0];
+      const stars = rating.getElementsByTagName('button');
+      const rateValue = document.querySelector('#rateValue');
+      const displayUpdateForm = document.querySelector('#displayUpdateForm');
+      const myReview = document.querySelector('#myReview');
+      const reviewExists = document.querySelector('#reviewExists');
+      const addReviewForm = document.querySelector('#addReviewForm')
 
-      stars[i].addEventListener('click', () => {
-        rateValue.value = i+1;
-        rateValue.innerHTML = i+1;
-        for(let j=0; j<=i; j++){
-          stars[j].style.color = "yellow"
-          stars[j].clicked = true
+      //add event listeners for rating stars
+      stars[0].clicked = true
+      for(let i=0; i<stars.length; i++){
+        stars[i].addEventListener('mouseover', () => {
+          for(let j=0; j<=i; j++){
+            stars[j].style.color = "yellow"
         }
-        if(i != stars.length-1)
-          for(let z=i+1; z<stars.length; z++){
-            stars[z].style.color = "gray"
-            stars[z].clicked = false
+        })
+        stars[i].addEventListener('mouseleave', () => {
+          for(let j=0; j<=i; j++){
+            if(!stars[j].clicked)
+              stars[j].style.color = "gray"
           }
+        })
+
+        stars[i].addEventListener('click', () => {
+          rateValue.value = i+1;
+          rateValue.innerHTML = i+1;
+          for(let j=0; j<=i; j++){
+            stars[j].style.color = "yellow"
+            stars[j].clicked = true
+          }
+          if(i != stars.length-1)
+            for(let z=i+1; z<stars.length; z++){
+              stars[z].style.color = "gray"
+              stars[z].clicked = false
+            }
+        })
+
+      }
+
+      //on update button click display update form and fill it with existing values of the review coresponding to the authenticated user
+      if(displayUpdateForm)
+      displayUpdateForm.addEventListener("click", () => {
+        const updateReviewForm = document.querySelector('#updateReviewForm');
+        const reviewText = document.querySelector('#reviewTextHidden');
+        const reviewTextInput = updateReviewForm.querySelector('#reviewText');
+        const updateRating = updateReviewForm.querySelectorAll('.rating')[0].querySelectorAll('button')
+        const updateRate = updateReviewForm.getElementsByClassName("rate")[0];
+        const formRate = updateReviewForm.querySelector('#rateValue');
+
+        myReview.style.display = "none";
+        updateReviewForm.style.display = "block";
+        displayUpdateForm.style.display = "none";
+
+        formRate.value = updateRate.value
+        reviewTextInput.textContent = reviewText.value
+
+        for(let i=0; i<updateRate.value; i++){
+          updateRating[i].style.color = "yellow"
+        }
+      
       })
 
+      //don't display add review form if review already exists for authenticated user
+      if(reviewExists)
+      {
+        addReviewForm.style.display = 'none'
+      }
     }
+    
+    
+    const generateStarsContainers = document.getElementsByClassName('ratings-generated');
 
     //generate stars for reviews rating after rate value
    
@@ -618,39 +651,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       
           }
       }
-
-
-    //on update button click display update form and fill it with existing values of the review coresponding to the authenticated user
-    if(displayUpdateForm)
-        displayUpdateForm.addEventListener("click", () => {
-          const updateReviewForm = document.querySelector('#updateReviewForm');
-          const reviewText = document.querySelector('#reviewTextHidden');
-          const reviewTextInput = updateReviewForm.querySelector('#reviewText');
-          const updateRating = updateReviewForm.querySelectorAll('.rating')[0].querySelectorAll('button')
-          const updateRate = updateReviewForm.getElementsByClassName("rate")[0];
-          const formRate = updateReviewForm.querySelector('#rateValue');
-
-          myReview.style.display = "none";
-          updateReviewForm.style.display = "block";
-          displayUpdateForm.style.display = "none";
-
-          formRate.value = updateRate.value
-          reviewTextInput.textContent = reviewText.value
-
-          for(let i=0; i<updateRate.value; i++){
-            updateRating[i].style.color = "yellow"
-          }
-        
-        })
-
-    //don't display add review form if review already exists for authenticated user
-    if(reviewExists)
-    {
-      addReviewForm.style.display = 'none'
-    }
-
-
-    
 
 
   }
@@ -681,6 +681,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   if (window.location.pathname.includes('/contact/')) {
 
+    //initialise map
     function initMap() {
       // The location of Uluru
       const uluru = { lat: 40.628920, lng: 14.487630 };
