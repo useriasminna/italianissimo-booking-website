@@ -943,6 +943,29 @@ input[type=checkbox]:hover {
     height: 15vh;
 }
 
+#fav-dishes img{
+    height: 25vh;
+}
+
+#fav-dishes>div{
+    background-color: #bca17e;
+    border: 2px solid antiquewhite;
+    border-radius: 20px;
+    padding: 10px 0px;
+    color: black;
+    font-weight: bolder;
+}
+
+#fav-dishes>div>div{
+    position: relative;
+}
+
+#fav-dishes>div>div>div{
+    position: absolute;
+    top: 0%;
+    right: 5%;
+}
+
 
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
@@ -1057,6 +1080,9 @@ input[type=checkbox]:hover {
         font-size: inherit;
     }
     
+    #fav-dishes img {
+        height: 15vh;
+    }
 
 }
 
@@ -1125,6 +1151,10 @@ input[type=checkbox]:hover {
 
     .meal-header{
         flex-direction: column;
+    }
+
+    #fav-dishes img {
+        height: 12vh;
     }
 
 
