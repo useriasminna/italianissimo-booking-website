@@ -27,6 +27,7 @@ urlpatterns = [
     path('accounts/logout/', logout, name='account_logout'),
     path('reviews/', include('review.urls'), name='review_urls'),
     path('menu/', include('menu.urls'), name='menu_urls'),
+    path('contact/', include('contact.urls'), name='contact-urls'),
 ]
 
     
