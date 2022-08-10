@@ -4,8 +4,6 @@
 <div class="row content col-10 col-lg-9">
     <div class="center-container min-h-100">
         <h2>Book your table now <i class="fas fa-pencil-alt"></i></h2>
-        {% if user.is_authenticated %}
-        <input class="user" type="text" hidden value="authenticated">
         <form id="bookingForm" method="post" action="">
             {% csrf_token %}
             {{ form.non_field_errors }}
@@ -110,9 +108,6 @@
                 {% endfor %}
             {% endif %}
         </form>
-        {% else %}
-        <input class="user" type="text" hidden value="neauthenticated">
-        {% endif %}
     </div>
 </div>
 {% endblock %}
