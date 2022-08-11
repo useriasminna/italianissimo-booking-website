@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   }
 
+  const user = document.getElementsByClassName('user')[0];
+  const status = document.getElementsByClassName('status')[0];
+
   if (window.location.pathname=='/') {
 
     // --------------------------MAKE HOME NAV ITEM ACTIVE----------------------------------------------------------
@@ -72,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       removeActiveAll();
       bookingNav.classList.add("active");
 
+      
 
       const datePicker = document.querySelector("#datePicker");
       const startTime = document.querySelector("#startTime");
@@ -123,7 +127,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
       
 
-
       // --------------------------ENABLE/DISABLE CONTACT INPUTS WHEN 'BOOK IT ON MY NAME' IS CHECKED--------------------------
       book_auth.addEventListener('click', manipulateInputs = () => {
         if(book_auth.checked == true){
@@ -137,7 +140,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
       })
 
 
+      // --------------------------DISABLE BOOK IT ON MY NAME CHECKBOX FOR STAFF MEMBERS--------------------------
+      if(status.value == 'staff'){
+        book_auth.removeEventListener('click', manipulateInputs)
+        book_auth.addEventListener("click", (event)=>{
 
+          event.preventDefault();
+          event.stopPropagation();
+        })
+      }
 
       const isRequired = value => value === '' ? false : true;
 
@@ -580,8 +591,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     removeActiveAll();
     reviewsNav.classList.add("active");
 
-    const user = document.getElementsByClassName('user')[0];
-    const status = document.getElementsByClassName('status')[0];
     if(user.value == "authenticated" && status.value == "client"){
       const rating = document.getElementsByClassName('rating')[0];
       const stars = rating.getElementsByTagName('button');
