@@ -132,7 +132,12 @@
           <input class="user" type="text" hidden value="authenticated">
           {% else %}
           <input class="user" type="text" hidden value="neauthenticated">
-          {% endif %}
+        {% endif %}
+        {% if user.staff %}
+          <input class="status" type="text" hidden value="staff">
+          {% else %}
+          <input class="status" type="text" hidden value="client">
+        {% endif %}
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
