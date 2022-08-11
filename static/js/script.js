@@ -581,7 +581,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     reviewsNav.classList.add("active");
 
     const user = document.getElementsByClassName('user')[0];
-    if(user.value == "authenticated"){
+    const status = document.getElementsByClassName('status')[0];
+    if(user.value == "authenticated" && status.value == "client"){
       const rating = document.getElementsByClassName('rating')[0];
       const stars = rating.getElementsByTagName('button');
       const rateValue = document.querySelector('#rateValue');
