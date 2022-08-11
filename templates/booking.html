@@ -83,7 +83,11 @@
                 </div>
                 {{ booking_form.book_on_user }}
                 <label for="bookAuthenticate">Book It On My Name</label><br>
+                {% if user.staff %}
+                <small class="burlywood">*Disabled for staff members</small><br>
+                {% endif %}
                 <button type="button" class="btn btn-simple continue" >Finish</button><br>
+                
             </div> 
             <div id="overviewCollapse" class="flex f-column a-center p-center">
                 <h5>BOOKING OVERVIEW</h5>
