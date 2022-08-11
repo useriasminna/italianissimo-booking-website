@@ -11,7 +11,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   }
 
+  //--------------------------CREATE METHOD THAT WILL MAKE NAVELEMENT ACTIVE ON CLICK--------------------------
+  const navItems = document.getElementsByClassName("nav-item")
+  const removeActiveAll = () => {
+
+    for(item of navItems){
+      if(item.classList.contains("active"))
+        item.classList.remove("active")
+    }
+  }
+
   if (window.location.pathname=='/') {
+
+    // --------------------------MAKE HOME NAV ITEM ACTIVE----------------------------------------------------------
+    const homeNav = document.getElementById('homeNav');
+    removeActiveAll();
+    homeNav.classList.add("active"); 
 
     // --------------------------ADD EVENT LISTENER FOR BOTTOM TO TOP BUTTON ON INDEX PAGE--------------------------
     //Get the button
@@ -52,6 +67,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
 
   if (window.location.pathname=='/bookings/createbookings/') {
+      // --------------------------MAKE BOOKING NAV ITEM ACTIVE----------------------------------------------------------
+      const bookingNav = document.getElementById('bookingNav');
+      removeActiveAll();
+      bookingNav.classList.add("active");
+
+
       const datePicker = document.querySelector("#datePicker");
       const startTime = document.querySelector("#startTime");
       const endTime = document.querySelector("#endTime");
@@ -554,6 +575,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   if (window.location.pathname.includes('/reviews/')) {
 
+    // --------------------------MAKE REVIEWS NAV ITEM ACTIVE----------------------------------------------------------
+    const reviewsNav = document.getElementById('reviewsNav');
+    removeActiveAll();
+    reviewsNav.classList.add("active");
+
     const user = document.getElementsByClassName('user')[0];
     if(user.value == "authenticated"){
       const rating = document.getElementsByClassName('rating')[0];
@@ -656,6 +682,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   if (window.location.pathname.includes('/menu/')) {
+
+    // --------------------------MAKE MENU NAV ITEM ACTIVE----------------------------------------------------------
+    const menuNav = document.getElementById('menuNav');
+    removeActiveAll();
+    menuNav.classList.add("active");
+
+
     const mealIdList = document.getElementsByClassName('mealId')
     const mealList = document.getElementsByClassName('meal')
  
@@ -681,6 +714,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   if (window.location.pathname.includes('/contact/')) {
 
+    // --------------------------MAKE CONTACT NAV ITEM ACTIVE----------------------------------------------------------
+    const contactNav = document.getElementById('contactNav');
+    removeActiveAll();
+    contactNav.classList.add("active");
+
     //initialise map
     function initMap() {
       // The location of Uluru
@@ -699,8 +737,40 @@ document.addEventListener("DOMContentLoaded", function(event) {
     initMap()
   }
 
-  
 
-  
+  if (window.location.pathname.includes('/profile/')) {
+
+    // --------------------------MAKE PROFILE NAV ITEM ACTIVE----------------------------------------------------------
+    const profileNav = document.getElementById('profileNav');
+    removeActiveAll();
+    profileNav.classList.add("active");
+  }
+
+
+  if (window.location.pathname.includes('/managebookings/')) {
+
+    // --------------------------MAKE MANAGE BOOKINGS NAV ITEM ACTIVE----------------------------------------------------------
+    const manageNav = document.getElementById('manageNav');
+    removeActiveAll();
+    manageNav.classList.add("active");
+  }
+
+
+  if (window.location.pathname.includes('/login/')) {
+
+    // --------------------------MAKE LOGIN NAV ITEM ACTIVE----------------------------------------------------------
+    const loginNav = document.getElementById('loginNav');
+    removeActiveAll();
+    loginNav.classList.add("active");
+  }
+
+  if (window.location.pathname.includes('/signup/')) {
+
+    // --------------------------MAKE SIGNUP NAV ITEM ACTIVE----------------------------------------------------------
+    const registerNav = document.getElementById('registerNav');
+    removeActiveAll();
+    registerNav.classList.add("active");
+  }
+
 
 });
