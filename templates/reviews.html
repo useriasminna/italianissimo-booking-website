@@ -46,8 +46,9 @@
                     </div><br>
                     {% endif %}
                 </div>
-                <div class="col-lg-4 flex f-column a-start">
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
+                    {% if not user.staff %}
+                    <div class="col-lg-4 flex f-column a-start">
                         {% if reviews %}
                             {% for review in reviews %}
                                 {% if review.author_id == user.email %}
@@ -116,11 +117,14 @@
                                 {% endif %}
                                 {% endif %}
                             {% endfor %}
-                        {% endif %}
+                        {% endif %}               
+                    </div>
                     {% else %}
+                        <p>As a staff member, you can only read the reviews. Enjoy!</p>
+                    {% endif %}
+                {% else %}
                     <p>If you want to add or edit your review, please <span><a class="authenticate-link" href="{% url 'account_login' %}"><b>LOGIN</b></a> / <a  class="authenticate-link" href="{% url 'account_signup' %}"><b>REGISTER</b></a></span>
-                    {% endif %}               
-                </div>
+                {% endif %}
             </div>
         </div>
     </div>
