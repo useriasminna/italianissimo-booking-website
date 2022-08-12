@@ -16,6 +16,7 @@ django-allauth = "*"
 django-crispy-forms = "*"
 django-braces = "*"
 django-filter = "*"
+django-annoying = "*"
 
 [dev-packages]
 autopep8 = "*"
