@@ -2,16 +2,19 @@ from django.views.generic import ListView
 from menu.forms import addFavourite
 from menu.models import Favourite, Meal
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
-from django.utils.decorators import method_decorator
-from italianissimo.decorators import customer_required, staff_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 
 
 # Create your views here.
 class Menu(ListView):
+    
+    """
+    A view that provides meals data and a form to create entries for Favourite 
+    """
+    
     template_name = "menu.html"
     model = Favourite
 
@@ -22,8 +25,7 @@ class Menu(ListView):
         context['favourites'] = Favourite.objects.all()
         
         return context
-    
-    @method_decorator(customer_required, name='dispatch') 
+     
     def post(self, request):
         
         if request.method=='POST':
@@ -45,8 +47,21 @@ class Menu(ListView):
         
         return render(request, 'menu.html', {'favourite_form': favourite_form,})
     
-@method_decorator(customer_required, name='dispatch')    
-class FavouriteDeleteView(DeleteView, LoginRequiredMixin):
+    # def get(self, *args, **kwargs):
+    #     return redirect('menu')
+    
+class FavouriteDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    
+    
+    """
+    A view that deletes a Favourite entry from the database. 
+    The action is performed only if the authenticated user is the author of Favourite entry.
+    """
+    
     model = Favourite
     success_url = reverse_lazy('menu')
     template_name = 'menu.html'
+    
+    def test_func(self):
+        item = self.get_object()
+        return self.request.user == item.user
