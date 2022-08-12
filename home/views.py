@@ -8,6 +8,10 @@ from django.db.models import Count
 
 # Create your views here.
 class Home(ListView):
+    
+    """
+    A view that provides filtered reviews and meals data
+    """
     template_name = "index.html"
     model = Review
 
