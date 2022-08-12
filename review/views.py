@@ -1,20 +1,21 @@
-from datetime import date, datetime
+from datetime import datetime
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView
-
+from django.views.generic import ListView
 from users.models import User
 from .models import Review as ReviewModel
 from django.contrib import messages
 from review.forms import newReviewForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.views.generic.edit import UpdateView
-from django.urls import reverse_lazy
-
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 # Create your views here.
 class Review(ListView):
+    
+    """
+    A view that provides the list of reviews and also a form for creating Review entries
+    """
 
     template_name = "reviews.html"
     model = ReviewModel
@@ -61,7 +62,12 @@ class Review(ListView):
         return render(request, 'reviews.html', {'review_form': review_form,})
     
     
-class ReviewUpdate(UpdateView):
+class ReviewUpdate(UserPassesTestMixin, UpdateView):
+    
+    """
+    A view that provides a form to update the Review entry coresponding to the authenticated user
+    """
+    
     model = ReviewModel 
     template_name = "reviews.html"
     success_url = ('/reviews')
@@ -89,4 +95,8 @@ class ReviewUpdate(UpdateView):
                 return HttpResponseRedirect('/reviews') 
         
         return render(request, 'reviews.html', {'review_form': review_form,})
+    
+    def test_func(self):
+        item = self.get_object()
+        return self.request.user == item.author
     
