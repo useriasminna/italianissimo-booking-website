@@ -1005,6 +1005,76 @@ input[type=checkbox]:hover {
 }
 
 
+#custom-error {
+    position: relative;
+    height: 100vh;
+    background-color: #222;
+    background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1658839586/b_fnqjfn.jpg');
+    color: antiquewhite;
+  }
+  
+  #custom-error .custom-error {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  
+  .custom-error {
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    line-height: 1.4;
+  }
+  
+  .custom-error .error-logo {
+    height: 220px;
+    line-height: 220px;
+  }
+  
+  .custom-error .error-logo h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #222;
+    font-size: 220px;
+    letter-spacing: 10px;
+    margin: 0px;
+    font-weight: 700;
+    text-shadow: 2px 2px 0px #c9c9c9, -2px -2px 0px #c9c9c9;
+  }
+  
+  .custom-error .error-logo h1>span {
+    text-shadow: 2px 2px 0px #ffab00, -2px -2px 0px #ffab00, 0px 0px 8px #ff8700;
+  }
+  
+  .custom-error p {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+  
+  .custom-error a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: transparent;
+    color: antiquewhite;
+    border: 2px solid antiquewhite;
+    display: inline-block;
+    padding: 10px 25px;
+    font-weight: 700;
+    transition: 0.2s all;
+  }
+  
+  .custom-error a:hover {
+    color: #ffab00;
+    border-color: #ffab00;
+  }
+  
+
 /* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
 
@@ -1198,6 +1268,19 @@ input[type=checkbox]:hover {
     #fav-dishes img {
         height: 12vh;
     }
+
+    .custom-error .error-logo {
+        height: 122px;
+        line-height: 122px;
+      }
+    
+    .custom-error .error-logo h1 {
+        font-size: 122px;
+    }
+
+    .custom-error p {
+        padding: 5px;
+      }
 
 
 }
