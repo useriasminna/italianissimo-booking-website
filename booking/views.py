@@ -1,8 +1,6 @@
-from datetime import date, datetime
-from multiprocessing import context
+from datetime import date
 from django.views.generic import TemplateView, ListView
 from booking.filters import BookingFilter
-from italianissimo.decorators import customer_required, staff_required
 from menu.models import Favourite, Meal
 from users.models import User
 from .forms import dateBookingForm, newBookingForm
@@ -11,18 +9,22 @@ from .models import Booking as BookingModel
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.serializers import serialize
 from django.db.models import Q
 from datetime import date
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from django_filters.views import FilterView
-from django.utils.decorators import method_decorator
+import base64, os
 
 # Create your views here.
     
 class Booking(LoginRequiredMixin, TemplateView):
+    
+    """
+    A view that provides a form to the user that creates a Booking entry
+    """
 
     template_name = "booking.html"
     model = Table
@@ -75,15 +77,25 @@ class Booking(LoginRequiredMixin, TemplateView):
             else:
                 messages.error(request, 'There was a problem submiting your booking. Please try again!')
                 return HttpResponseRedirect('/bookings/createbookings')
-                # return HttpResponse(booking_form.errors.as_json()) 
-        else:
+        else:	
             booking_form = newBookingForm(request.GET)
-        
+            
         return render(request, 'booking.html', {'booking_form': booking_form,})
     
     
-@method_decorator(customer_required, name='dispatch')
-class BookingMealsList(LoginRequiredMixin, FilterView):
+    # def get(self, request, *args, **kwargs):
+    #     booking_form = newBookingForm(request.GET)
+    #     return render(request, 'booking.html', {'booking_form': booking_form,})
+    #     # return redirect('booking')
+        
+    
+    
+class BookingMealsList(LoginRequiredMixin, UserPassesTestMixin, FilterView):
+    
+    """
+    A view that provides bookings and favourite meals data that coresponds to authenticated user
+    """
+    
     template_name = 'profile.html'
     paginate_by =  2
     filterset_class = BookingFilter
@@ -99,16 +111,33 @@ class BookingMealsList(LoginRequiredMixin, FilterView):
         today=date.today()
         return BookingModel.objects.filter(Q(created_by=self.request.user.email) & Q(date__gte=today) )
 
+    def test_func(self):
+        return not self.request.user.is_staff
 
-@method_decorator(customer_required, name='dispatch')
-class BookingDeleteView(DeleteView, LoginRequiredMixin):
+
+class BookingDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    
+    """
+    A view that deletes a booking entry from the database. 
+    The action is performed only if the authenticated user is the author of the booking.
+    """
+    
     model = BookingModel
     success_url = reverse_lazy('booking_list')
     template_name = 'profile.html'
     
+    def test_func(self):
+        item = self.get_object()
+        return self.request.user == item.created_by
     
-@method_decorator(staff_required, name='dispatch')   
-class BookingListAdmin(LoginRequiredMixin, ListView):
+      
+class BookingListAdmin(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    
+    """
+    A view that provides the list of bookings to be accesed only by a staff member.
+    The view also provides a form to filter the bookings by date.
+    """
+    
     model = BookingModel
     template_name = 'managebookings.html'
 
@@ -130,10 +159,28 @@ class BookingListAdmin(LoginRequiredMixin, ListView):
             
                       
         return render(request, 'managebookings.html', context)
+    
+    def test_func(self):
+        return self.request.user.is_staff
  
     
-@method_decorator(staff_required, name='dispatch')   
-class BookingDeleteViewAdmin(DeleteView, LoginRequiredMixin):
+class BookingDeleteViewAdmin(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    
+    """
+    A view that deletes a booking entry from the database. 
+    The action is performed only if the authenticated user is a staff member.
+    """
+    
     model = BookingModel
-    success_url = reverse_lazy('booking_list_admin')
     template_name = 'managebookings.html'
+    
+    
+    def get_success_url(self):
+        bdate = self.get_object().date
+        csrf = base64.b64encode(os.urandom(64))
+        return '/bookings/managebookings/?csrfmiddlewaretoken=' + csrf.decode("utf-8") + '&date=' + bdate.strftime("%Y-%m-%d")
+
+
+    def test_func(self):
+        return self.request.user.is_staff
+    
