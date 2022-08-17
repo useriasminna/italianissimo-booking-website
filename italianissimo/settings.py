@@ -114,10 +114,12 @@ WSGI_APPLICATION = 'italianissimo.wsgi.application'
 
 
 if 'test' in sys.argv or 'test_coverage' in sys.argv: 
-    TEST_DATABASES = {
-            'default': dj_database_url.config(env='TEST_DATABASE_URL')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
-    TEST_RUNNER = 'italianissimo.test_runner.HerokuTestSuiteRunner'   
+    }   
 else:
     DATABASES = {
             'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
