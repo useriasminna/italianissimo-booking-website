@@ -17,6 +17,7 @@ django-crispy-forms = "*"
 django-braces = "*"
 django-filter = "*"
 django-annoying = "*"
+coverage = "==3.6"
 
 [dev-packages]
 autopep8 = "*"
