@@ -7,29 +7,33 @@
             <h2>Reviews <i class="far fa-comment-alt"></i></h2>
             <div class="flex sp-between reviews-main-container">
                 <div class="col-lg-7 reviews-container">
-                    {% for review in review_list %}
-                        <div class="row flex review">
-                            <img class="col-2" src="{% static 'italianissimo/media/user.png' %}" alt="">
-                            <div class="col-10" >
-                                {% for user in users %}
-                                {% if user.email == review.author_id %}
-                                <div class="flex sp-between review-header">
-                                    <h6><b>{{ user.get_full_name }}</b></h6>
-                                    <div class="flex sp-between">
-                                        <small>{{ review.date_updated_on }}</small>
-                                        <input type="hidden" name="rate" class="rate" value="{{review.rate}}">
-                                        <div class="ratings-generated flex a-end "></div>
-                                    </div>    
+                    {% if reviews %}
+                        {% for review in review_list %}
+                            <div class="row flex review">
+                                <img class="col-2" src="{% static 'italianissimo/media/user.png' %}" alt="">
+                                <div class="col-10" >
+                                    {% for user in users %}
+                                    {% if user.email == review.author_id %}
+                                    <div class="flex sp-between review-header">
+                                        <h6><b>{{ user.get_full_name }}</b></h6>
+                                        <div class="flex sp-between">
+                                            <small>{{ review.date_updated_on }}</small>
+                                            <input type="hidden" name="rate" class="rate" value="{{review.rate}}">
+                                            <div class="ratings-generated flex a-end "></div>
+                                        </div>    
+                                    </div>
+                                    <div class="row">
+                                        <p class="flex a-start"><q>{{ review.review_text}}</q></p>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
                                 </div>
-                                <div class="row">
-                                    <p class="flex a-start"><q>{{ review.review_text}}</q></p>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
                             </div>
-                        </div>
-                        <br>
-                    {% endfor %}
+                            <br>
+                        {% endfor %}
+                    {% else %}
+                    <p><b>There are no reviews yet.</b></p>
+                    {% endif %}
                     {% if is_paginated %}
                     <div class='pagination justify-content-center'>
                         {% if page_obj.has_previous %}
@@ -85,8 +89,6 @@
                                     </div>  
                                 {% endif %}
                             {% endfor %}
-                        {% else %}
-                        <p><b>There are no reviews yet.</b></p>
                         {% endif %}
                         <div id="addReviewForm">
                             <h5>Add your review:</h5>
