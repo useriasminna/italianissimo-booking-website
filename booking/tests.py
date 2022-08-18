@@ -2,8 +2,6 @@ import datetime
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from datetime import datetime, date
-
-from .forms import dateBookingForm
 from .models import Table, User
 
 
@@ -12,7 +10,7 @@ class TestViews(TestCase):
     Unit Tests for Booking App Views
     
     """
-
+    
     def setUp(self):
             """ Create test login user and test table object"""
             
@@ -34,7 +32,6 @@ class TestViews(TestCase):
             table_free_img = "image/upload/v1657289312/tw0rnaie5atrdrk6er1k.png",
             table_occupied_img = "image/upload/v1657289312/scgc1tjjysnphx8pdg6b.png",
         )
-       
               
     def test_booking_page_redirects(self):
         """ Test if booking page redirects in case user is not logged in"""
