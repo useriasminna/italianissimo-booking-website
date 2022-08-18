@@ -63,10 +63,9 @@
         </p>
       </div>
     </div>
-    
+    {% if fav.count >= 3%}
     <div id="fav-dishes">
       <h2><span>Our most appreciated dishes <i class="fas fa-utensils"></i></span></h2> 
-      <!-- {% if review_list.count >= 3%} -->
       <div class="flex f-wrap j-center">
         {% for element in fav|slice:"0:3" %}
           {% for meal in meals %}
@@ -82,9 +81,8 @@
           {% endfor %}
         {% endfor %}
       </div>
-    <!-- {% endif %}  -->
-
     </div>
+    {% endif %}
     {% if review_list.count >= 3%}
       <div>
         <h2><span>From our clients <i class="fas fa-comment-dots"></i></span></h2>  
