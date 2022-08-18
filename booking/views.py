@@ -17,6 +17,7 @@ from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from django_filters.views import FilterView
 import base64, os
+import datetime
 
 # Create your views here.
     
@@ -69,7 +70,9 @@ class Booking(LoginRequiredMixin, TemplateView):
                     
                 booking = BookingModel(date = booking_date, start_time = booking_start_time, end_time = booking_end_time,
                                        table = booking_table, customer_full_name = booking_customer_full_name,
-                                       customer_email = booking_customer_email, created_by = user)
+                                       customer_email = booking_customer_email, created_on = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                       created_by = user,
+                                       )
                 booking.save()
                 messages.success(request, 'Your booking was successfully registered')
                 return HttpResponseRedirect('/bookings/createbookings') 
