@@ -82,8 +82,7 @@ class ReviewUpdate(UserPassesTestMixin, UpdateView):
             review_form = newReviewForm(data=request.POST, instance=review)             
             
             if review_form.is_valid():
-                review_form.instance.date_created_on = datetime.now()
-                review_form.instance.date_updated_on = datetime.now()
+                review_form.instance.date_updated_on = datetime.now().strftime("%Y-%m-%d %H:%M:%S") 
                  
                 review = ReviewModel()
                 review_form.save()
