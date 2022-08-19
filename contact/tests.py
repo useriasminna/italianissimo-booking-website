@@ -1,3 +1,8 @@
+"""
+Contact App - Tests
+----------------
+Unit Tests for Contact App
+"""
 from django.test import TestCase
 
 
