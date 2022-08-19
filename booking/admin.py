@@ -1,3 +1,9 @@
+"""
+Booking App - Admin
+----------------
+Admin Configuration for Booking App.
+"""
+
 from django.contrib import admin
 from .models import Booking, Table
 
