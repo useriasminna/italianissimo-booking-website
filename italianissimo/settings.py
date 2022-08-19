@@ -15,13 +15,11 @@ import os
 import sys
 
 import dj_database_url
-if os.path.isfile('env.py'):
-    import env
 
 if os.environ.get('DEVELOPMENT'):
-    development = True
+    DEVELOPMENT = True
 else:
-    development = False
+    DEVELOPMENT = False
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -113,13 +111,13 @@ WSGI_APPLICATION = 'italianissimo.wsgi.application'
 
 
 
-if 'test' in sys.argv or 'test_coverage' in sys.argv: 
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
-    }   
+    }
 else:
     DATABASES = {
             'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))

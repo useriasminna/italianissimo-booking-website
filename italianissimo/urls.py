@@ -13,7 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from unicodedata import name
 from django.contrib import admin
 from django.urls import path, include
 from allauth.account.views import login, signup, logout
@@ -29,5 +28,3 @@ urlpatterns = [
     path('menu/', include('menu.urls'), name='menu_urls'),
     path('contact/', include('contact.urls'), name='contact-urls'),
 ]
-
-    
