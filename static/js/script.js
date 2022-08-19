@@ -1,4 +1,4 @@
-
+/*jshint esversion: 6 */
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   
@@ -12,14 +12,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   //--------------------------CREATE METHOD THAT WILL MAKE NAVELEMENT ACTIVE ON CLICK--------------------------
-  const navItems = document.getElementsByClassName("nav-item")
+  const navItems = document.getElementsByClassName("nav-item");
   const removeActiveAll = () => {
 
-    for(item of navItems){
+    for(let item of navItems){
       if(item.classList.contains("active"))
-        item.classList.remove("active")
+        item.classList.remove("active");
     }
-  }
+  };
 
   const user = document.getElementsByClassName('user')[0];
   const status = document.getElementsByClassName('status')[0];
@@ -35,33 +35,34 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //Get the button
     let mybutton = document.getElementById("btn-back-to-top");
 
-    // When the user clicks on the button, scroll to the top of the document
-    mybutton.addEventListener("click", backToTop);
-
-    function backToTop() {
+    const backToTop = () => {
       history.pushState("", document.title, window.location.pathname);
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
-    }
+    };
+      
+    // When the user clicks on the button, scroll to the top of the document
+    mybutton.addEventListener("click", backToTop);
+
     const generateStarsContainers = document.getElementsByClassName('ratings-generated');
-    for(container of generateStarsContainers){
-      const rateHidden = container.previousElementSibling
+    for(let container of generateStarsContainers){
+      const rateHidden = container.previousElementSibling;
 
 
-      for(i=0; i<rateHidden.value; i++){
+      for(let i=0; i<rateHidden.value; i++){
         let star = document.createElement("button");
-        star.textContent = '★'
-        star.classList.add('star')
-        star.style.color = "yellow"
-        container.appendChild(star)
+        star.textContent = '★';
+        star.classList.add('star');
+        star.style.color = "yellow";
+        container.appendChild(star);
    
        }
    
-       for(i=0; i<5-rateHidden.value; i++){
+       for(let i=0; i<5-rateHidden.value; i++){
          let star = document.createElement("button");
-         star.textContent = '★'
-         star.classList.add('star')
-         container.appendChild(star)
+         star.textContent = '★';
+         star.classList.add('star');
+         container.appendChild(star);
     
         }
     }
@@ -83,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       const customer_name = document.querySelector("#fullName");
       const customer_email = document.querySelector("#email");
       const book_auth = document.querySelector("#bookAuthenticate");
-      const tableSelect = document.querySelector("#tableCode")
-      const tableOptions = document.querySelectorAll('#tableCode > option')
+      const tableSelect = document.querySelector("#tableCode");
+      const tableOptions = document.querySelectorAll('#tableCode > option');
       const findTableButton = document.getElementsByClassName("continue")[0];
       const continueButton = document.getElementsByClassName("continue")[1];
       const restartButtons = document.getElementsByClassName("restart");
@@ -92,20 +93,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
       const flexButtons = document.querySelector("#flexButtons");
       const bookingOverview = document.querySelector("#bookingOverview");
       const noOfPersons = document.querySelector("#tablePersons");
-      const formContainer = document.getElementsByClassName("center-container")[0]
+      const formContainer = document.getElementsByClassName("center-container")[0];
 
       // --------------------------SET DATE PICKER INPUT MIN VALUE TO TODAY DATE--------------------------
-      datePicker.min = new Date().toLocaleDateString('en-ca')
+      datePicker.min = new Date().toLocaleDateString('en-ca');
 
 
       // --------------------------SET DATE PICKER DEFAULT VALUE TO TODAY DATE--------------------------
-      datePicker.min = new Date().toLocaleDateString('en-ca')
+      datePicker.min = new Date().toLocaleDateString('en-ca');
       var currentDay = new Date();
       var dd = String(currentDay.getDate()).padStart(2, '0');
       var MM = String(currentDay.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = currentDay.getFullYear();
       currentDay = yyyy + '-' + MM + '-' + dd;
-      datePicker.value = currentDay
+      datePicker.value = currentDay;
 
 
       // --------------------------SET TIME INPUT VALUE TO :00 FORMAT FOR MINUTES--------------------------
@@ -122,13 +123,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // --------------------------RELOAD PAGE ON RESTART BUTTON CLICK--------------------------
       Array.from(restartButtons).forEach(button => {
         button.addEventListener('click', () => {
-          window.location = "/bookings/createbookings"
-        })
+          window.location = "/bookings/createbookings";
+        });
       });
       
 
       // --------------------------ENABLE/DISABLE CONTACT INPUTS WHEN 'BOOK IT ON MY NAME' IS CHECKED--------------------------
-      book_auth.addEventListener('click', manipulateInputs = () => {
+      const manipulateInputs = () => {
         if(book_auth.checked == true){
           customer_name.readOnly = true;
           customer_email.readOnly = true;
@@ -137,17 +138,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
           customer_name.readOnly = false;
           customer_email.readOnly = false;
         }
-      })
+      };
+      
+      book_auth.addEventListener('click', manipulateInputs);
 
 
       // --------------------------DISABLE BOOK IT ON MY NAME CHECKBOX FOR STAFF MEMBERS--------------------------
       if(status.value == 'staff'){
-        book_auth.removeEventListener('click', manipulateInputs)
+        book_auth.removeEventListener('click', manipulateInputs);
         book_auth.addEventListener("click", (event)=>{
 
           event.preventDefault();
           event.stopPropagation();
-        })
+        });
       }
 
       const isRequired = value => value === '' ? false : true;
@@ -167,10 +170,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         today.setHours(0,0,0,0);
 
         if( inputDate >= today )
-          return true
+          return true;
         else  
-          return false
-      }
+          return false;
+      };
 
       // --------------------------CHECK IF START TIME IS AFTER CURRENT TIME FOR TODAY BOOKINGS--------------------------
       const isStartTimeTodayValid = (startTime) => {
@@ -190,64 +193,65 @@ document.addEventListener("DOMContentLoaded", function(event) {
           var d = new Date();
           var m = d.getMinutes();
           var h = d.getHours();
-          if(h == '0') {h = 24}
+          if(h == '0') {h = 24;}
           
+      var currentTime;
           if(h < 10)
             if(m < 10)
-              var currentTime = "0"+h+":0"+m;
+              currentTime = "0"+h+":0"+m;
             else
-              var currentTime = "0"+h+":"+m;
+              currentTime = "0"+h+":"+m;
           else
             if(m < 10)
-              var currentTime = h+":0"+m;
+              currentTime = h+":0"+m;
             else
-              var currentTime = h+":"+m;
+              currentTime = h+":"+m;
           
 
 
           if(startTime <= currentTime)
-            return false
+            return false;
           else
-            return true  
+            return true;  
         }
         else
-          return true
-      }
+          return true;
+      };
 
       // --------------------------CHECK IF END TIME IS GREATER THAN START TIME--------------------------
       const isTimeIntervalValid = (startTime, endTime) => {
         if(startTime >= endTime)
-          return false
+          return false;
         else
-          return true  
-      }
+          return true;
+      };
 
       // --------------------------CHECK IF BOOKING TIME IS GREATER THAN 60 MIN--------------------------
       const isTimeIntervalCorrect = (startTime, endTime) => {
-        let startInMinutes = (parseInt(startTime.split(":")[0]) * 60 + parseInt(startTime.split(":")[1])) 
-        let endInMinutes = (parseInt(endTime.split(":")[0]) * 60 + parseInt(endTime.split(":")[1])) 
-        let diffInMin = endInMinutes - startInMinutes
+        let startInMinutes = (parseInt(startTime.split(":")[0]) * 60 + parseInt(startTime.split(":")[1])); 
+        let endInMinutes = (parseInt(endTime.split(":")[0]) * 60 + parseInt(endTime.split(":")[1])); 
+        let diffInMin = endInMinutes - startInMinutes;
         if( diffInMin < 60 )
-          return false
+          return false;
         else
-          return true  
-      }
+          return true;
+      };
 
       // --------------------------CHECK IF STRING HAS A LENGTH GREATER THAN VALUE GIVEN AS ARGUMENT--------------------------
       const isStringLengthValid = (string, value) => {
 
         if(string.length > value)
-          return false
+          return false;
         else
-          return true  
-      }
+          return true;
+      };
 
       // --------------------------CHECK IF STRING CONTAINS SPECILA CHARACTERS--------------------------
       const containsSpecialChars = (string) => {
         const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
         return specialChars.test(string);
-      }
+      };
 
       // --------------------------CHECK IF EMAIL RESPECTS EMAIL PATTERN--------------------------
       const isEmailValid = (email) => {
@@ -259,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
         return true;
 
-      }
+      };
 
       // --------------------------DISPLAY ERROR--------------------------
       const showError = (input, message) => {
@@ -279,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         // hide the error message
         const error = formField.querySelector('small');
         error.textContent = '';
-      }
+      };
 
       // --------------------------CHECK DATE AND SET ERROR MESSAGES--------------------------
       const checkDate = () => {
@@ -297,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             valid = true;
         }
         return valid;
-      } 
+      };
 
       // --------------------------CHECK START TIME AND SET ERROR MESSAGES--------------------------
       const checkStartTime = () => {
@@ -320,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             valid = true;
         }
         return valid;
-      } 
+      }; 
 
       // --------------------------CHECK END TIME AND SET ERROR MESSAGES--------------------------
       const checkEndTime = () => {
@@ -344,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             valid = true;
         }
         return valid;
-      } 
+      }; 
 
 
       // --------------------------CHECK NAME INPUT AND SET ERROR MESSAGES--------------------------
@@ -365,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             valid = true;
         }
         return valid;
-      } 
+      }; 
 
       // --------------------------CHECK EMAIL AND SET ERROR MESSAGES--------------------------
       const checkEmail = () => {
@@ -383,12 +387,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
             valid = true;
         }
         return valid;
-      } 
+      };
 
     
       // -------------------------CHECK FIRST BOOKING SECTION VALIDITY --------------------------
       findTableButton.addEventListener("click", () => {
-        formContainer.scrollTop = formContainer.scrollHeight
+        formContainer.scrollTop = formContainer.scrollHeight;
         let isdateValid = checkDate();
         let isStartValid = checkStartTime();
         let isEndValid = checkEndTime();
@@ -406,14 +410,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
           startTime.readOnly = true;
           endTime.readOnly = true;
           findTableButton.style.display = "none";
-          window.location = "/bookings/createbookings/#tableContentCollapse"
+          window.location = "/bookings/createbookings/#tableContentCollapse";
           document.querySelector('#tableContentCollapse').style.display = 'block';
 
 
           // get database entries for bookings and tables from html 
           var bookingsData = JSON.parse(JSON.parse(document.getElementById('bookings_data').textContent));
           var tablesData = JSON.parse(JSON.parse(document.getElementById('tables_data').textContent));
-          var tablesStatusImages = []
+          var tablesStatusImages = [];
           
           //check if tables are busy for the date and time selected and create another array of objects with tables code and status image
           for(let table of tablesData){
@@ -424,44 +428,44 @@ document.addEventListener("DOMContentLoaded", function(event) {
               var bookingStart = booking.fields.start_time;
               var bookingEnd = booking.fields.end_time;
               
-              if(booking.fields.date == datePicker.value && booking.fields.table == table.fields.code && (!(endTime.value <= bookingStart) && !(startTime.value >= bookingEnd))){
+              if(booking.fields.date == datePicker.value && booking.fields.table == table.fields.code && ((endTime.value > bookingStart) && (startTime.value < bookingEnd))){
                 free = false;
                 break;
               }
             }
 
             if(free == true){
-              tablesStatusImages.push({"code": table.fields.code, "status":"free", "persons":table.fields.no_of_persons, "image_url":table.fields.table_free_img})
+              tablesStatusImages.push({"code": table.fields.code, "status":"free", "persons":table.fields.no_of_persons, "image_url":table.fields.table_free_img});
             }
             else{
-              tablesStatusImages.push({"code": table.fields.code, "status":"busy", "persons":table.fields.no_of_persons, "image_url":table.fields.table_occupied_img})
+              tablesStatusImages.push({"code": table.fields.code, "status":"busy", "persons":table.fields.no_of_persons, "image_url":table.fields.table_occupied_img});
             }
           }
 
           // create images elements and append them to html grid container
-          let tableList = document.getElementsByClassName('table-container')[0]
+          let tableList = document.getElementsByClassName('table-container')[0];
           tablesStatusImages.forEach(table => {
             let img = document.createElement('img');
-            img.src ='https://res.cloudinary.com/useriasminna/' + table.image_url
+            img.src ='https://res.cloudinary.com/useriasminna/' + table.image_url;
             tableList.appendChild(img);
-          })
+          });
 
           //remove busy tables from select options
-          for(i = 0; i < tablesStatusImages.length; i++){
+          for(let i = 0; i < tablesStatusImages.length; i++){
             if(tablesStatusImages[i].status == 'busy')
-              tableOptions[i].remove()
-              for(j=i; j< tableOptions.length; j++){
-                tableOptions[j] = tableOptions[j+1]
+              tableOptions[i].remove();
+              for(let j=i; j< tableOptions.length; j++){
+                tableOptions[j] = tableOptions[j+1];
               }
           }
 
           
           if(tableSelect.options.length == 0){
-            tableSelect.options.add(new Option('No table available', 'message'))
+            tableSelect.options.add(new Option('No table available', 'message'));
             tableSelect.options[0].selected = true;
             tableSelect.disable=true;
             noOfPersons.value = "";
-            continueButton.style.display = "none"
+            continueButton.style.display = "none";
           }
           else{
             tableSelect.options[0].selected = true;
@@ -483,31 +487,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 break;
               }
             }
-          })
+          });
 
           
           
         }
-      })
+      });
 
       // -------------------------CHECK SECOND BOOKING SECTION VALIDITY --------------------------
       continueButton.addEventListener("click", () => {
 
 
           // display next section
-          formContainer.scrollTop = formContainer.scrollHeight
+          formContainer.scrollTop = formContainer.scrollHeight;
           window.scrollTo(0, document.body.scrollHeight);
           flexButtons.style.display = "none";
-          window.location = "/bookings/createbookings/#bookingContactCollapse"  
+          window.location = "/bookings/createbookings/#bookingContactCollapse";  
           document.querySelector('#bookingContactCollapse').style.display = 'block';
   
-      })
+      });
 
       // -------------------------CHECK THIRD BOOKING SECTION VALIDITY --------------------------
       finishButton.addEventListener("click", () => {
 
         window.scrollTo(0, document.body.scrollHeight);
-        formContainer.scrollTop = formContainer.scrollHeight
+        formContainer.scrollTop = formContainer.scrollHeight;
         
         
 
@@ -525,7 +529,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           // display next section if inputs are valid
           if ( isContactSectionValid) {
     
-            book_auth.removeEventListener("click", manipulateInputs)
+            book_auth.removeEventListener("click", manipulateInputs);
             
             //prevent user from changing checbox state
             book_auth.addEventListener("click", (event)=>{
@@ -536,10 +540,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
               event.preventDefault();
               event.stopPropagation();
-            })
+            });
 
-            customer_name.readOnly = true
-            customer_email.readOnly = true
+            customer_name.readOnly = true;
+            customer_email.readOnly = true;
             finishButton.style.display="none";
 
             // display next section
@@ -551,12 +555,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
           book_auth.addEventListener("click", (event)=>{
 
             setTimeout(function() {
-              this.checked = true
+              this.checked = true;
             }, 0);
   
             event.preventDefault();
             event.stopPropagation();
-          })
+          });
               
             customer_name.parentElement.style.display="none";
             customer_email.parentElement.style.display="none";
@@ -566,20 +570,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
             document.querySelector('#overviewCollapse').style.display = 'block';
         }
         
-        window.location = "/bookings/createbookings/#overviewCollapse"  
+        window.location = "/bookings/createbookings/#overviewCollapse"; 
 
         //set initial overview value
         bookingOverview.textContent = "You have selected a booking on " + datePicker.value + ", from " + startTime.value + " to " + endTime.value +
-                                      ", table for " + noOfPersons.value + " persons."   
+                                      ", table for " + noOfPersons.value + " persons." ;  
                                        
         //update overview every time another table is selected before submit
         tableSelect.addEventListener("change", () => {
 
           bookingOverview.textContent = "You have selected a booking on " + datePicker.value + ", from " + startTime.value + " to " + endTime.value +
-          ", table for " + noOfPersons.value + " persons."
+          ", table for " + noOfPersons.value + " persons.";
 
-        })                              
-      })
+        });                      
+      });
     
    
   }
@@ -598,36 +602,49 @@ document.addEventListener("DOMContentLoaded", function(event) {
       const displayUpdateForm = document.querySelector('#displayUpdateForm');
       const myReview = document.querySelector('#myReview');
       const reviewExists = document.querySelector('#reviewExists');
-      const addReviewForm = document.querySelector('#addReviewForm')
+      const addReviewForm = document.querySelector('#addReviewForm');
 
       //add event listeners for rating stars
-      stars[0].clicked = true
-      for(let i=0; i<stars.length; i++){
-        stars[i].addEventListener('mouseover', () => {
-          for(let j=0; j<=i; j++){
-            stars[j].style.color = "yellow"
+      stars[0].clicked = true;
+      const makeHoverStarsYellow = (limit) => {
+        for(let j=0; j<=limit; j++){
+            stars[j].style.color = "yellow";
         }
-        })
-        stars[i].addEventListener('mouseleave', () => {
-          for(let j=0; j<=i; j++){
-            if(!stars[j].clicked)
-              stars[j].style.color = "gray"
-          }
-        })
+      };
 
-        stars[i].addEventListener('click', () => {
-          rateValue.value = i+1;
-          rateValue.innerHTML = i+1;
-          for(let j=0; j<=i; j++){
-            stars[j].style.color = "yellow"
-            stars[j].clicked = true
-          }
-          if(i != stars.length-1)
-            for(let z=i+1; z<stars.length; z++){
-              stars[z].style.color = "gray"
-              stars[z].clicked = false
-            }
-        })
+      const makeNotClickedStarsGray = (i) => {
+        for(let j=0; j<=i; j++){
+             if(!stars[j].clicked)
+               stars[j].style.color = "gray";
+           }
+       };
+         
+       const makeClickedStarsYellow = (i) => {
+         rateValue.value = i+1;
+           rateValue.innerHTML = i+1;
+           for(let j=0; j<=i; j++){
+             stars[j].style.color = "yellow";
+             stars[j].clicked = true;
+           }
+           if(i != stars.length-1)
+             for(let z=i+1; z<stars.length; z++){
+               stars[z].style.color = "gray";
+               stars[z].clicked = false;
+             }
+       };
+ 
+      for(let i=0; i<stars.length; i++){
+        stars[i].addEventListener('mouseover', (event) => {
+          event = makeHoverStarsYellow(i);
+        });
+        
+        stars[i].addEventListener('mouseleave', (event) => {
+          event = makeNotClickedStarsGray(i);
+        });
+
+        stars[i].addEventListener('click', (event) => {
+          event = makeClickedStarsYellow(i);
+        });
 
       }
 
@@ -637,7 +654,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         const updateReviewForm = document.querySelector('#updateReviewForm');
         const reviewText = document.querySelector('#reviewTextHidden');
         const reviewTextInput = updateReviewForm.querySelector('#reviewText');
-        const updateRating = updateReviewForm.querySelectorAll('.rating')[0].querySelectorAll('button')
+        const updateRating = updateReviewForm.querySelectorAll('.rating')[0].querySelectorAll('button');
         const updateRate = updateReviewForm.getElementsByClassName("rate")[0];
         const formRate = updateReviewForm.querySelector('#rateValue');
 
@@ -645,19 +662,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         updateReviewForm.style.display = "block";
         displayUpdateForm.style.display = "none";
 
-        formRate.value = updateRate.value
-        reviewTextInput.textContent = reviewText.value
+        formRate.value = updateRate.value;
+        reviewTextInput.textContent = reviewText.value;
 
         for(let i=0; i<updateRate.value; i++){
-          updateRating[i].style.color = "yellow"
+          updateRating[i].style.color = "yellow";
         }
       
-      })
+      });
 
       //don't display add review form if review already exists for authenticated user
       if(reviewExists)
       {
-        addReviewForm.style.display = 'none'
+        addReviewForm.style.display = 'none';
       }
     }
     
@@ -666,24 +683,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     //generate stars for reviews rating after rate value
    
-      for(container of generateStarsContainers){
-        const rateHidden = container.previousElementSibling
+      for(let container of generateStarsContainers){
+        const rateHidden = container.previousElementSibling;
   
   
-        for(i=0; i<rateHidden.value; i++){
+        for(let i=0; i<rateHidden.value; i++){
           let star = document.createElement("button");
-          star.textContent = '★'
-          star.classList.add('star')
-          star.style.color = "yellow"
-          container.appendChild(star)
+          star.textContent = '★';
+          star.classList.add('star');
+          star.style.color = "yellow";
+          container.appendChild(star);
      
          }
      
-         for(i=0; i<5-rateHidden.value; i++){
+         for(let i=0; i<5-rateHidden.value; i++){
            let star = document.createElement("button");
-           star.textContent = '★'
-           star.classList.add('star')
-           container.appendChild(star)
+           star.textContent = '★';
+           star.classList.add('star');
+           container.appendChild(star);
       
           }
       }
@@ -699,22 +716,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
     menuNav.classList.add("active");
 
 
-    const mealIdList = document.getElementsByClassName('mealId')
-    const mealList = document.getElementsByClassName('meal')
+    const mealIdList = document.getElementsByClassName('mealId');
+    const mealList = document.getElementsByClassName('meal');
  
     //add value of meal id to favourite form field
-    for(input of mealIdList){
-      input.value = input.previousElementSibling.value
+    for(var input of mealIdList){
+      input.value = input.previousElementSibling.value;
     }
 
     //display favourite forms depending on p hidden element value that is generated only if favourite exists for user and specific meal
-    for(meal of mealList){
-      const favouriteExists = meal.getElementsByClassName('favourite-exists')[0]
-      const addFavouriteForm = meal.getElementsByClassName('add-favourite-form')[0]
-      const removeFavouriteForm = meal.getElementsByClassName('remove-favourite-form')[0]
+    for(var meal of mealList){
+      const favouriteExists = meal.getElementsByClassName('favourite-exists')[0];
+      const addFavouriteForm = meal.getElementsByClassName('add-favourite-form')[0];
 
       if(favouriteExists){
-        addFavouriteForm.style.display = 'none'
+        addFavouriteForm.style.display = 'none';
       }
 
     }
@@ -730,7 +746,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     contactNav.classList.add("active");
 
     //initialise map
-    function initMap() {
+    const initMap = () => {
       // The location of Uluru
       const uluru = { lat: 40.628920, lng: 14.487630 };
       // The map, centered at Uluru
@@ -743,8 +759,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         position: uluru,
         map: map,
       });
-    }
-    initMap()
+    };
+    initMap();
   }
 
 
