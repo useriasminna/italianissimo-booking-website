@@ -18,6 +18,7 @@ django-braces = "*"
 django-filter = "*"
 django-annoying = "*"
 coverage = "==3.6"
+pylint = "*"
 
 [dev-packages]
 autopep8 = "*"
