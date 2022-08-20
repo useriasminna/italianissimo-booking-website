@@ -1,3 +1,8 @@
+"""
+Users App - Admin
+----------------
+Admin Configuration for Users App.
+"""
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
@@ -8,11 +13,9 @@ User = get_user_model()
 # Remove Group Model from admin. We're not using it.
 admin.site.unregister(Group)
 
-class UserAdmin(BaseUserAdmin):
 
-    # The fields to be used in displaying the User model.
-    # These override the definitions on the base UserAdmin
-    # that reference specific fields on auth.User.
+class UserAdmin(BaseUserAdmin):
+    """Custom Use Admin"""
     list_display = ['email', 'admin']
     list_filter = ['admin']
     fieldsets = (
@@ -20,12 +23,12 @@ class UserAdmin(BaseUserAdmin):
         ('Personal info', {'fields': ()}),
         ('Permissions', {'fields': ('admin',)}),
     )
-    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
-    # overrides get_fieldsets to use this attribute when creating a user.
+
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2')}
+            'fields': ('email', 'password1', 'password2')
+            }
         ),
     )
     search_fields = ['email']
