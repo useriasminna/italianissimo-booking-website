@@ -7,6 +7,7 @@
     ],
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
+        "--disable=C0412, W0221",
         "--load-plugins=pylint_django",
         "--load-plugins=pylint_django.checkers.migrations",
         "--django-settings-module=italianissimo.settings",
