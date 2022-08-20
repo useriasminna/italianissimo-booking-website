@@ -19,6 +19,7 @@ django-filter = "*"
 django-annoying = "*"
 coverage = "==3.6"
 pylint = "*"
+python-dotenv = "*"
 
 [dev-packages]
 autopep8 = "*"
