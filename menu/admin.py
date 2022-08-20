@@ -1,3 +1,8 @@
+"""
+Menu App - Admin
+----------------
+Admin Configuration for Menu App.
+"""
 from django.contrib import admin
 
 from menu.models import Favourite, Meal
