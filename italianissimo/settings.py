@@ -9,12 +9,16 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
-from pathlib import Path
-import os
 import sys
-
+import os
+from pathlib import Path
 import dj_database_url
+from dotenv import load_dotenv
+load_dotenv()
+
+if os.path.exists('env.py'):
+    import env 
+
 
 if os.environ.get('DEVELOPMENT'):
     DEVELOPMENT = True
@@ -30,10 +34,10 @@ PROJECT_DIR = Path(__file__).resolve().parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY',' ')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['italianissimo-booking-website.herokuapp.com',
                  'localhost', '127.0.0.1']
 
@@ -102,14 +106,6 @@ WSGI_APPLICATION = 'italianissimo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 
 if 'test' in sys.argv or 'test_coverage' in sys.argv:
     DATABASES = {
@@ -122,8 +118,6 @@ else:
     DATABASES = {
             'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
         }
-
-
 
 
 # Password validation
