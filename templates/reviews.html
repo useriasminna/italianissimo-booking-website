@@ -52,7 +52,7 @@
                 </div>
                 {% if user.is_authenticated %}
                     {% if not user.staff %}
-                    <div class="col-lg-4 flex f-column a-start">
+                    <div class="col-lg-4 flex f-column a-start review-form-container">
                         {% if reviews %}
                             {% for review in reviews %}
                                 {% if review.author_id == user.email %}

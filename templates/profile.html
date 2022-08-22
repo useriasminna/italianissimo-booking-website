@@ -8,7 +8,7 @@
             <h2>Welcome back, {{ user.first_name }}</h2>
             <small>{{ user.email }}</small><br><br>
             <div class="flex sp-between profile-container">
-                <div class="col-12 col-lg-6 ">
+                <div class="col-12 col-lg-6 profile-section">
                     <p class="decorated"><span>Your upcoming bookings <i class="far fa-calendar-alt"></i></span></p>
                     <div class="flex j-center f-wrap">
                         {% if booking_list %}
@@ -76,7 +76,7 @@
                     {% endfor %}    
                 </div>
                 {% endif %}
-                <div class="col-12 col-lg-5">
+                <div class="col-12 col-lg-5 profile-section">
                     <p class="decorated"><span>Your favourite dishes <i class="fas fa-utensils"></i></span></p>
                     {% if fav_meals %}
                         <div class="flex f-wrap">
