@@ -881,6 +881,7 @@ input[type=checkbox]:hover {
 
 .reviews-container{
     margin-bottom: 20px;
+    width: auto;
 }
 
 .review-header small{
@@ -1077,13 +1078,10 @@ input[type=checkbox]:hover {
     color: #ffab00;
     border-color: #ffab00;
   }
+
+  /* --------------------------------------------------- LARGE DEVICES------------------------------------------------------------------*/
   
-
-/* --------------------------------------------------- SMALL AND MEDIUM DEVICES------------------------------------------------------------------*/
-@media (max-width: 992px) {
-
-
-    /* ----------------------NAVBAR----------------------------- */
+  @media (max-width: 1366px) {
     body {
         min-height: 100vh;
         display: flex;
@@ -1094,19 +1092,12 @@ input[type=checkbox]:hover {
         margin-top: auto;
     }
 
-    .active {
-        transform: scale(1.1) translateX(17px);
-    }
-
-    .navbar li:hover:not(.active),
-    .navbar li:focus:not(.active) {
-        transform: scale(1.1) translateX(17px);
-
-
+    .navbar li{
+        margin-right: 10px;
     }
 
     #home-background-container {
-        height: 50vh;
+        height: 80vh;
     }
 
     #fade-container h1 {
@@ -1127,17 +1118,19 @@ input[type=checkbox]:hover {
     }
 
     #about-us img {
-        height: auto;
-        width: 100%;
+        height: 30vw;
     }
+
 
     .background-container {
         padding: 40px 0px;
+        min-height: 87vh;
     }
 
     .auth-form {
         left: 50%;
         transform: translateX(-50%);
+        width: 80%;
     }
 
     .form-submit:hover {
@@ -1148,7 +1141,7 @@ input[type=checkbox]:hover {
         height: 30vh;
         position: absolute;
         left: 50%;
-        top: 57%;
+        top: 50%;
         transform: translateX(-50%);
     }
 
@@ -1166,7 +1159,11 @@ input[type=checkbox]:hover {
     }
 
     .booking-container img{
-        height: 24vh;
+        height: 23vw;
+    }
+
+    .reviews-container{
+        width: 100%;
     }
 
     .reviews-main-container{
@@ -1183,13 +1180,74 @@ input[type=checkbox]:hover {
     .review img {
         height: 8vh;
     }
+    .review-form-container{
+        width: 100%;
+    }
 
     .profile-container{
         flex-direction: column;
     }
 
+    .profile-section{
+        width: 100%;
+    }
+
     #booking-details {
         font-size: inherit;
+    }
+    
+    .meal img{
+        height: 7vh;
+    }
+
+    #fav-dishes img {
+        height: 12vh;
+    }
+
+    .fav-meal-container img {
+        height: 15vw;
+    }
+
+    #presentationImg{
+        display: none!important;
+    }
+
+
+  }
+/* ---------------------------------------------------MEDIUM DEVICES------------------------------------------------------------------*/
+@media (max-width: 992px) {
+
+
+    .active {
+        transform: scale(1.1) translateX(17px);
+    }
+
+    .navbar li:hover:not(.active),
+    .navbar li:focus:not(.active) {
+        transform: scale(1.1) translateX(17px);
+
+
+    }
+
+    #home-background-container {
+        height: 50vh;
+    }
+
+    .background-container {
+        padding: 40px 0px;
+    }
+
+    .ilustrate-logo {
+        top: 57%;
+    }
+
+    #about-us img {
+        height: auto;
+        width: 100%;
+    }
+
+    .booking-container img{
+        height: 20vh;
     }
     
     #fav-dishes img {
@@ -1200,7 +1258,12 @@ input[type=checkbox]:hover {
         flex-direction: column;
     }
 
+    .meal img{
+        height: auto;
+    }
+
 }
+
 
 
 /* --------------------------------------------------- SMALL DEVICES------------------------------------------------------------------*/
@@ -1233,12 +1296,13 @@ input[type=checkbox]:hover {
 
     .background-container {
         padding: 20px 0px;
+        min-height: auto;
     }
 
     .auth-form {
         min-height: 80vh;
+        width: 91%;
     }
-
 
     .table-container {
         grid-template-columns: 40% 30% 31%;
@@ -1249,7 +1313,7 @@ input[type=checkbox]:hover {
     }
 
     .booking-container img{
-        height: 30vh;
+        height: 35vh;
     }
 
     .upper_manage{
@@ -1271,6 +1335,10 @@ input[type=checkbox]:hover {
 
     #fav-dishes img {
         height: 12vh;
+    }
+
+    .fav-meal-container img {
+        height: 15vh;
     }
 
     .custom-error .error-logo {
