@@ -591,6 +591,7 @@ footer i:hover {
 
 #btn-cancel:hover {
     background-color: #ce4205db;
+    color: white;
 }
 
 .background-container {
