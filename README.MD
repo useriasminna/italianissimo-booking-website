@@ -9,7 +9,7 @@ The website was created for real-life situations, but the restaurant name is fic
 <br><br>
 The fully deployed project can be accessed at [this link](https://italianissimo-booking-website.herokuapp.com/).<br><br>
 
-## UX<hr>
+## UX
 This site was created respecting the Five Planes Of Website Design:<br>
 ### Strategy<hr>
 **User Stories:** <br>
@@ -113,41 +113,40 @@ The first one was created before the actual development of the website which led
 
 <details>
   <summary>Initial Schema</summary>
-<img src="static/italianissimo/media/initial_db.jpeg" width="80%"><br>
+<img src="static/italianissimo/media/initial_db.jpeg" ><br>
 </details>
 
 <details>
   <summary>Final Schema</summary>
-<img src="static/italianissimo/media/final_db.jpeg" width="80%"><br>
-</details><br><br>
+<img src="static/italianissimo/media/final_db.jpeg"><br>
+</details><br>
 
 ### Surface<hr>
-### SURFACE<br>
 #### Color Scheme
 All the colours were selected with the eyedropper plugin from the website cover, to maintain the chromatic harmony. <br>
 * The primary colour scheme was used for most of the text existent on the website, in either dark or bright colours for creating a good contrast.<br> 
-<img src="static/italianissimo/media/clr2.png" width="18%">
-<img src="static/italianissimo/media/clr3.png" width="18%">
-<img src="static/italianissimo/media/clr4.png" width="18%">
-<img src="static/italianissimo/media/clr1.png" width="18%"><br>
+<img src="static/italianissimo/media/clr2.png" width="30%">
+<img src="static/italianissimo/media/clr3.png" width="30%">
+<img src="static/italianissimo/media/clr4.png" width="30%">
+<img src="static/italianissimo/media/clr1.png" width="30%"><br>
 
-* The seconday colour scheme was used for buttons, warnings, errors or for highlighting some important information.<br>
-<img src="static/italianissimo/media/clr5.png" width="18%">
-<img src="static/italianissimo/media/clr6.png" width="18%">
-<img src="static/italianissimo/media/clr7.png" width="18%">
-<img src="static/italianissimo/media/clr8.png" width="18%">
+* The seconday colour scheme was used for buttons, warnings, errors or for highlighting important information.<br>
+<img src="static/italianissimo/media/clr5.png" width="30%">
+<img src="static/italianissimo/media/clr6.png" width="30%">
+<img src="static/italianissimo/media/clr7.png" width="30%">
+<img src="static/italianissimo/media/clr8.png" width="30%">
 
 #### Fonts
 * The fonts I used for this site were imported from [Google Fonts](https://fonts.google.com/):<br>
-**Body:** Tiro Devanagari Marathi, serif<br>
-**Navbar:** Courgette, cursive<br>
-**Logo:** Cinzel, serif<br>
-**Slogan:** Marck Script, cursive<br>
+**Body:** *Tiro Devanagari Marathi, serif*<br>
+**Navbar:** *Courgette, cursive*<br>
+**Logo:** *Cinzel, serif*<br>
+**Slogan:** *Marck Script, cursive*<br>
 
 #### Visual Effects
-* Box shadows
+* **Box shadows** <br>
 Multiple box shadows were used for cover, buttons and images. They were inspired from [css-box-shadow-examples]("https://getcssscan.com/css-box-shadow-examples")<br>
-* Animation
+* **Animation**<br>
 Some animations were used for creating a dinamic and atractive design
 <details>
   <summary>View Moving arrows animation</summary>
@@ -158,32 +157,85 @@ Some animations were used for creating a dinamic and atractive design
 <img src="static/italianissimo/media/pulse-capture.gif"><br>
 </details>
 
-* Hover effects
+* **Hover effects**<br>
 <details>
-  <summary>NavBar elements hover</summary>
+  <summary>View NavBar elements hover</summary>
 <img src="static/italianissimo/media/nav-capture.gif"><br>
 </details>
 <details>
-  <summary>Buttons hover</summary>
+  <summary>View Buttons hover</summary>
 <img src="static/italianissimo/media/delete-capture.gif"><br>
 </details>
 <details>
-<summary>Footer elements hover</summary>
+<summary>View Footer elements hover</summary>
 <img src="static/italianissimo/media/footer-capture.gif"><br>
-</details>
+</details><br>
 
+## Agile Methodology
+This project was developed using the Agile methodology.<br>
+All epics and user stories implementation progress was registered using [Trello](https://trello.com/). As the user stories were accomplished, they were moved in the Trello board from **To Do**, to **In-Design**, **Testing** and **Done** lists. 
+<details>
+<summary>Sprints Details</summary>
 
+* **Sprint 1 - SETUP**<br>
+    -Setup Django<br>
+    -Deploy on heroku<br><br>
+* **Sprint 2 - CONTENT AND NAVIGATION**<br>
+    -Create navigation menu<br>
+    -Add restaurant name, slogan and description<br>
+    -Choose colors, fonts and decorative images <br><br>
+    <img src="static/italianissimo/media/sprint2.png"><br><br>
+* **Sprint 3 - USER REGISTRATION/AUTENTHICATION**<br>
+    -Implement *Register* page using django-allauth module<br>
+    -Implement *Login* page using django-allauth module<br>
+    -Implement *Logout* modal using django-allauth module<br><br>
+    <img src="static/italianissimo/media/sprint3.png"><br><br>
+* **Sprint 4 - BOOKING**<br>
+    -Create *Booking* page<br>
+    -Implement feature to displays available tables<br>
+    -Implement booking form validation<br><br>
+    <img src="static/italianissimo/media/sprint4.png"><br><br>
+* **Sprint 5 - USER PROFILE**<br>
+    -Create user *Profile* page<br>
+    -Implement *Upcoming bookings* section<br><br>
+    <img src="static/italianissimo/media/sprint5.png"><br><br>
+* **Sprint 6 - STAFF MANAGE BOOKINGS**<br>
+    -Create *Manage Bookings* page to display all bookings for today<br>
+    -Implement filtering by date form<br><br>
+    <img src="static/italianissimo/media/sprint6.png"><br><br>
+* **Sprint 7 - REVIEWS**<br>
+    -Create *Reviews* page to display all reviews<br>
+    -Implement form for adding and updating review<br>
+    -Complete *Home* page and add *Top Reviews* section<br><br>
+    <img src="static/italianissimo/media/sprint7.png"><br><br>
+* **Sprint 8 - MENU**<br>
+    -Create *Menu* page to display menu details<br>
+    -Implement feature for adding meals to favourites<br>
+    -Complete *Profile* page and add *Favourite dishes* section<br>
+    -Complete *Home* page and add *Most appreciated dishes* section<br><br>
+    <img src="static/italianissimo/media/sprint8.png"><br><br>
+* **Sprint 9 - CONTACT**<br>
+    -Create *Where to find us* page<br>
+    -Add timetable<br>
+    -Add location address and map<br>
+    -Add contact details<br><br>
+    <img src="static/italianissimo/media/sprint9.png"><br><br>
+* **Sprint 10 - TESTING**<br>
+    -Create unit tests for Home App<br>
+    -Create unit tests for Booking App<br>
+    -Create unit tests for Menu App<br>
+    -Create unit tests for Reviews App<br>
+    -Create unit tests for Contact App<br>
+</details><br><br>
 
-
-### Agile Methodology<hr>
-## Features<hr>
+## Features
 ### Existing Features<hr>
 ### Future Feature Considerations<hr>
-## Technologies Used<hr>
-## Testing<hr>
-## Deployment<hr>
-## Credits<hr>
+## Technologies Used
+## Testing
+## Deployment
+## Credits
 ### Content<hr>
 ### Media<hr>
 ### Code<hr>
-## Acknowledgements<hr>
+## Acknowledgements
