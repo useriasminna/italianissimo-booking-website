@@ -581,6 +581,7 @@ footer i:hover {
 
 #btn-submit:hover {
     background-color: darkgreen;
+    color: white;
 }
 
 #btn-cancel {
