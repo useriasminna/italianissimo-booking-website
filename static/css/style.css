@@ -25,16 +25,19 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
 }
+
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
     background: #FF0000;
 }
 
 
-.burlywood{
+.burlywood {
     color: burlywood;
 }
 
@@ -42,10 +45,12 @@ body {
 
     display: flex;
 }
-.a-end{
+
+.a-end {
     align-items: flex-end;
 }
-.a-start{
+
+.a-start {
     align-items: flex-start;
 }
 
@@ -53,11 +58,11 @@ body {
     justify-content: space-around;
 }
 
-.sp-between{
+.sp-between {
     justify-content: space-between;
 }
 
-.j-center{
+.j-center {
     justify-content: center;
 }
 
@@ -65,7 +70,7 @@ body {
     flex-direction: column;
 }
 
-.f-wrap{
+.f-wrap {
     flex-wrap: wrap;
 }
 
@@ -77,54 +82,56 @@ body {
     font-size: medium;
 }
 
-.p-center{
+.p-center {
     margin: 0 auto;
 }
-.overflow-x{
+
+.overflow-x {
     overflow-x: auto;
 }
 
-.overflow-h{
+.overflow-h {
     overflow: hidden;
 }
 
-.larger{
+.larger {
     font-size: larger;
 }
 
-.green{
+.green {
     color: #ddeda9;
 }
 
-.btn{
+.btn {
     letter-spacing: 1.5px;
 
 }
 
-.btn:hover{
+.btn:hover {
     color: black;
 }
 
-.free-color{
+.free-color {
     color: #fdeca6;
 }
 
-.busy-color{
+.busy-color {
     color: #c3c3c3;
 }
 
-.h-100vh{
+.h-100vh {
     height: 100vh;
 }
-.h-80vh{
+
+.h-80vh {
     height: 80vh;
 }
 
-.min-h-100{
+.min-h-100 {
     min-height: 100vh;
 }
 
-.scroll{
+.scroll {
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -132,16 +139,16 @@ body {
 .form-control {
     border: 2px solid #c2c4c6;
     padding: 1px 2px;
-   
+
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     position: relative;
 }
 
-.form-control input:hover{
+.form-control input:hover {
     cursor: pointer;
 }
 
-.form-control:focus{
+.form-control:focus {
 
     border: 2px solid #c2c4c6;
     box-shadow: none;
@@ -150,7 +157,7 @@ body {
 
 input::-webkit-calendar-picker-indicator {
     cursor: pointer;
-  }
+}
 
 input[type="number" i] {
     padding: 0px;
@@ -306,15 +313,17 @@ input[type="number" i] {
 }
 
 
-.authenticate-link{
+.authenticate-link {
     color: #ddeda9;
     box-shadow: 0 0 0 0 rgb(234, 229, 229);
     transform: scale(1);
     animation: pulse 3s infinite;
     letter-spacing: 2px;
 }
-.authenticate-link:hover{
-    color: #cdff28;;
+
+.authenticate-link:hover {
+    color: #cdff28;
+    ;
 }
 
 @keyframes pulse {
@@ -497,13 +506,10 @@ footer i:hover {
     left: 15%;
 }
 
-
-
 .auth-form h1 {
     width: 80%;
     margin: 0px auto 25px auto;
 }
-
 
 .input-container {
     display: flex;
@@ -540,7 +546,7 @@ footer i:hover {
     text-align: start;
 }
 
-.booking-error{
+.booking-error {
     padding: 0px;
     text-align: center;
 }
@@ -608,7 +614,7 @@ footer i:hover {
 }
 
 #btn-back-to-top {
-    
+
     margin: 30px auto;
     border-radius: 50%;
     width: auto;
@@ -616,25 +622,26 @@ footer i:hover {
 }
 
 
-#btn-back-to-top:focus, 
-#btn-back-to-top:focus-visible{
+#btn-back-to-top:focus,
+#btn-back-to-top:focus-visible {
     outline: none;
-} 
+}
 
-.btn-simple{
+.btn-simple {
     border: 2px solid antiquewhite;
     color: antiquewhite;
     margin: 10px auto 30px;
     background-color: black;
 }
-.btn-simple:hover{
+
+.btn-simple:hover {
     background-color: black;
 
     border: 2px solid rgb(249, 212, 163);
     color: rgb(249, 212, 163);
 }
 
-.btn-simple:focus{
+.btn-simple:focus {
     background-color: black;
 
     border: 2px solid antiquewhite;
@@ -659,7 +666,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .number-input button {
-    outline:none;
+    outline: none;
     -webkit-appearance: none;
     border: none;
     align-items: center;
@@ -668,7 +675,7 @@ input[type=number]::-webkit-outer-spin-button {
     cursor: pointer;
     margin: 0;
     position: relative;
-    padding:0;
+    padding: 0;
 }
 
 .number-input button:before,
@@ -681,64 +688,64 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #212121;
     transform: translate(-50%, -50%);
 }
+
 .number-input button.plus:after {
     transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .number-input input[type=number] {
-    border:0;
+    border: 0;
     text-align: center;
-    outline:none;
+    outline: none;
     width: inherit;
 }
 
-.error-container{
+.error-container {
     width: auto;
     height: 40px;
 }
 
-
-
-#tableContentCollapse{
+#tableContentCollapse {
     display: none;
 }
 
-#bookingContactCollapse{
+#bookingContactCollapse {
     display: none;
 }
 
-#bookingContactCollapse input{
-   margin-bottom: 10px;
+#bookingContactCollapse input {
+    margin-bottom: 10px;
 }
 
-#overviewCollapse{
+#overviewCollapse {
     display: none;
 }
 
-#flexButtons{
+#flexButtons {
     width: fit-content;
 }
 
-#flexButtons button{
+#flexButtons button {
     margin: 0px 10px;
 }
 
-.messages{
+.messages {
     list-style-type: none;
     padding: 0px;
 }
+
 .alert {
-    
+
     animation: autoHide 0s ease-in 2s forwards;
 }
 
 @keyframes autoHide {
     to {
-        width:0;
-        height:0;
+        width: 0;
+        height: 0;
         padding: 0px;
         border: 0px;
-        overflow:hidden;
+        overflow: hidden;
     }
 }
 
@@ -750,21 +757,22 @@ input[type=checkbox]:hover {
     cursor: pointer;
 }
 
-#overviewCollapse>span:first-of-type{
+#overviewCollapse>span:first-of-type {
     color: #ddeda9;
 }
 
-.ilustrate{
+.ilustrate {
     height: 45vh;
 }
 
-.table-container{
+.table-container {
     display: grid;
     align-items: center;
     justify-items: center;
     justify-content: center;
     grid-template-columns: 30% 25% 25%;
-    grid-template-rows: 29% 31% 35%;;
+    grid-template-rows: 29% 31% 35%;
+    ;
     overflow: hidden;
 }
 
@@ -772,12 +780,12 @@ input[type=checkbox]:hover {
     transform: scale(0.26);
 }
 
-.card{
+.card {
     background: transparent;
     height: 66vh;
 }
 
-.form-select{
+.form-select {
     padding: 1px 2px;
     border: 2px solid #c2c4c6;
     box-shadow: none;
@@ -788,80 +796,91 @@ input[type=checkbox]:hover {
     box-shadow: none;
 }
 
-.booking-container{
+.booking-container {
     margin: 10px 17px 10px 20px;
     position: relative;
 }
 
-.booking-container img{
-    height: 30vh;
+.booking-container img {
+    width: 100%;
+    height: auto;
 }
-.booking-details{
+
+.booking-details {
     position: absolute;
     top: 16%;
     left: 50%;
     transform: translateX(-50%);
 
     color: #3a3a3a;
-    font-size: small;
+    font-weight: bold;
+    font-size: 11px;
     width: fit-content;
 }
 
-.booking-details p small{
+.booking-details p {
+    margin-bottom: 10px;
+}
+
+.booking-details p small {
     display: flex;
     flex-direction: column;
 }
 
-.note-btn{
+.note-btn {
     transform: scale(0.8);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
-.note-btn:hover{
+
+.note-btn:hover {
     background-color: #515356;
     color: white;
 }
-.note-btn:focus{
+
+.note-btn:focus {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     background-color: #6c757d;
 }
 
-.pagination a{
+.pagination a {
     animation: none;
 }
 
-.profile h2{
+.profile h2 {
     margin-bottom: 0px;
 }
 
-.profile form  p{
+.profile form p {
     white-space: nowrap;
 }
-.profile form  button{
+
+.profile form button {
     margin: 0px 0px -4px 20px;
 }
 
-.table{
+.table {
     color: whitesmoke;
 }
 
-.thead{
+.thead {
     background-color: #000;
 }
 
-.rating{
+.rating {
     font-size: x-large;
     margin-bottom: 15px;
 }
 
-.rating button:nth-child(1){
+.rating button:nth-child(1) {
     color: yellow;
 }
 
-.ratings-generated{
+.ratings-generated {
     margin-top: -10px;
     margin-left: 10px;
 }
-.star{
+
+.star {
     background-color: transparent;
     border: none;
     color: gray;
@@ -870,91 +889,93 @@ input[type=checkbox]:hover {
     transition: color 0.1s ease-in-out;
 }
 
-.review img{
-    height: 12vh;
+.review img {
+    width: 100%;
+    height: auto;
 }
 
-.review h6{
+.review h6 {
     text-transform: uppercase;
 }
-.review p{
+
+.review p {
     text-align: justify;
 }
 
-.reviews-container{
+.reviews-container {
     margin-bottom: 20px;
-    width: auto;
 }
 
-.review-header small{
+.review-header small {
     color: #ddeda9;
 }
 
-#updateReviewForm{
+#updateReviewForm {
     display: none;
     text-align: left;
 }
 
-#myReview{
+#myReview {
     text-align: left;
+    width: 100%;
 }
 
-#myReview p{
+#myReview p {
     text-align: justify;
 }
 
-#myReview .ratings-generated{
+#myReview .ratings-generated {
     margin-left: 0px;
     margin-top: -5px;
 }
 
-#myReview small{
-   color: #ddeda9;
+#myReview small {
+    color: #ddeda9;
 
 }
 
-.home-review{
+.home-review {
     padding: 15px;
     border-radius: 20px;
     background-color: #faebd757;
-
 }
 
-
-.meal{
+.meal {
     text-align: left;
 }
 
-.meal h5{
+.meal h5 {
     margin-right: 20px;
-    
 }
-.menu img{
+
+.menu img {
     height: 18vh;
     margin-top: -10px;
 }
 
-.heart{
+.heart {
     background-color: transparent;
     border: none;
     color: antiquewhite;
-    
+
 }
 
-.heart i{
+.heart i {
     font-size: x-large;
     margin-left: 5px;
 }
 
-.fav-meal-container img{
-    height: 15vh;
+.fav-meal-container img {
+    width: 100%;
+    height: auto;
 }
 
-#fav-dishes img{
-    height: 25vh;
+#fav-dishes img {
+    width: 50%;
+    height: auto;
 }
 
-#fav-dishes>div{
+#fav-dishes>div {
     background-color: #bca17e;
     border: 2px solid antiquewhite;
     border-radius: 20px;
@@ -963,37 +984,38 @@ input[type=checkbox]:hover {
     font-weight: bolder;
 }
 
-#fav-dishes>div>div{
+#fav-dishes>div>div {
     position: relative;
 }
 
-#fav-dishes>div>div>div{
+#fav-dishes>div>div>div {
     position: absolute;
     top: 0%;
     right: 5%;
 }
 
-.timetable{
+.timetable {
     padding: 15px;
     border-radius: 20px;
     background-color: #faebd757;
 }
 
-.timetable h5{
+.timetable h5 {
     margin: 0 auto;
 }
 
-.timetable>div{
+.timetable>div {
     width: 100%;
 }
 
-.timetable>div>div:nth-child(1){
+.timetable>div>div:nth-child(1) {
     margin-bottom: 15px;
     position: relative;
     overflow: hidden;
     text-transform: uppercase;
 }
-.timetable>div>div:nth-child(1)>span::after{
+
+.timetable>div>div:nth-child(1)>span::after {
     position: absolute;
     padding-left: .25ch;
     content: " . . . . . . . . . . . . . . . . . . . "
@@ -1004,9 +1026,9 @@ input[type=checkbox]:hover {
         ". . . . . . . . . . . . . . . . . . . . . . . "
         ". . . . . . . . . . . . . . . . . . . . . . . ";
     text-align: right;
-} 
+}
 
-#map{
+#map {
     height: 327px;
     width: 100%;
 }
@@ -1018,30 +1040,30 @@ input[type=checkbox]:hover {
     background-color: #222;
     background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1658839586/b_fnqjfn.jpg');
     color: antiquewhite;
-  }
-  
-  #custom-error .custom-error {
+}
+
+#custom-error .custom-error {
     position: absolute;
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-  }
-  
-  .custom-error {
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.custom-error {
     max-width: 460px;
     width: 100%;
     text-align: center;
     line-height: 1.4;
-  }
-  
-  .custom-error .error-logo {
+}
+
+.custom-error .error-logo {
     height: 220px;
     line-height: 220px;
-  }
-  
-  .custom-error .error-logo h1 {
+}
+
+.custom-error .error-logo h1 {
     font-family: 'Josefin Sans', sans-serif;
     color: #222;
     font-size: 220px;
@@ -1049,20 +1071,20 @@ input[type=checkbox]:hover {
     margin: 0px;
     font-weight: 700;
     text-shadow: 2px 2px 0px #c9c9c9, -2px -2px 0px #c9c9c9;
-  }
-  
-  .custom-error .error-logo h1>span {
+}
+
+.custom-error .error-logo h1>span {
     text-shadow: 2px 2px 0px #ffab00, -2px -2px 0px #ffab00, 0px 0px 8px #ff8700;
-  }
-  
-  .custom-error p {
+}
+
+.custom-error p {
     font-size: 16px;
     font-weight: 400;
     margin-top: 0px;
     margin-bottom: 15px;
-  }
-  
-  .custom-error a {
+}
+
+.custom-error a {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 14px;
     text-decoration: none;
@@ -1074,16 +1096,26 @@ input[type=checkbox]:hover {
     padding: 10px 25px;
     font-weight: 700;
     transition: 0.2s all;
-  }
-  
-  .custom-error a:hover {
+}
+
+.custom-error a:hover {
     color: #ffab00;
     border-color: #ffab00;
-  }
+}
 
-  /* --------------------------------------------------- LARGE DEVICES------------------------------------------------------------------*/
-  
-  @media (max-width: 1366px) {
+.meal img {
+    width: 100%;
+    height: auto;
+}
+
+.meal>div {
+    padding: 0px 5px 0px 0px;
+    margin-bottom: 5px;
+}
+
+/* --------------------------------------------------- LARGE DEVICES------------------------------------------------------------------*/
+
+@media (max-width: 1024px) {
     body {
         min-height: 100vh;
         display: flex;
@@ -1094,7 +1126,7 @@ input[type=checkbox]:hover {
         margin-top: auto;
     }
 
-    .navbar li{
+    .navbar li {
         margin-right: 10px;
     }
 
@@ -1147,74 +1179,61 @@ input[type=checkbox]:hover {
         transform: translateX(-50%);
     }
 
-    .ilustrate{
+    .ilustrate {
         height: 35vh;
     }
 
-    .card{
+    .card {
         height: 50vh;
     }
 
-    .table-container{
+    .table-container {
         grid-template-columns: 35% 30% 25%;
         grid-template-rows: 28% 29% 35%;
     }
 
-    .booking-container img{
-        height: 23vw;
-    }
-
-    .reviews-container{
+    .reviews-container {
         width: 100%;
     }
 
-    .reviews-main-container{
+    .reviews-main-container {
         flex-direction: column-reverse;
     }
 
-    .review-header{
+    .review-header {
         flex-direction: column;
     }
-    .review h6{
+
+    .review h6 {
         text-align: left;
     }
 
-    .review img {
-        height: 8vh;
-    }
-    .review-form-container{
+    .review-form-container {
         width: 100%;
     }
 
-    .profile-container{
+    .profile-container {
         flex-direction: column;
     }
 
-    .profile-section{
+    .profile-section {
         width: 100%;
     }
 
     #booking-details {
         font-size: inherit;
     }
-    
-    .meal img{
-        height: 7vh;
+
+    #presentationImg {
+        display: none !important;
     }
 
-    #fav-dishes img {
-        height: 12vh;
+    .booking-details {
+        font-size: 15px;
     }
 
-    .fav-meal-container img {
-        height: 15vw;
-    }
+}
 
-    #presentationImg{
-        display: none!important;
-    }
-
-  }
 /* ---------------------------------------------------MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
 
@@ -1226,8 +1245,6 @@ input[type=checkbox]:hover {
     .navbar li:hover:not(.active),
     .navbar li:focus:not(.active) {
         transform: scale(1.1) translateX(17px);
-
-
     }
 
     #home-background-container {
@@ -1247,20 +1264,8 @@ input[type=checkbox]:hover {
         width: 100%;
     }
 
-    .booking-container img{
-        height: 20vh;
-    }
-    
-    #fav-dishes img {
-        height: 15vh;
-    }
-
-    .contact-responsive{
+    .contact-responsive {
         flex-direction: column;
-    }
-
-    .meal img{
-        height: auto;
     }
 
 }
@@ -1309,51 +1314,40 @@ input[type=checkbox]:hover {
         grid-template-columns: 40% 30% 31%;
         grid-template-rows: 28% 31% 33%;
     }
+
     .table-container img {
         transform: scale(0.15);
     }
 
-    .booking-container img{
-        height: 35vh;
-    }
-
-    .upper_manage{
+    .upper_manage {
         flex-direction: column;
         align-items: center;
     }
 
-    .table{
+    .table {
         width: max-content;
     }
 
-    .review img {
-        height: 6vh;
-    }
-
-    .meal-header{
+    .meal-header {
         flex-direction: column;
-    }
-
-    #fav-dishes img {
-        height: 12vh;
-    }
-
-    .fav-meal-container img {
-        height: 15vh;
     }
 
     .custom-error .error-logo {
         height: 122px;
         line-height: 122px;
-      }
-    
+    }
+
     .custom-error .error-logo h1 {
         font-size: 122px;
     }
 
     .custom-error p {
         padding: 5px;
-      }
+    }
+}
 
-
+@media (max-width: 280px) {
+    .booking-details {
+        font-size: 11px;
+    }
 }
