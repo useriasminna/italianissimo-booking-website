@@ -2,6 +2,30 @@
 <img src="static/italianissimo/media/responsive.jpg" width="60%"><br>
 <hr>
 
+## Table of contents
+* [Overview](#overview)
+  * [UX](#ux)
+    + [Strategy<hr>](#strategy-hr-)
+    + [Scope<hr>](#scope-hr-)
+    + [Structure<hr>](#structure-hr-)
+    + [Skeleton<hr>](#skeleton-hr-)
+    + [Surface<hr>](#surface-hr-)
+      - [Color Scheme](#color-scheme)
+      - [Fonts](#fonts)
+      - [Visual Effects](#visual-effects)
+  * [Agile Methodology](#agile-methodology)
+  * [Features](#features)
+    + [Existing Features<hr>](#existing-features-hr-)
+    + [Future Feature Considerations<hr>](#future-feature-considerations-hr-)
+  * [Technologies Used](#technologies-used)
+  * [Testing](#testing)
+  * [Deployment](#deployment)
+  * [Credits](#credits)
+    + [Content<hr>](#content-hr-)
+    + [Media<hr>](#media-hr-)
+    + [Code<hr>](#code-hr-)
+  * [Acknowledgements](#acknowledgements)
+
 ## Overview
 This is a project designed and developed to create a complete experience for the clients of Italianissimo Restaurant. The users are given the possibility to create a booking, post a review and mark their favourite meals, and the staff members dispose of an online system for managing all the bookings. All these functionalities can be accessed by any user with an account, considering that the staff members have special permissions for controlling the data. <br>
 The website was created for real-life situations, but the restaurant name is fictive.<br>
