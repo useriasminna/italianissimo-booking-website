@@ -13,7 +13,7 @@
                     <div class="flex j-center f-wrap">
                         {% if booking_list %}
                         {% for booking in booking_list%}
-                        <div class="booking-container">
+                        <div class="col-12 col-md-5 booking-container">
                             <img  src="{% static 'italianissimo/media/booking_note.png' %}">
                             <div class="booking-details">
                                 <p><b>Date: </b>{{ booking.date }}</p>
@@ -81,9 +81,9 @@
                     {% if fav_meals %}
                         <div class="flex f-wrap">
                             {% for meal in fav_meals %}
-                            <div class="col-6 col-md-4">
-                                <div class="fav-meal-container col-11">
-                                    <img src="{{ meal.cover.url }}" alt="">
+                            <div class="col-6 col-md-3">
+                                <div class="fav-meal-container col-10 p-center">
+                                    <img src="{{ meal.cover.url }}" alt="favourite dish image">
                                     <p class="burlywood">{{ meal.name }}</p>
                                 </div>
                             </div>

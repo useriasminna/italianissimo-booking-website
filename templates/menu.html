@@ -12,7 +12,9 @@
             <br>
             {% for meal in menu_list %}
                 <div class="row flex meal col-12 col-lg-10">
-                    <img class="col-6 col-md-3 col-lg-2" src="{{ meal.cover.url }}" alt="">
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <img src="{{ meal.cover.url }}" alt="menu element">
+                    </div>
                     <div class="col-12 col-md-9 col-lg-10 overflow-h" >
                         <div class="flex sp-between ">
                             <div class="flex meal-header">

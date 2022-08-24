@@ -10,7 +10,9 @@
                     {% if reviews %}
                         {% for review in review_list %}
                             <div class="row flex review">
-                                <img class="col-2" src="{% static 'italianissimo/media/user.png' %}" alt="">
+                                <div class="col-2">
+                                    <img src="{% static 'italianissimo/media/user.png' %}" alt="user icon">
+                                </div>
                                 <div class="col-10" >
                                     {% for user in users %}
                                     {% if user.email == review.author_id %}
