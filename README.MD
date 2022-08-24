@@ -257,6 +257,7 @@ All epics and user stories implementation progress was registered using [Trello]
 ### Future Feature Considerations<hr>
 ## Technologies Used
 ## Testing
+The testing documentation can be found at [TESTING.MD](TESTING.MD)
 ## Deployment
 ## Credits
 ### Content<hr>
