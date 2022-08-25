@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import UserPassesTestMixin
-from review.forms import ReviewForm
+from review.forms import ReviewForm, UpdateReviewForm
 from users.models import User
 from .models import Review as ReviewModel
 
@@ -32,6 +32,7 @@ class Review(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['review_form'] = ReviewForm
+        context['update_review_form'] = UpdateReviewForm
         context['reviews'] = ReviewModel.objects.all()
         context['users'] = User.objects.all()
         return context
@@ -58,10 +59,11 @@ class Review(ListView):
 
             messages.error(request, 'There was a problem submiting your review.'\
                                     'Please try again!')
-            return HttpResponseRedirect('/reviews')
-
+            return HttpResponseRedirect('/reviews') 
+        
+        update_review_form = UpdateReviewForm(request.GET)
         review_form = ReviewForm(request.GET)
-        return render(request, 'reviews.html', {'review_form': review_form, })
+        return render(request, 'reviews.html', {'review_form': review_form, 'update_review_form': update_review_form, })
 
 
 class ReviewUpdate(UserPassesTestMixin, UpdateView):
@@ -80,21 +82,21 @@ class ReviewUpdate(UserPassesTestMixin, UpdateView):
         review = get_object_or_404(ReviewModel, pk=pk)
         if request.method == 'POST':
 
-            review_form = ReviewForm(data=request.POST, instance=review)
+            update_review_form = UpdateReviewForm(data=request.POST, instance=review)
 
-            if review_form.is_valid():
-                review_form.instance.date_updated_on = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            if update_review_form.is_valid():
+                update_review_form.instance.date_updated_on = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
                 review = ReviewModel()
-                review_form.save()
+                update_review_form.save()
                 messages.success(request, 'Your review was successfully updated')
                 return HttpResponseRedirect('/reviews')
 
             messages.error(request, 'There was a problem when trying to update'\
                                     'your review.Please try again!')
             return HttpResponseRedirect('/reviews')
-
-        return render(request, 'reviews.html', {'review_form': review_form, })
+        review_form = ReviewForm(request.GET)
+        return render(request, 'reviews.html', {'review_form': review_form, 'update_review_form': update_review_form, })
 
     def get(self, *args, **kwargs):
         """Override GET request to redirect to reviews"""
