@@ -3,7 +3,7 @@ Users App - Models
 ----------------
 Models for Users App.
 """
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
 
@@ -42,7 +42,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     """Define a custom User Model"""
     email = models.EmailField(verbose_name='email address', unique=True)
     first_name = models.CharField(max_length=30)
@@ -72,17 +72,22 @@ class User(AbstractBaseUser):
     def is_admin(self):
         """Return User Admin state"""
         return self.admin
+    
+    @property
+    def is_superuser(self):
+        """Return User Superuser state"""
+        return self.admin
 
     @property
     def is_active(self):
         """Return User Active state"""
         return self.active
 
-    def has_perm(self):
+    def has_perm(self, *args):
         """Returns true if user has permisions"""
         return self.staff
 
-    def has_module_perms(self):
+    def has_module_perms(self, *args):
         """Returns true if user has module permisions"""
         return self.staff
 
