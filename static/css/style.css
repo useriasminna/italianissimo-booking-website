@@ -8,12 +8,10 @@ body {
     color: #3a3a3a;
     font-family: 'Tiro Devanagari Marathi', serif;
     scroll-behavior: smooth;
-
-
 }
 
 .content-wrapper {
-    background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1658839586/b_fnqjfn.jpg');
+    background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1661432157/bck_bmsb4l.jpg');
 }
 
 .content {
@@ -26,12 +24,9 @@ body {
 
 ::-webkit-scrollbar {
     width: 0;
-    /* Remove scrollbar space */
     background: transparent;
-    /* Optional: just make scrollbar invisible */
 }
 
-/* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
     background: #FF0000;
 }
@@ -253,7 +248,7 @@ input[type="number" i] {
 
 #home-background-container {
     height: 93vh;
-    background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1654783262/462778_1_t7h5iz.webp');
+    background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1661432146/462778_1_r3dsqc.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -908,6 +903,10 @@ input[type=checkbox]:hover {
 
 .review-header small {
     color: #ddeda9;
+}
+
+#addReviewForm {
+    text-align: left;
 }
 
 #updateReviewForm {
