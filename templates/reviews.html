@@ -106,22 +106,7 @@
                                 {{ review_form.as_p }} 
                                 <button type="submit" class="btn form-submit" >Submit</button>
                             </form> 
-                        </div>
-                        {% if messages %}
-                            {% for message in messages %}
-                                {% if forloop.last %}
-                                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                                <div class="alert alert-success" role="alert" >
-                                    {{ message }}
-                                </div>
-                                {% else %}
-                                <div class="alert alert-danger" role="alert" >
-                                    {{ message }}
-                                </div>
-                                {% endif %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}               
+                        </div>              
                     </div>
                     {% else %}
                         <p>As a staff member, you can only read the reviews. Enjoy!</p>

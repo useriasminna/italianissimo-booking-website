@@ -87,7 +87,6 @@
                 <small class="burlywood">*Disabled for staff members</small><br>
                 {% endif %}
                 <button type="button" class="btn btn-simple continue" >Finish</button><br>
-                
             </div> 
             <div id="overviewCollapse" class="flex f-column a-center p-center">
                 <h5>BOOKING OVERVIEW</h5>
@@ -96,21 +95,6 @@
                 <button type="submit" class="btn form-submit" >Yes</button>
                 <button type="button" class="btn form-submit restart" >No</button>
             </div>
-            {% if messages %}
-                {% for message in messages %}
-                    {% if forloop.last %}
-                        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                        <div class="alert alert-success" role="alert" >
-                            {{ message }}
-                        </div>
-                        {% else %}
-                        <div class="alert alert-danger" role="alert" >
-                            {{ message }}
-                        </div>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
         </form>
     </div>
 </div>
