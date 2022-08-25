@@ -17,9 +17,10 @@ django-crispy-forms = "*"
 django-braces = "*"
 django-filter = "*"
 django-annoying = "*"
-coverage = "==3.6"
+coverage = "==5.5"
 pylint = "*"
 python-dotenv = "*"
+dateutils = "*"
 
 [dev-packages]
 autopep8 = "*"
