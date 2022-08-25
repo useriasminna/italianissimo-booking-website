@@ -421,7 +421,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           
           //check if tables are busy for the date and time selected and create another array of objects with tables code and status image
           for(let table of tablesData){
-
+            console.log(table.fields.code)
             var free = true;
 
             for(let booking of bookingsData){
@@ -435,10 +435,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
 
             if(free == true){
-              tablesStatusImages.push({"code": table.fields.code, "status":"free", "persons":table.fields.no_of_persons, "image_url":table.fields.table_free_img});
+              tablesStatusImages.push({"code": table.fields.code, "status":"free", "persons":table.fields.no_of_persons, "image_url":table.fields.table_free_img.substring(13, table.fields.table_free_img.length)});
             }
             else{
-              tablesStatusImages.push({"code": table.fields.code, "status":"busy", "persons":table.fields.no_of_persons, "image_url":table.fields.table_occupied_img});
+              tablesStatusImages.push({"code": table.fields.code, "status":"busy", "persons":table.fields.no_of_persons, "image_url":table.fields.table_occupied_img.substring(13, table.fields.table_free_img.length)});
             }
           }
 
@@ -446,7 +446,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
           let tableList = document.getElementsByClassName('table-container')[0];
           tablesStatusImages.forEach(table => {
             let img = document.createElement('img');
-            img.src ='https://res.cloudinary.com/useriasminna/' + table.image_url;
+            console.log(table)
+            img.src = table.image_url;
             tableList.appendChild(img);
           });
 
