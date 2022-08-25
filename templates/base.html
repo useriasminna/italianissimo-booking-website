@@ -143,6 +143,27 @@
           <label for="value4" class="visually-hidden">label</label>
           <input id="value4" class="status" type="text" hidden value="client">
         {% endif %}
+        {% if messages %}
+                {% for message in messages %}
+                    {% if forloop.last %}
+                        {% if message.message == "Logged in as" %}
+                        <div class="alert alert-success formAlert" role="alert" >
+                            {{ message }} {{user.get_full_name}}
+                        </div>
+                        {% else %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <div class="alert alert-success formAlert" role="alert" >
+                            {{ message }}
+                        </div>
+                        {% else %}
+                        <div class="alert alert-danger formAlert" role="alert" >
+                            {{ message }}
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
