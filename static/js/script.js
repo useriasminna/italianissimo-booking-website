@@ -448,6 +448,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             let img = document.createElement('img');
             console.log(table)
             img.src = table.image_url;
+            img.alt = "table for "+ table.persons + " persons image"
             tableList.appendChild(img);
           });
 
