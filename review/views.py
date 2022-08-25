@@ -4,7 +4,7 @@ Review App - Views
 Views for Review App.
 """
 from datetime import datetime
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -95,6 +95,10 @@ class ReviewUpdate(UserPassesTestMixin, UpdateView):
             return HttpResponseRedirect('/reviews')
 
         return render(request, 'reviews.html', {'review_form': review_form, })
+
+    def get(self, *args, **kwargs):
+        """Override GET request to redirect to reviews"""
+        return redirect('reviews')
 
     def test_func(self):
         item = self.get_object()

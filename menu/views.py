@@ -49,10 +49,6 @@ class Menu(ListView):
         favourite_form = SetFavourite(request.GET)
         return render(request, 'menu.html', {'favourite_form': favourite_form, })
 
-    # def get(self, *args, **kwargs):
-    #     return redirect('menu')
-
-
 class FavouriteDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     A view that deletes a Favourite entry from the database.
@@ -62,6 +58,10 @@ class FavouriteDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Favourite
     success_url = reverse_lazy('menu')
     template_name = 'menu.html'
+
+    def get(self, *args, **kwargs):
+        """Override GET request to redirect to menu"""
+        return redirect('menu')
 
     def test_func(self):
         item = self.get_object()

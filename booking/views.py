@@ -8,7 +8,7 @@ from datetime import date
 import base64
 import os
 import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -90,11 +90,6 @@ class Booking(LoginRequiredMixin, TemplateView):
 
         return render(request, 'booking.html', {'booking_form': booking_form, })
 
-    # def get(self, request, *args, **kwargs):
-    #     booking_form = NewBookingForm(request.GET)
-    #     return render(request, 'booking.html', {'booking_form': booking_form,})
-    #     # return redirect('booking')
-
 
 class BookingMealsList(LoginRequiredMixin, UserPassesTestMixin, FilterView):
     """
@@ -135,6 +130,10 @@ class BookingDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         item = self.get_object()
         return self.request.user == item.created_by
 
+    def get(self, *args, **kwargs):
+        """Override GET request to redirect to profile"""
+        return redirect('booking_list')
+
 
 class BookingListAdmin(LoginRequiredMixin, UserPassesTestMixin, ListView):
     """
@@ -174,6 +173,10 @@ class BookingDeleteViewAdmin(LoginRequiredMixin, UserPassesTestMixin, DeleteView
 
     model = BookingModel
     template_name = 'managebookings.html'
+
+    def get(self, *args, **kwargs):
+        """Override GET request to redirect to managebookings"""
+        return redirect('booking_list_admin')
 
     def get_success_url(self):
         bdate = self.get_object().date
