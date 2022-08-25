@@ -655,7 +655,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       displayUpdateForm.addEventListener("click", () => {
         const updateReviewForm = document.querySelector('#updateReviewForm');
         const reviewText = document.querySelector('#reviewTextHidden');
-        const reviewTextInput = updateReviewForm.querySelector('#reviewText');
+        const reviewTextInput = updateReviewForm.querySelector('#updateReviewText');
         const updateRating = updateReviewForm.querySelectorAll('.rating')[0].querySelectorAll('button');
         const updateRate = updateReviewForm.getElementsByClassName("rate")[0];
         const formRate = updateReviewForm.querySelector('#rateValue');
@@ -705,8 +705,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
            container.appendChild(star);
       
           }
-      }
-
+      } 
 
   }
 
