@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+/* ----------------------BASE STYLES----------------------------- */
 body {
     color: #3a3a3a;
     font-family: 'Tiro Devanagari Marathi', serif;
@@ -31,7 +32,7 @@ body {
     background: #FF0000;
 }
 
-
+/* ----------------------GENERAL STYLES----------------------------- */
 .burlywood {
     color: burlywood;
 }
@@ -131,6 +132,7 @@ body {
     overflow-x: hidden;
 }
 
+/* ----------------------BOOTSTRAP FORM OVERRIDING STYLES----------------------------- */
 .form-control {
     border: 2px solid #c2c4c6;
     padding: 1px 2px;
@@ -246,6 +248,8 @@ input[type="number" i] {
     background-color: antiquewhite;
 }
 
+/* ----------------------HOME PAGE COVER----------------------------- */
+
 #home-background-container {
     height: 93vh;
     background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1661432146/462778_1_r3dsqc.webp');
@@ -338,6 +342,7 @@ input[type="number" i] {
     }
 }
 
+/* ----------------------BUTTON IN HOMEPAGE LINKED TO BOOKING PAGE----------------------------- */
 .book-btn {
     background-color: #f64c04db;
     padding: 8px;
@@ -453,6 +458,8 @@ input[type="number" i] {
     margin: 8vh auto 30px;
 }
 
+/* ----------------------HOME PAGE ABOUT US SECTION----------------------------- */
+
 #about-us img {
     height: 22vw;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -463,6 +470,7 @@ input[type="number" i] {
     margin-top: 50px;
 }
 
+/* ----------------------FOOTER----------------------------- */
 .footer {
     z-index: 1;
     background-color: antiquewhite;
@@ -484,6 +492,7 @@ footer i:hover {
     color: #3a3a3a;
 }
 
+/* ----------------------LOGIN/REGISTER FORM----------------------------- */
 
 .auth-form {
     text-align: center;
@@ -546,6 +555,7 @@ footer i:hover {
     text-align: center;
 }
 
+/* ----------------------MODALS----------------------------- */
 .modal {
     background-color: #00000052;
 
@@ -600,6 +610,7 @@ footer i:hover {
     padding: 80px 0px;
 }
 
+/* ----------------------LOGIN/REGISTER PAGES ILUSTRATION----------------------------- */
 .ilustrate-logo {
     height: 55vh;
     position: absolute;
@@ -607,6 +618,8 @@ footer i:hover {
     top: 50%;
     transform: translateY(-50%);
 }
+
+/* ----------------------BACK TO TOP BUTTON IN HOME PAGE----------------------------- */
 
 #btn-back-to-top {
 
@@ -695,6 +708,7 @@ input[type=number]::-webkit-outer-spin-button {
     width: inherit;
 }
 
+/* ----------------------BOOKING FORM STYLES---------------------------------------------------------------------- */
 .error-container {
     width: auto;
     height: 40px;
@@ -724,6 +738,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0px 10px;
 }
 
+/* ----------------------ALERT MESSAGES----------------------------- */
 .messages {
     list-style-type: none;
     padding: 0px;
@@ -760,6 +775,15 @@ input[type=checkbox]:hover {
     height: 45vh;
 }
 
+.formAlert{
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+    z-index: 1;
+}
+
+/* ----------------------BOOKING FORM TABLES CONTAINER----------------------------- */
+
 .table-container {
     display: grid;
     align-items: center;
@@ -790,7 +814,8 @@ input[type=checkbox]:hover {
     border: 2px solid #c2c4c6;
     box-shadow: none;
 }
-
+/* ----------------------PROFILE PAGE -------------------------------------------------------------------------------- */
+/* ----------------------PROFILE PAGE BOOKING----------------------------- */
 .booking-container {
     margin: 10px 17px 10px 20px;
     position: relative;
@@ -853,6 +878,8 @@ input[type=checkbox]:hover {
     margin: 0px 0px -4px 20px;
 }
 
+/* ----------------------MANAGE BOOKINGS PAGE--------------------------------------------------------------------------- */
+/* ----------------------BOOKINGS TABLE----------------------------- */
 .table {
     color: whitesmoke;
 }
@@ -861,6 +888,8 @@ input[type=checkbox]:hover {
     background-color: #000;
 }
 
+/* ----------------------REVIEWS PAGE ------------------------------------------------------------------------------------ */
+/* ----------------------RATING STARS----------------------------- */
 .rating {
     font-size: x-large;
     margin-bottom: 15px;
@@ -905,6 +934,7 @@ input[type=checkbox]:hover {
     color: #ddeda9;
 }
 
+/* ----------------------REVIEWS PAGE FORMS----------------------------- */
 #addReviewForm {
     text-align: left;
 }
@@ -914,6 +944,7 @@ input[type=checkbox]:hover {
     text-align: left;
 }
 
+/* ----------------------USER REVIEW STYLE----------------------------- */
 #myReview {
     text-align: left;
     width: 100%;
@@ -933,18 +964,30 @@ input[type=checkbox]:hover {
 
 }
 
+/* ----------------------REVIEWS SECTION IN HOME PAGE----------------------------- */
 .home-review {
     padding: 15px;
     border-radius: 20px;
     background-color: #faebd757;
 }
 
+/* ----------------------MENU PAGE----------------------------- */
 .meal {
     text-align: left;
 }
 
 .meal h5 {
     margin-right: 20px;
+}
+
+.meal img {
+    width: 100%;
+    height: auto;
+}
+
+.meal>div {
+    padding: 0px 5px 0px 0px;
+    margin-bottom: 5px;
 }
 
 .menu img {
@@ -969,6 +1012,7 @@ input[type=checkbox]:hover {
     height: auto;
 }
 
+/* ----------------------TOP RATED DISHES IN HOME PAGE----------------------------- */
 #fav-dishes img {
     width: 50%;
     height: auto;
@@ -993,6 +1037,7 @@ input[type=checkbox]:hover {
     right: 5%;
 }
 
+/* ----------------------WHERE TO FIND USE PAGE----------------------------------------------------------------------------- */
 .timetable {
     padding: 15px;
     border-radius: 20px;
@@ -1032,12 +1077,14 @@ input[type=checkbox]:hover {
     width: 100%;
 }
 
+/* ----------------------403, 404, 500 CUSTOM ERROR PAGES----------------------------------------------------------------------------- */
+
 
 #custom-error {
     position: relative;
     height: 100vh;
     background-color: #222;
-    background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1658839586/b_fnqjfn.jpg');
+    background-image: url('https://res.cloudinary.com/useriasminna/image/upload/v1661432157/bck_bmsb4l.jpg');
     color: antiquewhite;
 }
 
@@ -1102,15 +1149,6 @@ input[type=checkbox]:hover {
     border-color: #ffab00;
 }
 
-.meal img {
-    width: 100%;
-    height: auto;
-}
-
-.meal>div {
-    padding: 0px 5px 0px 0px;
-    margin-bottom: 5px;
-}
 
 /* --------------------------------------------------- LARGE DEVICES------------------------------------------------------------------*/
 
@@ -1125,10 +1163,12 @@ input[type=checkbox]:hover {
         margin-top: auto;
     }
 
+    /* -----------------------NAVBAR---------------------------- */
     .navbar li {
         margin-right: 10px;
     }
 
+    /* -----------------------HOME PAGE ---------------------------- */
     #home-background-container {
         height: 80vh;
     }
@@ -1160,6 +1200,7 @@ input[type=checkbox]:hover {
         min-height: 87vh;
     }
 
+    /* -----------------------LOGIN/REGISTER PAGE---------------------------- */
     .auth-form {
         left: 50%;
         transform: translateX(-50%);
@@ -1182,6 +1223,7 @@ input[type=checkbox]:hover {
         height: 35vh;
     }
 
+     /* -----------------------BOOKING PAGE---------------------------- */
     .card {
         height: 50vh;
     }
@@ -1190,6 +1232,8 @@ input[type=checkbox]:hover {
         grid-template-columns: 35% 30% 25%;
         grid-template-rows: 28% 29% 35%;
     }
+
+     /* -----------------------REVIEWS PAGE---------------------------- */
 
     .reviews-container {
         width: 100%;
@@ -1211,6 +1255,7 @@ input[type=checkbox]:hover {
         width: 100%;
     }
 
+     /* -----------------------PROFILE PAGE---------------------------- */
     .profile-container {
         flex-direction: column;
     }
@@ -1236,7 +1281,7 @@ input[type=checkbox]:hover {
 /* ---------------------------------------------------MEDIUM DEVICES------------------------------------------------------------------*/
 @media (max-width: 992px) {
 
-
+     /* -----------------------HOME PAGE---------------------------- */
     .active {
         transform: scale(1.1) translateX(17px);
     }
@@ -1254,15 +1299,18 @@ input[type=checkbox]:hover {
         padding: 40px 0px;
     }
 
-    .ilustrate-logo {
-        top: 55%;
-    }
-
     #about-us img {
         height: auto;
         width: 100%;
     }
 
+    /* -----------------------LOGIN/REGISTER PAGE---------------------------- */
+
+    .ilustrate-logo {
+        top: 55%;
+    }
+
+    /* -----------------------WHERE TO FIND US PAGE---------------------------- */
     .contact-responsive {
         flex-direction: column;
     }
@@ -1273,6 +1321,7 @@ input[type=checkbox]:hover {
 
 /* --------------------------------------------------- SMALL DEVICES------------------------------------------------------------------*/
 @media (max-width: 768px) {
+    /* -----------------------HOME PAGE---------------------------- */
     #fade-container h1 {
         font-size: 3.6vh;
     }
@@ -1289,6 +1338,12 @@ input[type=checkbox]:hover {
         min-height: auto;
     }
 
+    .background-container {
+        padding: 20px 0px;
+        min-height: auto;
+    }
+
+    /* -----------------------LOGIN/REGISTER PAGE---------------------------- */
     .input-container {
         align-items: stretch;
         width: 90%;
@@ -1299,15 +1354,12 @@ input[type=checkbox]:hover {
         width: 100%;
     }
 
-    .background-container {
-        padding: 20px 0px;
-        min-height: auto;
-    }
-
     .auth-form {
         min-height: 80vh;
         width: 91%;
     }
+
+    /* -----------------------BOOKING PAGE---------------------------- */
 
     .table-container {
         grid-template-columns: 40% 30% 31%;
@@ -1327,10 +1379,12 @@ input[type=checkbox]:hover {
         width: max-content;
     }
 
+    /* -----------------------MENU PAGE---------------------------- */
     .meal-header {
         flex-direction: column;
     }
 
+    /* -----------------------403, 404, 500 PAGE---------------------------- */
     .custom-error .error-logo {
         height: 122px;
         line-height: 122px;
@@ -1346,6 +1400,7 @@ input[type=checkbox]:hover {
 }
 
 @media (max-width: 280px) {
+    /* -----------------------PROFILE PAGE - BOOKING ELEMENT---------------------------- */
     .booking-details {
         font-size: 11px;
     }
