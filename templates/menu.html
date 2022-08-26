@@ -5,12 +5,14 @@
 <div class="row content col-10 col-lg-9">
     <div class="center-container  min-h-100 ">
         <div class="flex f-column a-center">
+            <!-- Link to Login/Register page -->
             <h2>Menu <i class="fas fa-utensils"></i></h2>
             {% if not user.is_authenticated %}
             <p>If you want to mark your favourite meals, please <span><a class="authenticate-link" href="{% url 'account_login' %}"><b>LOGIN</b></a> / <a  class="authenticate-link" href="{% url 'account_signup' %}"><b>REGISTER</b></a></span></p>
             {% endif %}
             <br>
             {% for meal in menu_list %}
+            <!-- Menu item container -->
                 <div class="row flex meal col-12 col-lg-10">
                     <div class="col-6 col-md-3 col-lg-2">
                         <img src="{{ meal.cover.url }}" alt="menu element">
@@ -28,20 +30,26 @@
                                             <p class="favourite-exists" hidden></p>
                                         {% endif %}
                                     {% endfor %}
+                                    <!-- Add to favourites form -->
                                     <form method="POST" class="add-favourite-form">
                                         {% csrf_token %}
+                                        <!-- Hidden input with meal id -->
                                         <label for="mealId{{meal.pk}}" class="visually-hidden">label</label>
                                         <input id="mealId{{meal.pk}}" class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden>
                                         {{ favourite_form.as_p }}
+                                        <!-- Submit button -->
                                         <button type="submit" class="heart flex"><span class="d-none d-lg-block">Add to favourites </span><i class="far fa-heart"></i></button> 
                                     </form>
                                     {% for favourite in favourites %}
                                         {% if favourite.meal_id == meal.pk and favourite.user_id == user.email %}
+                                        <!-- Remove from favourites form -->
                                         <form method="POST" action="{% url 'favourite_remove' pk=favourite.pk %}" class="remove-favourite-form">
                                             {% csrf_token %}
+                                            <!-- Hidden input with meal id -->
                                             <label for="mealId{{meal.pk}}r" class="visually-hidden">label</label>
                                             <input id="mealId{{meal.pk}}r" class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden>
                                             {{ favourite_form.as_p }}
+                                            <!-- Submit button -->
                                             <button type="submit" class="heart flex"><span class="d-none d-lg-block">Remove from favourites</span><i class="fas fa-heart"></i></button> 
                                         </form>
                                         {% endif %}
