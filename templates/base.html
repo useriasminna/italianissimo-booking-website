@@ -19,6 +19,7 @@
   </head>
   <body>
     <header>
+      <!-- Navigatin links -->
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
           <a class="navbar-brand logo" href="{% url 'home' %}">Italianissimo</a>
@@ -29,7 +30,7 @@
             data-bs-target="#navbarText"
             aria-controls="navbarText"
           >
-            <p class="visually-hidden">Hamburger Icon</p>
+            <span class="visually-hidden">Hamburger Icon</span>
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="offcanvas offcanvas-end" id="navbarText">
@@ -99,7 +100,7 @@
     </header>
     <main class="flex-shrink-0 main-bg">
       <div class="content-wrapper">
-        <!-- Modal -->
+        <!-- Logout Modal -->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -129,6 +130,7 @@
             </div>
           </div>
         </div>
+        <!-- Input with user authentication status value -->
         {% if user.is_authenticated %}
           <label for="value1" class="visually-hidden">label</label>
           <input id="value1" class="user" type="text" hidden value="authenticated">
@@ -136,6 +138,7 @@
           <label for="value2" class="visually-hidden">label</label>
           <input id="value2" class="user" type="text" hidden value="neauthenticated">
         {% endif %}
+        <!-- Input with user client/staf status value -->
         {% if user.staff %}
           <label for="value3" class="visually-hidden">label</label>
           <input id="value3" class="status" type="text" hidden value="staff">
@@ -169,6 +172,7 @@
         {% endblock content %}
       </div>  
     </main>
+    <!-- Footer -->
     <footer class="footer mt-auto py-4 ">
       <p class="m-0 text-center ">Copyright &copy;Pal Iasmina 2022</p>
       <p class="m-0 text-center ">Follow us: </p>
