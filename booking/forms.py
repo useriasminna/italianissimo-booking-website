@@ -14,26 +14,24 @@ class NewBookingForm(forms.ModelForm):
     """
     Form for the Booking Model
     """
-    date = forms.DateField(widget=forms.DateInput(attrs={'id': 'datePicker', 'class': 'form-control',
-                                                         'type': 'date', 'name': 'datePicker'}))
+    date = forms.DateField(widget=forms.DateInput(attrs={
+        'id': 'datePicker', 'class': 'form-control', 'type': 'date'}))
     start_time = forms.TimeField(widget=forms.TimeInput(
                  attrs={'id': 'startTime', 'class': 'form-control', 'type': 'time',
-                        'name': 'startTime', 'step': '3600'}))
+                        'step': '3600'}))
     end_time = forms.TimeField(widget=forms.TimeInput(
                attrs={'id': 'endTime', 'class': 'form-control',
-                      'type': 'time', 'name': 'endTime', 'step': '3600'}))
+                      'type': 'time', 'step': '3600'}))
     customer_full_name = forms.CharField(widget=forms.TextInput(
                          attrs={'id': 'fullName', 'class': 'form-control',
-                                'type': 'text', 'name': 'fullName'}))
+                                'type': 'text', }))
     customer_email = forms.EmailField(widget=forms.EmailInput(
                      attrs={'id': 'email', 'class': 'form-control',
-                            'type': 'email', 'name': 'email'}))
+                            'type': 'email'}))
     book_on_user = forms.BooleanField(widget=forms.CheckboxInput(
-                   attrs={'id': 'bookAuthenticate', 'type': 'checkbox',
-                          'name': 'bookAuthenticate'}))
+                   attrs={'id': 'bookAuthenticate', 'type': 'checkbox'}))
     table_code = forms.ChoiceField(widget=forms.Select(
-                 attrs={'id': 'tableCode', 'class': 'form-select',
-                        'type': 'select', 'name': 'tableCode'}),
+                 attrs={'id': 'tableCode', 'class': 'form-select'}),
                  choices=(("A1", "A1"), ("A2", "A2"), ("A3", "A3"), ("B1", "B1"),
                           ("B2", "B2"), ("B3", "B3"), ("C1", "C1"), ("C2", "C2"), ("C3", "C3")))
 
