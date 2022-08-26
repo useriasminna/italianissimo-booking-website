@@ -421,7 +421,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
           
           //check if tables are busy for the date and time selected and create another array of objects with tables code and status image
           for(let table of tablesData){
-            console.log(table.fields.code)
             var free = true;
 
             for(let booking of bookingsData){
@@ -446,9 +445,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
           let tableList = document.getElementsByClassName('table-container')[0];
           tablesStatusImages.forEach(table => {
             let img = document.createElement('img');
-            console.log(table)
             img.src = table.image_url;
-            img.alt = "table for "+ table.persons + " persons image"
+            img.alt = "table for "+ table.persons + " persons image";
             tableList.appendChild(img);
           });
 
@@ -602,14 +600,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
       const stars = rating.getElementsByTagName('button');
       // console.log(window.getComputedStyle(document.getElementById('addReviewForm'), null).display == "block")
       // console.log(window.getComputedStyle(document.getElementById('myReview'), null).display == "block")
-      if(document.querySelector('#myReview'))
+      var rateValue;
+        if(document.querySelector('#myReview'))
       {
-        var rateValue = document.querySelector('#updateRateValue');
-        console.log("TRUE")
-        
+        rateValue = document.querySelector('#updateRateValue');        
       }
       else{
-        var rateValue = document.querySelector('#rateValue');
+        rateValue = document.querySelector('#rateValue');
       }
         
       const displayUpdateForm = document.querySelector('#displayUpdateForm');
