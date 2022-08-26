@@ -4,11 +4,13 @@
 <div class="row content col-10 col-lg-9">
     <div class="center-container min-h-100">
         <h2>Book your table now <i class="fas fa-pencil-alt"></i></h2>
-        <form id="bookingForm" method="post" action="">
+        <!-- Booking form -->
+        <form id="bookingForm" method="post">
             {% csrf_token %}
             {{ form.non_field_errors }}
             <div class="row justify-content-center" id="bookingDetails">
                 <p>Choose the date and time for your booking and we will show you the available places</p>
+                <!-- Date input -->
                 <div class="col form-field col-12 col-md-4 col-lg-3">
                     <label for="datePicker"><i class="far fa-calendar-alt"></i> Choose Date:</label><br>
                     {{ booking_form.date }}
@@ -16,6 +18,7 @@
                         <small class="errorlist booking-error"></small>
                     </div>
                 </div>
+                <!-- Start time input -->
                 <div class="col form-field col-lg-3">
                     <label for="startTime"><i class="fas fa-clock"></i> Starting At:</label><br>
                     {{ booking_form.start_time }}
@@ -23,6 +26,7 @@
                         <small class="errorlist booking-error"></small>
                     </div>
                 </div>
+                <!-- End time input -->
                 <div class="col form-field col-lg-3">
                     <label for="endTime"><i class="fas fa-clock"></i> Until:</label><br>
                     {{ booking_form.end_time }}
@@ -32,9 +36,11 @@
                 </div>
             </div>
             <button type="button" class="btn btn-simple continue">Find a table</button>
+            <!-- Tables container -->
             <div class="flex f-column a-center p-center" id="tableContentCollapse">
                 <br><h5>CHOOSE A TABLE</h5>
                 <div class="col col-8 col-lg-3 p-center">
+                    <!-- Legend -->
                     <div class="flex sp-around">
                         <p><i class="fas fa-square free-color"></i> FREE</p>
                         <p><i class="fas fa-square busy-color"></i> BUSY</p>
@@ -48,14 +54,15 @@
                 </div>
                 <div class="row justify-content-center col-lg-6 p-center">
                     <div class="form-field col-12 col-md-5">
+                        <!-- Table select -->
                         <label for="tableCode"><i class="fas fa-check"></i>Select a table</label><br>
                         {{ booking_form.table_code }}
                         <br>
                     </div>
                     <div class="form-field col-12 col-md-5">
+                        <!-- Number of persons read-only input -->
                         <label for="tablePersons"><i class="fas fa-users"></i>Number of persons</label>
                         <input id="tablePersons" class="form-control" type="text" disabled >
-
                     </div>
                 </div><br>
                 <div class="flex p-center" id="flexButtons">
@@ -67,6 +74,7 @@
             <div class="flex f-column a-center p-center col-12 col-md-6 col-lg-3" id="bookingContactCollapse">
                 <h5>CONTACT DETAILS</h5>
                 <div class="form-field">
+                    <!-- Name input -->
                     <label for="fullName"><i class="fas fa-user"></i> Customer Full Name:</label>
                     {{ booking_form.customer_full_name }}
                     <div class="error-container">
@@ -74,6 +82,7 @@
                     </div>
                 </div>
                 <div class="form-field">
+                    <!-- Email input -->
                     <label for="email"><i class="fas fa-envelope"></i> Customer Email:</label>
                     {{ booking_form.customer_email }}
                     <div class="error-container">
@@ -81,6 +90,7 @@
                     </div>
                     <p><b><strong>OR</strong></b></p>
                 </div>
+                <!-- Date inputCheckbox -->
                 {{ booking_form.book_on_user }}
                 <label for="bookAuthenticate">Book It On My Name</label><br>
                 {% if user.staff %}
@@ -92,6 +102,7 @@
                 <h5>BOOKING OVERVIEW</h5>
                 <span id="bookingOverview"></span><br>
                 <span>Do you want to proceed?</span><br>
+                <!-- Submit button -->
                 <button type="submit" class="btn form-submit" >Yes</button>
                 <button type="button" class="btn form-submit restart" >No</button>
             </div>
