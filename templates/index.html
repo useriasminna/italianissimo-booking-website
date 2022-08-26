@@ -3,14 +3,17 @@
 {% block content %}
 <div id="home-background-container">
   <div class="wrapper col-8 col-md-6 col-lg-4 flex f-column">
+    <!-- Cover-->
     <div class="row">
       <div id="fade-container">
         <div class="row">
+          <!-- Logo title -->
           <div><h1 class="logo">Italianissimo</h1></div>
           <div>
             <p class="decorated"><span>Since 2010</span></p>
           </div>
         </div>
+        <!-- Slogan -->
         <div class="row">
           <div class="col">
             <h3 class="slogan">A taste you will remember</h3>
@@ -18,16 +21,20 @@
         </div>
       </div>
       {% if user.is_authenticated %}
+      <!-- Link to booking page -->
         <div class="col align-self-center">
-            <a href="{% url 'booking' %}#"><button class="book-btn">Book a table</button></a>
+          <div class="book-btn"><a href="{% url 'booking' %}#">Book a table</a></div>
+          
       </div> 
       {% else %}
+      <!-- Links to Login/Register page -->
       <div class="col bck-login">
         <p>
           To enjoy all the features please <span><a class="authenticate-link" href="{% url 'account_login' %}"><b>LOGIN</b></a> / <a  class="authenticate-link" href="{% url 'account_signup' %}"><b>REGISTER</b></a></span>
         </p>
       </div>
       {% endif %}
+      <!-- Link to about us section -->
         <a href="#about-us">
           <p class="visually-hidden">Scroll Down Icon</p>
           <div class="arrows-link-container d-none d-lg-block">
@@ -38,8 +45,10 @@
     </div>
   </div>
 </div>
+<!-- Home page content -->
 <div class="row content col-10 col-lg-9">
   <div class="center-container" >
+    <!-- About us section -->
     <div id="about-us">
       <h2><span>Why to choose us? <i class="fas fa-globe"></i></span></h2>
       <div class="flex sp-around">
@@ -66,6 +75,7 @@
       </div>
     </div>
     {% if fav.count >= 3%}
+    <!-- Favourite dishes section -->
     <div id="fav-dishes">
       <h2><span>Our most appreciated dishes <i class="fas fa-utensils"></i></span></h2> 
       <div class="flex f-wrap j-center">
@@ -86,6 +96,7 @@
     </div>
     {% endif %}
     {% if review_list.count >= 3%}
+    <!-- Top reviews section -->
       <div>
         <h2><span>From our clients <i class="fas fa-comment-dots"></i></span></h2>  
         {% for review in review_list|slice:"0:3" %}
@@ -103,13 +114,14 @@
       </div>
     {% endif %}
   </div>
+  <!-- Bottom to top button -->
   <button
         type="button"
         class="btn btn-floating btn-lg btn-simple"
         id="btn-back-to-top"
         >
   <i class="fas fa-arrow-up"></i>
-  <p class="visually-hidden">Back to top button</p>
+  <span class="visually-hidden">Back to top button</span>
 </button>
 </div>
 {% endblock %}
