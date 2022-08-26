@@ -31,7 +31,7 @@
                                     <form method="POST" class="add-favourite-form">
                                         {% csrf_token %}
                                         <label for="mealId{{meal.pk}}" class="visually-hidden">label</label>
-                                        <input id="mealId{{meal.pk}}" class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden></input>
+                                        <input id="mealId{{meal.pk}}" class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden>
                                         {{ favourite_form.as_p }}
                                         <button type="submit" class="heart flex"><span class="d-none d-lg-block">Add to favourites </span><i class="far fa-heart"></i></button> 
                                     </form>
@@ -40,7 +40,7 @@
                                         <form method="POST" action="{% url 'favourite_remove' pk=favourite.pk %}" class="remove-favourite-form">
                                             {% csrf_token %}
                                             <label for="mealId{{meal.pk}}r" class="visually-hidden">label</label>
-                                            <input id="mealId{{meal.pk}}r" class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden></input>
+                                            <input id="mealId{{meal.pk}}r" class="mealIdHidden" type="text" value="{{ meal.pk }}" hidden>
                                             {{ favourite_form.as_p }}
                                             <button type="submit" class="heart flex"><span class="d-none d-lg-block">Remove from favourites</span><i class="fas fa-heart"></i></button> 
                                         </form>
