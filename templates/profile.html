@@ -8,12 +8,15 @@
             <h2>Welcome back, {{ user.first_name }}</h2>
             <small>{{ user.email }}</small><br><br>
             <div class="flex sp-between profile-container">
+                <!-- Bookings Container -->
                 <div class="col-12 col-lg-6 profile-section">
                     <p class="decorated"><span>Your upcoming bookings <i class="far fa-calendar-alt"></i></span></p>
                     <div class="flex j-center f-wrap">
                         {% if booking_list %}
                         {% for booking in booking_list%}
+                        <!-- Booking container -->
                         <div class="col-12 col-md-5 booking-container">
+                            <!-- Default note image -->
                             <img  src="{% static 'italianissimo/media/booking_note.png' %}" alt="note image">
                             <div class="booking-details">
                                 <p><b>Date: </b>{{ booking.date }}</p>
@@ -25,7 +28,8 @@
                                 <button type="button" class="btn btn-secondary note-btn"  data-bs-toggle="modal" data-bs-target="#deleteBookingModal{{ booking.pk }}"><small>DELETE BOOKING</small></button>
                             </div>
                         </div>
-                        <div class="modal fade" id="deleteBookingModal{{ booking.pk }}" tabindex="-1" role="dialog" aria-labelledby="deleteBookingModalLabel" aria-hidden="true">
+                        <!-- Delete booking modal -->
+                        <div class="modal fade" id="deleteBookingModal{{ booking.pk }}" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                         
@@ -34,13 +38,13 @@
                                 </div>
                         
                                 <div class="modal-footer">
-                                    <form method="post" action="{% url 'booking_remove' pk=booking.pk %}">
+                                    <form method="post" class="profile-delete-booking" action="{% url 'booking_remove' pk=booking.pk %}">
                                         {% csrf_token %}
                                         {% if redirect_field_value %}
                                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                                         {% endif %}
-                                        <button type="submit" class="btn btn-secondary" id="btn-submit">Yes</button>
-                                        <button type="button" class="btn btn-secondary" id="btn-cancel" data-bs-dismiss="modal">No</button>
+                                        <button type="submit" class="btn btn-secondary">Yes</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                                     </form>
                                 </div>
                             </div>
@@ -48,9 +52,11 @@
                         </div>
                         {% endfor %}
                         {% else %}
+                        <!-- Info message -->
                         <p><b>There are no upcoming bookings for you</b></p>
                         {% endif %}
                     </div><br>
+                    <!-- Bookings pagination -->
                     {% if is_paginated %}
                         <div class='pagination justify-content-center'>
                             {% if page_obj.has_previous %}
@@ -67,6 +73,7 @@
                         </div><br>
                     {% endif %}
                 </div> 
+                <!-- Favourite meals container -->
                 <div class="col-12 col-lg-5 profile-section">
                     <p class="decorated"><span>Your favourite dishes <i class="fas fa-utensils"></i></span></p>
                     {% if fav_meals %}
@@ -74,6 +81,7 @@
                             {% for meal in fav_meals %}
                             <div class="col-6 col-md-3">
                                 <div class="fav-meal-container col-10 p-center">
+                                    <!-- Meal image -->
                                     <img src="{{ meal.cover.url }}" alt="favourite dish image">
                                     <p class="burlywood">{{ meal.name }}</p>
                                 </div>
@@ -81,6 +89,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
+                    <!-- Info message -->
                     <p><b>There are no meals added to favourites</b></p>
                     {% endif %}
                 </div><br>
