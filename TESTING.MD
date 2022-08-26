@@ -57,7 +57,7 @@ All the user stories were tested manually, that including all the representative
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** Pass 
 #### 2B: As a user, I want to be able to authenticate using only email and password
-* **Acceptance Criteria:** A site user should be able to authenticate at any time with email and password considering that a username wouldn't be useful for a restaurant website.
+* **Acceptance Criteria:** A site user should be able to authenticate at any time with email and password.
 * **Summary:**<br>
     -There is a Login page that provides a form with email and password to be filled;<br>
     -The authentication form has a "Remember me" checkbox that will keep the user logged in;<br>
@@ -118,7 +118,7 @@ All the user stories were tested manually, that including all the representative
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** Pass
 #### 4B: As a logged in user, I want to be able to mark/unmark my favorite dishes on the menu
-* **Acceptance Criteria:** A logged in user should be provided a way of marking/unmarking it's favourite dishes only when he's authenticated. 
+* **Acceptance Criteria:** A logged-in user should be provided with a way of marking/unmarking his favourite dishes only when he's authenticated. 
 * **Summary:**<br> 
     -In the menu page, there is a feature visible only to users that are authenticated and not staff members, considering that this feature wouldn't make sense for admins;<br>
     -For unauthenticated users, an informative message is displayed for users to log in to be able to mark their favourite meals;<br>  
@@ -230,7 +230,7 @@ All the user stories were tested manually, that including all the representative
 * **Outcome:** Pass
 ### CONTACT<hr>
 #### 8A: As a user, I want to see the restaurant's opening and closing hours
-* **Acceptance Criteria:** A site user should be provided informations about opening and closing hours for every day.
+* **Acceptance Criteria:** A site user should be provided information about opening and closing hours for every day.
 * **Summary:**<br>  
     -There is a page called "Where to find us" visible to any type of user;<br>
     -The page displays a container with the timetable for every day of the week;<br>
@@ -239,7 +239,7 @@ All the user stories were tested manually, that including all the representative
      *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** Pass
 #### 8B: As a user, I want to see location information on the website
-* **Acceptance Criteria:** A site user should be provided informations about restaurant's location.
+* **Acceptance Criteria:** A site user should be provided information about restaurant's location.
 * **Summary:**<br>
     -On the "Where to find us" page there is a google map with a marker pointed to the restaurant's location;<br>
     -Also there is an informative text with the address of the restaurant;<br><br>
@@ -247,13 +247,41 @@ All the user stories were tested manually, that including all the representative
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** Pass
 #### 8C: As a user, I want to see contact information on the website
-* **Acceptance Criteria:** A site user should be provided the restaurant's contact informations.
+* **Acceptance Criteria:** A site user should be provided the restaurant's contact information.
 * **Summary:**<br> 
     -On the "Where to find us" page there is a section with contact information;<br>
     -The section displays the phone number and contact email for the restaurant.<br><br>
 
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** Pass
+
+### Aditional Manual Testing
+#### Error Handling
+
+* Ensure that **403 HTTP** errors display custom 403.html.
+    - **Stress Test:** Input a route in the URL for accessing another user content
+* Ensure that **404 HTTP** errors display the custom 404.html.
+    - **Stress Test:** Input a random route in the URL that can't be found in the declared paths of the project
+* Ensure that **500 HTTP** errors display the custom 500.html.
+    - **Stress Test:** Set debug to false and try to access a path that has been breaked intentionally.
+
+#### Interface Interaction
+
+* Ensure all interactive elements respond appropriately:
+    - **Desktop:**
+        - All navbar elements correctly respond to hovering.
+        - All buttons correctly respond to hovering.
+        - All authentication links correctly respond to hovering
+    - **Mobile:**
+        - All navbar elements correctly respond to touch.
+        - All buttons correctly respond to touch.
+        - All authentication links correctly respond to touch
+
+#### Links
+
+* Ensure the external links to social media present in the footer open up in new tabs.
+
+---
 
 ## Automated View Testing
 ### Test Overview<hr>
@@ -278,9 +306,289 @@ Tests applied for user stories: **7A, 7B**<br>
 <img src="static/italianissimo/media/tst_review.png"><br><br>
 
 ### Test Coverage<hr>
+For generating a report with the coverage of the automated tests, [coverage](https://coverage.readthedocs.io/en/coverage-5.5/) module was used.<br>
+The full report can be found [here]("static/reports/test_coverage.xlsx").
 
 ## Browser Testing
+The website was tested on different browser for assuring the features work accordingly.
+* Chrome
+* Edge
+* Safary
+* Opera
+* Firefox
+
 ## Code Validation
+### HTML
+
+The html code of the website was validated using [W3 Markup Validator](https://validator.w3.org/).<br>
+At the time of deployment the validation have the following outcome:<br><br>
+
+<img src="static/italianissimo/media/html_valid.png"><br><br>
+
+The following pages have been tested:
+* Home
+* Menu
+* Make a booking
+* Where to find us
+* Reviews
+* Profile
+* Manage bookings
+* Login/Register
+* 403/404/500 custom pages
+
+### CSS
+
+The CSS code was validated using [W3 Jigsaw Validator](https://jigsaw.w3.org/css-validator/)<br>
+At the time of deployment the validation for *style.css* has the following outcome:<br><br>
+
+<img src="static/italianissimo/media/css_valid.png" width="40%"><br><br>
+
+### Javascript
+
+The Javascript code was validated using using [JsHint](https://jshint.com/)<br>
+At the time of deployment the validation for *script.js* has the following outcome:<br><br>
+
+<img src="static/italianissimo/media/js_valid.png" width="40%"><br><br>
+
+* The warnings appeared because of EventListeners added to elements in a loop.<br>
+I tried to solve the issue but no successful method has been found, so I chose to ignore the warning as it is not affecting the way my code works in any way.
+* The script for defining the google map present in the *Where to find us page* contains *google* and *map* variables that generate the errors in the linter. As this is a script taken from the [Google Developers Website](https://developers.google.com/maps/documentation/javascript/adding-a-google-map), I choose to ignore this issue as well as there is no fix found for it. 
+
+### Python
+The python code was tested using [PEP8](http://pep8online.com/) online validator.<br>
+
+**Pep8 results:**<br>
+<details>
+<summary>Home app</summary>
+* **apps.py**<br>
+<img src="static/italianissimo/media/hm_app.png" width="60%"><br><br>
+
+* **tests.py**<br>
+<img src="static/italianissimo/media/hm_test.png" width="60%"><br><br>
+
+* **urls.py**<br>
+<img src="static/italianissimo/media/hm_url.png" width="60%"><br><br>
+
+* **views.py**<br>
+<img src="static/italianissimo/media/hm_view.png" width="60%"><br><br>
+
+</details>
+<details>
+<summary>Menu app</summary>
+
+* **admin.py**<br>
+<img src="static/italianissimo/media/mn_admin.png" width="60%"><br><br>
+
+* **apps.py**<br>
+<img src="static/italianissimo/media/mn_app.png" width="60%"><br><br>
+
+* **forms.py**<br>
+<img src="static/italianissimo/media/mn_form.png" width="60%"><br><br>
+
+* **models.py**<br>
+<img src="static/italianissimo/media/mn_model.png" width="60%"><br><br>
+
+* **tests.py**<br>
+<img src="static/italianissimo/media/mn_test.png" width="60%"><br><br>
+
+* **urls.py**<br>
+<img src="static/italianissimo/media/mn_url.png" width="60%"><br><br>
+
+* **views.py**<br>
+<img src="static/italianissimo/media/mn_view.png" width="60%"><br><br>
+
+</details>
+<details>
+<summary>Booking app</summary>
+
+* **admin.py**<br>
+<img src="static/italianissimo/media/bk_admin.png" width="60%"><br><br>
+
+* **apps.py**<br>
+<img src="static/italianissimo/media/bk_app.png" width="60%"><br><br>
+
+* **filters.py**<br>
+<img src="static/italianissimo/media/bk_filter.png" width="60%"><br><br>
+
+* **forms.py**<br>
+<img src="static/italianissimo/media/bk_form.png" width="60%"><br><br>
+
+* **models.py**<br>
+<img src="static/italianissimo/media/bk_model.png" width="60%"><br><br>
+
+* **tests.py**<br>
+<img src="static/italianissimo/media/bk_test.png" width="60%"><br><br>
+
+* **urls.py**<br>
+<img src="static/italianissimo/media/bk_url.png" width="60%"><br><br>
+
+* **views.py**<br>
+<img src="static/italianissimo/media/bk_view.png" width="60%"><br><br>
+
+</details>
+<details>
+<summary>Contact app</summary>
+
+* **apps.py**<br>
+<img src="static/italianissimo/media/ct_app.png" width="60%"><br><br>
+
+* **tests.py**<br>
+<img src="static/italianissimo/media/ct_test.png" width="60%"><br><br>
+
+* **urls.py**<br>
+<img src="static/italianissimo/media/ct_url.png" width="60%"><br><br>
+
+* **views.py**<br>
+<img src="static/italianissimo/media/ct_view.png" width="60%"><br><br>
+
+</details>
+<details>
+<summary>Review app</summary>
+
+* **admin.py**<br>
+<img src="static/italianissimo/media/rv_admin.png" width="60%"><br><br>
+
+* **apps.py**<br>
+<img src="static/italianissimo/media/rv_app.png" width="60%"><br><br>
+
+* **forms.py**<br>
+<img src="static/italianissimo/media/rv_form.png" width="60%"><br><br>
+
+* **models.py**<br>
+<img src="static/italianissimo/media/rv_model.png" width="60%"><br><br>
+
+* **tests.py**<br>
+<img src="static/italianissimo/media/rv_test.png" width="60%"><br><br>
+
+* **urls.py**<br>
+<img src="static/italianissimo/media/rv_url.png" width="60%"><br><br>
+
+* **views.py**<br>
+<img src="static/italianissimo/media/rv_view.png" width="60%"><br><br>
+
+</details>
+<details>
+<summary>Users app</summary>
+
+* **admin.py**<br>
+<img src="static/italianissimo/media/us_admin.png" width="60%"><br><br>
+
+* **apps.py**<br>
+<img src="static/italianissimo/media/us_app.png" width="60%"><br><br>
+
+* **models.py**<br>
+<img src="static/italianissimo/media/us_model.png" width="60%"><br><br>
+
+</details><br>
+
+* Although there is no code line greater than 100, there are a few errors of type "Line too long" that I decided to ignore because it would mean breaking the code in a way that would make it difficult to read. 
+
+### Accesibility 
+The accesibility of the website was tested with [Wave](https://wave.webaim.org/)
+
+**Wave results:**<br>
+<details>
+<summary>Home page</summary>
+<img src="static/italianissimo/media/wv_home.png" width="60%"><br><br>
+</details>
+<details>
+<summary>Menu page</summary>
+<img src="static/italianissimo/media/wv_menu.png" width="60%"><br><br>
+</details>
+<details>
+<summary>Where to find us page</summary>
+
+* The error on this page is caused by the "Image map area missing alternative text".<br>
+As the google map is built of multiple images without an alt attribute, I didn't find a proper way to add the attribute to all of them, as I also consider the error message to be confusing about which image it is targeted.<br>
+<img src="static/italianissimo/media/wv_contact.png" width="60%"><br><br>
+</details>
+<details>
+<summary>Reviews page</summary>
+<img src="static/italianissimo/media/wv_reviews.png" width="60%"><br><br>
+</details>
+<details>
+<summary>Profile page</summary>
+<img src="static/italianissimo/media/wv_profile.png" width="60%"><br><br>
+</details>
+<details>
+<summary>Manage bookings page</summary>
+<img src="static/italianissimo/media/wv_manage.png" width="60%"><br><br>
+</details>
+<details>
+<summary>Login page</summary>
+<img src="static/italianissimo/media/wv_login.png" width="60%"><br><br>
+</details>
+<details>
+<summary>Register page</summary>
+<img src="static/italianissimo/media/wv_register.png" width="60%"><br><br>
+</details><br>
+
+### Performance
+The performance of the website was tested with [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/)
+
+**Lighthouse reports:**<br>
+
+<details>
+<summary>Desktop</summary>
+
+* Home page<br>
+<img src="static/italianissimo/media/dsk_home.png" width="60%"><br><br>
+
+* Menu page<br>
+<img src="static/italianissimo/media/dsk_menu.png" width="60%"><br><br>
+
+* Booking page<br>
+<img src="static/italianissimo/media/dsk_booking.png" width="60%"><br><br>
+
+* Where to find us page<br>
+<img src="static/italianissimo/media/dsk_contact.png" width="60%"><br><br>
+
+* Reviews page<br>
+<img src="static/italianissimo/media/dsk_reviews.png" width="60%"><br><br>
+
+* Profile page<br>
+<img src="static/italianissimo/media/dsk_profile.png" width="60%"><br><br>
+
+* Manage bookings page<br>
+<img src="static/italianissimo/media/dsk_manage.png" width="60%"><br><br>
+
+* Login page<br>
+<img src="static/italianissimo/media/dsk_login.png" width="60%"><br><br>
+
+* Register page<br>
+<img src="static/italianissimo/media/dsk_register.png" width="60%"><br><br>
+</details>
+
+<details>
+<summary>Mobile</summary>  
+
+* Home page<br>
+<img src="static/italianissimo/media/mb_home.png" width="60%"><br><br>
+
+* Menu page<br>
+<img src="static/italianissimo/media/mb_menu.png" width="60%"><br><br>
+
+* Booking page<br>
+<img src="static/italianissimo/media/mb_booking.png" width="60%"><br><br>
+
+* Where to find us page<br>
+<img src="static/italianissimo/media/mb_contact.png" width="60%"><br><br>
+
+* Reviews page<br>
+<img src="static/italianissimo/media/mb_reviews.png" width="60%"><br><br>
+
+* Profile page<br>
+<img src="static/italianissimo/media/mb_profile.png" width="60%"><br><br>
+
+* Manage bookings page<br>
+<img src="static/italianissimo/media/mb_manage.png" width="60%"><br><br>
+
+* Login page<br>
+<img src="static/italianissimo/media/mb_login.png" width="60%"><br><br>
+
+* Register page<br>
+<img src="static/italianissimo/media/mb_register.png" width="60%"><br><br>
+</details><br>
 
 Back to [README.MD](README.MD)<br>
  
