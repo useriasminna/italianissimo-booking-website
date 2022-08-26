@@ -66,8 +66,7 @@ class DateBookingForm(forms.ModelForm):
     """
     date = forms.DateField(widget=forms.DateInput(attrs={'id': 'datePicker',
                                                          'class': 'form-control',
-                                                         'type': 'date', 'name': 'datePicker',
-                                                         'value': date.today()}),
+                                                         'type': 'date'}),
                            initial=date.today())
 
     def __init__(self, *args, **kwargs):
