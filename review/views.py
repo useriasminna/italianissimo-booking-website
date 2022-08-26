@@ -51,19 +51,20 @@ class Review(ListView):
                     rate_value = 1
                 text = review_form.cleaned_data['review_text']
                 user = request.user
-
-                review = ReviewModel(rate=rate_value, review_text=text, author=user,)
+                now=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                review = ReviewModel(rate=rate_value, review_text=text,
+                                     date_created_on=now, date_updated_on=now, author=user, )
                 review.save()
                 messages.success(request, 'Your review was successfully added to the list')
                 return HttpResponseRedirect('/reviews')
 
             messages.error(request, 'There was a problem submiting your review.'\
                                     'Please try again!')
-            return HttpResponseRedirect('/reviews') 
-        
+            return HttpResponseRedirect('/reviews')
         update_review_form = UpdateReviewForm(request.GET)
         review_form = ReviewForm(request.GET)
-        return render(request, 'reviews.html', {'review_form': review_form, 'update_review_form': update_review_form, })
+        return render(request, 'reviews.html', {'review_form': review_form,
+                                                'update_review_form': update_review_form, })
 
 
 class ReviewUpdate(UserPassesTestMixin, UpdateView):
@@ -85,7 +86,8 @@ class ReviewUpdate(UserPassesTestMixin, UpdateView):
             update_review_form = UpdateReviewForm(data=request.POST, instance=review)
 
             if update_review_form.is_valid():
-                update_review_form.instance.date_updated_on = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                update_review_form.instance.date_updated_on = datetime.now().\
+                    strftime("%Y-%m-%d %H:%M:%S")
 
                 review = ReviewModel()
                 update_review_form.save()
@@ -96,7 +98,8 @@ class ReviewUpdate(UserPassesTestMixin, UpdateView):
                                     'your review.Please try again!')
             return HttpResponseRedirect('/reviews')
         review_form = ReviewForm(request.GET)
-        return render(request, 'reviews.html', {'review_form': review_form, 'update_review_form': update_review_form, })
+        return render(request, 'reviews.html', {'review_form': review_form,
+                                                'update_review_form': update_review_form, })
 
     def get(self, *args, **kwargs):
         """Override GET request to redirect to reviews"""
