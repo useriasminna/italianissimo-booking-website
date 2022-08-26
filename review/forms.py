@@ -11,8 +11,8 @@ class ReviewForm(forms.ModelForm):
     """Form for add/update review"""
     rate = forms.IntegerField(widget=forms.NumberInput(attrs={'id': 'rateValue', 'type': 'hidden'}))
     review_text = forms.CharField(widget=forms.Textarea(attrs={
-        'id': 'addReviewText', 'class': 'form-control', 'type': 'text',
-        'name': 'addReviewText', 'rows': '6', 'cols': '100'}), label="Add a message:")
+        'id': 'addReviewText', 'class': 'form-control',
+        'rows': '6', 'cols': '100'}), label="Add a message:")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -24,10 +24,11 @@ class ReviewForm(forms.ModelForm):
 
 class UpdateReviewForm(forms.ModelForm):
     """Form for add/update review"""
-    rate = forms.IntegerField(widget=forms.NumberInput(attrs={'id': 'rateValue', 'type': 'hidden'}))
+    rate = forms.IntegerField(widget=forms.NumberInput(attrs={'id': 'updateRateValue',
+                                                              'type': 'hidden'}))
     review_text = forms.CharField(widget=forms.Textarea(attrs={
-        'id': 'updateReviewText', 'class': 'form-control', 'type': 'text',
-        'name': 'updateReviewText', 'rows': '6', 'cols': '100'}), label="Update your message")
+        'id': 'updateReviewText', 'class': 'form-control',
+        'rows': '6', 'cols': '100'}), label="Update your message")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
