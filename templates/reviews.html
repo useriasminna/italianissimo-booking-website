@@ -9,7 +9,9 @@
                 <div class="col-lg-7 reviews-container">
                     {% if reviews %}
                         {% for review in review_list %}
+                        <!-- Review container -->
                             <div class="row flex review">
+                                <!-- Default image -->
                                 <div class="col-2">
                                     <img src="{% static 'italianissimo/media/user.png' %}" alt="user icon">
                                 </div>
@@ -34,9 +36,11 @@
                             <br>
                         {% endfor %}
                     {% else %}
+                    <!-- Info message -->
                     <p><b>There are no reviews yet.</b></p>
                     {% endif %}
                     {% if is_paginated %}
+                    <!-- Pagination -->
                     <div class='pagination justify-content-center'>
                         {% if page_obj.has_previous %}
                         <a class="authenticate-link" href='{% url "reviews" %}?page={{ page_obj.previous_page_number }}'>Previous </a>
@@ -59,6 +63,7 @@
                             {% for review in reviews %}
                                 {% if review.author_id == user.email %}
                                     <p id="reviewExists" hidden></p>
+                                    <!-- Current user review container -->
                                     <div id="myReview">
                                         <div class="row">
                                             <h5>Your review:</h5><br>
@@ -73,6 +78,7 @@
                                         <button class="btn btn-simple" type="button" id="displayUpdateForm">Update</button>
                                     </div>
                                     <div id="updateReviewForm">
+                                        <!-- Update review form -->
                                         <h5>Update your review:</h5>
                                         <form action="{% url 'review_update' pk=review.pk %}" method="POST" class="flex f-column a-start">
                                             {% csrf_token %}
@@ -84,7 +90,7 @@
                                                 <button type="button" class="star">★</button>
                                                 <button type="button" class="star">★</button>
                                             </div>  
-                                            <input type="hidden" id="reviewTextHidden" value="{{ review.review_text }}"></input>
+                                            <input type="hidden" id="reviewTextHidden" value="{{ review.review_text }}">
                                             {{ update_review_form.as_p }}
                                             <button type="submit" class="btn form-submit" >Submit</button>
                                         </form> 
@@ -93,8 +99,9 @@
                             {% endfor %}
                         {% endif %}
                         <div id="addReviewForm">
+                            <!-- Add review form -->
                             <h5>Add your review:</h5>
-                            <form action="" method="POST" class="flex f-column a-start">
+                            <form method="POST" class="flex f-column a-start">
                                 {% csrf_token %}
                                 <div class="rating">
                                     <button type="button" class="star">★</button>
@@ -109,9 +116,11 @@
                         </div>              
                     </div>
                     {% else %}
+                    <!-- Info message -->
                         <p>As a staff member, you can only read the reviews. Enjoy!</p>
                     {% endif %}
                 {% else %}
+                    <!-- Info message -->
                     <p>If you want to add or edit your review, please <span><a class="authenticate-link" href="{% url 'account_login' %}"><b>LOGIN</b></a> / <a  class="authenticate-link" href="{% url 'account_signup' %}"><b>REGISTER</b></a></span>
                 {% endif %}
             </div>
