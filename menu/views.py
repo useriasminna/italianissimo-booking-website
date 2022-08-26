@@ -24,7 +24,7 @@ class Menu(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['menu_list'] = Meal.objects.all()
-        context['favourite_form'] = SetFavourite
+        context['favourite_form'] = SetFavourite(auto_id=False)
         context['favourites'] = Favourite.objects.all()
 
         return context
@@ -33,7 +33,7 @@ class Menu(ListView):
         """Override post method"""
         if request.method == 'POST':
 
-            favourite_form = SetFavourite(data=request.POST)
+            favourite_form = SetFavourite(data=request.POST, auto_id=False)
 
             if favourite_form.is_valid():
                 meal_id = favourite_form.cleaned_data['meal_id']
@@ -46,7 +46,7 @@ class Menu(ListView):
 
             return HttpResponseRedirect('/menu')
 
-        favourite_form = SetFavourite(request.GET)
+        favourite_form = SetFavourite(request.GET, auto_id=False)
         return render(request, 'menu.html', {'favourite_form': favourite_form, })
 
 class FavouriteDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
