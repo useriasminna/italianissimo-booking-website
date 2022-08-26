@@ -47,12 +47,14 @@ class Menu(ListView):
             return HttpResponseRedirect('/menu')
 
         favourite_form = SetFavourite(request.GET, auto_id=False)
-        return render(request, 'menu.html', {'favourite_form': favourite_form, })
+        return render(request, 'menu.html', {
+            'favourite_form': favourite_form, })
 
 class FavouriteDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     A view that deletes a Favourite entry from the database.
-    The action is performed only if the authenticated user is the author of Favourite entry.
+    The action is performed only if the authenticated user
+    is the author of Favourite entry.
     """
 
     model = Favourite

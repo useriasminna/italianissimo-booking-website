@@ -72,7 +72,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_admin(self):
         """Return User Admin state"""
         return self.admin
-    
+
     @property
     def is_superuser(self):
         """Return User Superuser state"""

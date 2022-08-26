@@ -18,6 +18,7 @@ class Meal(models.Model):
 
 class Favourite(models.Model):
     """Model for Favourite object"""
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                             to_field='email', blank=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        to_field='email', blank=True)
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE, blank=True)

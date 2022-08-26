@@ -43,7 +43,8 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'menu.html')
 
     def test_menu_context(self):
-        """ Test if Meal list, Favourite form and Favourite list are rendered to Create Menu page"""
+        """ Test if Meal list, Favourite form and Favourite list are
+        rendered to Create Menu page"""
         response = self.client.get('/menu/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('menu_list' in response.context)
@@ -67,7 +68,8 @@ class TestViews(TestCase):
         # check if the Favourites list contains the favourite post
         self.assertEqual(favourites.count(), 1)
 
-        # check if the Favourites list contains the favourite post made for the current user
+        # check if the Favourites list contains the favourite post
+        # made for the current user
         self.assertTrue(favourites[0].user == self.user)
 
     def test_favourite_meal_delete(self):
@@ -89,7 +91,8 @@ class TestViews(TestCase):
 
         # navigate to menu and post to delete favourite url
         self.client.get('/menu/')
-        self.client.post('/menu/favourite/' + str(favourites[0].pk) + '/remove/')
+        self.client.post(
+            '/menu/favourite/' + str(favourites[0].pk) + '/remove/')
 
         # check if the Favourites list is empty after deletion
         response = self.client.get('/menu/')
@@ -97,7 +100,8 @@ class TestViews(TestCase):
         self.assertEqual(favourites.count(), 0)
 
     def test_favourite_meal_is_rendered_in_profile_page(self):
-        """Test if the profile page renders only the favourite meals for the current user"""
+        """Test if the profile page renders only the favourite
+        meals for the current user"""
 
         # creates a favourite post for testuser@yahoo.com
         new_favourite = {
@@ -129,13 +133,17 @@ class TestViews(TestCase):
         response = self.client.get('/bookings/profile/')
         meals = response.context['fav_meals']
 
-        # check if the favorites list contains only one entry made from this account
+        # check if the favorites list contains only one entry
+        # made from this account
         favourites = Favourite.objects.filter(user_id=self.user.email)
         self.assertEqual(favourites.count(), 1)
 
-        # check if the meals list rendered in profile page contains only one meal because
+        # check if the meals list rendered in profile page contains
+        # only one meal because
         # only one favourite post has beend made from this account
         self.assertEqual(meals.count(), 1)
 
-        # check if the meal rendered in profile page is posted to favourite by the current user
-        self.assertTrue(favourites[0].user == self.user and favourites[0].meal == meals[0])
+        # check if the meal rendered in profile page is posted
+        # to favourite by the current user
+        self.assertTrue(
+            favourites[0].user == self.user and favourites[0].meal == meals[0])

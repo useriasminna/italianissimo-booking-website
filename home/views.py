@@ -13,7 +13,6 @@ from review.models import Review
 from users.models import User
 
 
-
 class Home(ListView):
     """
     A view that provides filtered reviews and meals data

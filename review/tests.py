@@ -34,7 +34,8 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'reviews.html')
 
     def test_review_context(self):
-        """ Test if Review form, Reviews and Users are rendered to Create Reviews page"""
+        """ Test if Review form, Reviews and Users are rendered
+        to Create Reviews page"""
         response = self.client.get('/reviews/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('review_form' in response.context)
@@ -60,7 +61,8 @@ class TestViews(TestCase):
         self.assertTrue(reviews[0].author == self.user)
 
     def test_review_update(self):
-        """ Test if The review of the current user is updating with the right values """
+        """ Test if The review of the current user is updating
+        with the right values """
         # creates a review post for testuser@yahoo.com
         new_review = {
             "rate": "5",
@@ -82,7 +84,9 @@ class TestViews(TestCase):
         now = datetime.now()
         # navigate to reviews and update the review
         self.client.get('/reviews/')
-        self.client.post('/reviews/review/' + str(reviews[0].pk) + '/update/', updated_review)
+        self.client.post(
+            '/reviews/review/' + str(
+                reviews[0].pk) + '/update/', updated_review)
 
         # check if the review for the current user was updated with
         # the correct values
@@ -93,5 +97,6 @@ class TestViews(TestCase):
         self.assertTrue(reviews[0].rate == 2)
         self.assertTrue(reviews[0].review_text == "Not very satisfied")
         self.assertTrue((
-            reviews[0].date_updated_on).strftime("%Y-%m-%d %H:%M:%S") ==\
-            now.strftime("%Y-%m-%d %H:%M:%S"))
+            reviews[0].date_updated_on).strftime(
+                "%Y-%m-%d %H:%M:%S") == now.strftime(
+                    "%Y-%m-%d %H:%M:%S"))

@@ -17,7 +17,8 @@ from .models import Review as ReviewModel
 
 class Review(ListView):
     """
-    A view that provides the list of reviews and also a form for creating Review entries
+    A view that provides the list of reviews and also
+    a form for creating Review entries
     """
 
     template_name = "reviews.html"
@@ -51,25 +52,32 @@ class Review(ListView):
                     rate_value = 1
                 text = review_form.cleaned_data['review_text']
                 user = request.user
-                now=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 review = ReviewModel(rate=rate_value, review_text=text,
-                                     date_created_on=now, date_updated_on=now, author=user, )
+                                     date_created_on=now, date_updated_on=now,
+                                     author=user, )
                 review.save()
-                messages.success(request, 'Your review was successfully added to the list')
+                messages.success(
+                    request, 'Your review was successfully added to the list')
                 return HttpResponseRedirect('/reviews')
 
-            messages.error(request, 'There was a problem submiting your review.'\
-                                    'Please try again!')
+            messages.error(
+                request,
+                'There was a problem submiting your review.' +
+                'Please try again!')
             return HttpResponseRedirect('/reviews')
         update_review_form = UpdateReviewForm(request.GET)
         review_form = ReviewForm(request.GET)
-        return render(request, 'reviews.html', {'review_form': review_form,
-                                                'update_review_form': update_review_form, })
+        return render(
+            request, 'reviews.html',
+            {'review_form': review_form,
+             'update_review_form': update_review_form, })
 
 
 class ReviewUpdate(UserPassesTestMixin, UpdateView):
     """
-    A view that provides a form to update the Review entry coresponding to the authenticated user
+    A view that provides a form to update the Review entry
+    coresponding to the authenticated user
     """
 
     model = ReviewModel
@@ -83,7 +91,8 @@ class ReviewUpdate(UserPassesTestMixin, UpdateView):
         review = get_object_or_404(ReviewModel, pk=pk)
         if request.method == 'POST':
 
-            update_review_form = UpdateReviewForm(data=request.POST, instance=review)
+            update_review_form = UpdateReviewForm(
+                data=request.POST, instance=review)
 
             if update_review_form.is_valid():
                 update_review_form.instance.date_updated_on = datetime.now().\
@@ -91,15 +100,18 @@ class ReviewUpdate(UserPassesTestMixin, UpdateView):
 
                 review = ReviewModel()
                 update_review_form.save()
-                messages.success(request, 'Your review was successfully updated')
+                messages.success(
+                    request, 'Your review was successfully updated')
                 return HttpResponseRedirect('/reviews')
 
-            messages.error(request, 'There was a problem when trying to update'\
-                                    'your review.Please try again!')
+            messages.error(
+                request, 'There was a problem when trying to update' +
+                'your review.Please try again!')
             return HttpResponseRedirect('/reviews')
         review_form = ReviewForm(request.GET)
-        return render(request, 'reviews.html', {'review_form': review_form,
-                                                'update_review_form': update_review_form, })
+        return render(request, 'reviews.html',
+                      {'review_form': review_form,
+                       'update_review_form': update_review_form, })
 
     def get(self, *args, **kwargs):
         """Override GET request to redirect to reviews"""

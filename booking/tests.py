@@ -23,8 +23,8 @@ class TestViews(TestCase):
         last = "user"
         pswd = "T12345678."
         user_model = get_user_model()
-        self.user = user_model.objects.create_user(email=email,
-                                                   first_name=first, last_name=last, password=pswd)
+        self.user = user_model.objects.create_user(
+            email=email, first_name=first, last_name=last, password=pswd)
         logged_in = self.client.login(email=email, password=pswd)
         self.assertTrue(logged_in)
 
@@ -49,7 +49,8 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'booking.html')
 
     def test_booking_context(self):
-        """ Test if Booking form, Tables and Bookings are rendered to Create Booking page"""
+        """ Test if Booking form, Tables and Bookings are rendered
+        to Create Booking page"""
         response = self.client.get('/bookings/createbookings/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('booking_form' in response.context)
@@ -69,14 +70,16 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'profile.html')
 
     def test_profile_context(self):
-        """ Test if Booking List and Favourite Meals are rendered to Create Profile page"""
+        """ Test if Booking List and Favourite Meals are
+        rendered to Create Profile page"""
         response = self.client.get('/bookings/profile/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('fav_meals' in response.context)
         self.assertTrue('booking_list' in response.context)
 
     def test_created_booking_is_rendered_in_profile(self):
-        """ Test if the profile page renders only the bookings made by the logged in user """
+        """ Test if the profile page renders only the bookings
+        made by the logged in user """
 
         # creates a booking post for testuser@yahoo.com
         new_booking = {
@@ -98,8 +101,8 @@ class TestViews(TestCase):
         last = "user2"
         pswd = "T12345679."
         user_model = get_user_model()
-        self.user = user_model.objects.create_user(email=email,
-                                                   first_name=first, last_name=last, password=pswd)
+        self.user = user_model.objects.create_user(
+            email=email, first_name=first, last_name=last, password=pswd)
         logged_in = self.client.login(email=email, password=pswd)
         self.assertTrue(logged_in)
 
@@ -115,14 +118,14 @@ class TestViews(TestCase):
         self.client.get('/bookings/createbookings/')
         self.client.post('/bookings/createbookings/', new_booking)
 
-        # check if the booking_list response context rendered in profile page contains
-        # only 1 booking
+        # check if the booking_list response context rendered
+        # in profile page contains only 1 booking
         response = self.client.get('/bookings/profile/')
         bookings = response.context['booking_list']
         self.assertEqual(bookings.count(), 1)
 
-        # check if the booking_list response context rendered in profile page is made by
-        # testuser2@yahoo.com
+        # check if the booking_list response context rendered in
+        # profile page is made by testuser2@yahoo.com
         self.assertTrue(bookings[0].created_by ==
                         User.objects.get(email="testuser2@yahoo.com"))
         self.assertTrue(bookings[0].date == datetime.strptime(
@@ -164,13 +167,15 @@ class TestViews(TestCase):
         self.assertEqual(bookings.count(), 0)
 
     def test_admin_manage_bookings_page_redirects(self):
-        """ Test if admin manage bookings page redirects in case user is not logged in"""
+        """ Test if admin manage bookings page redirects in
+        case user is not logged in"""
         self.client.logout()
         response = self.client.get('/bookings/managebookings/')
         self.assertEqual(response.status_code, 302)
 
     def test_admin_manage_bookings_page_forbidden(self):
-        """ Test if admin manage bookings page is forbidden in case user is not staff member"""
+        """ Test if admin manage bookings page is forbidden in
+        case user is not staff member"""
         response = self.client.get('/bookings/managebookings/')
         self.assertEqual(response.status_code, 403)
 
@@ -183,7 +188,8 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'managebookings.html')
 
     def test_admin_manage_bookings_context(self):
-        """ Test if Date form, Date and Bookings are rendered to Create Admin Manage Booking page"""
+        """ Test if Date form, Date and Bookings are rendered to
+        Create Admin Manage Booking page"""
         self.user.staff = True
         self.user.save()
         response = self.client.get('/bookings/managebookings/')
@@ -193,7 +199,8 @@ class TestViews(TestCase):
         self.assertTrue('booking_list' in response.context)
 
     def test_admin_manage_bookings(self):
-        """ Test if admin manage bookings page renders bookings from all user """
+        """ Test if admin manage bookings page renders
+        bookings from all user """
 
         # create and post booking for testuser@yahoo.com
         new_booking = {
@@ -215,8 +222,8 @@ class TestViews(TestCase):
         last = "user2"
         pswd = "T12345679."
         user_model = get_user_model()
-        self.user = user_model.objects.create_user(email=email,
-                                                   first_name=first, last_name=last, password=pswd)
+        self.user = user_model.objects.create_user(
+            email=email, first_name=first, last_name=last, password=pswd)
         logged_in = self.client.login(email=email, password=pswd)
         self.assertTrue(logged_in)
 
@@ -242,7 +249,8 @@ class TestViews(TestCase):
         self.assertEqual(bookings.count(), 2)
 
     def test_admin_manage_bookings_filter(self):
-        """ Test if admin manage bookings page renders bookings filtered by date """
+        """ Test if admin manage bookings page renders
+        bookings filtered by date """
 
         self.client.get('/bookings/createbookings/')
 
@@ -272,13 +280,15 @@ class TestViews(TestCase):
         self.user.staff = True
         self.user.save()
 
-        # check if the default booking list contains only the bookings for today
+        # check if the default booking list contains only
+        # the bookings for today
         response = self.client.get('/bookings/managebookings/')
         bookings = response.context['booking_list']
         self.assertEqual(bookings.count(), 1)
         self.assertTrue(bookings[0].date == date.today())
 
-        # add the value of 2022-08-10 as date for the form used to filter bookings
+        # add the value of 2022-08-10 as date for the form
+        # used to filter bookings
         form_data = {
             "date": datetime.strptime("2022-08-10", "%Y-%m-%d").date()
         }
@@ -304,7 +314,8 @@ class TestViews(TestCase):
         self.assertEqual(bookings.count(), 0)
 
     def test_admin_manage_bookings_delete(self):
-        """ Test if Delete Booking route from admin manage bookings pages deletes booking"""
+        """ Test if Delete Booking route from admin manage bookings
+        pages deletes booking"""
 
         # creates a booking post for testuser@yahoo.com
         new_booking = {

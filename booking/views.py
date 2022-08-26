@@ -39,7 +39,8 @@ class Booking(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(*args, **kwargs)
         context['booking_form'] = NewBookingForm()
         context['tables_list'] = serialize('json', Table.objects.all())
-        context['bookings_list'] = serialize('json', BookingModel.objects.all())
+        context['bookings_list'] = serialize(
+            'json', BookingModel.objects.all())
         return context
 
     def post(self, request):
@@ -70,30 +71,35 @@ class Booking(LoginRequiredMixin, TemplateView):
                     booking_customer_email = booking_form.cleaned_data['customer_email']
                     booking_customer_full_name = booking_form.cleaned_data['customer_full_name']
 
-                booking = BookingModel(date=booking_date, start_time=booking_start_time,
-                                       end_time=booking_end_time, table=booking_table,
-                                       customer_full_name=booking_customer_full_name,
-                                       customer_email=booking_customer_email,
-                                       created_on=datetime.datetime.now().
-                                       strftime("%Y-%m-%d %H:%M:%S"),
-                                       created_by=user,
+                booking = BookingModel(
+                    date=booking_date, start_time=booking_start_time,
+                    end_time=booking_end_time, table=booking_table,
+                    customer_full_name=booking_customer_full_name,
+                    customer_email=booking_customer_email,
+                    created_on=datetime.datetime.now().
+                    strftime("%Y-%m-%d %H:%M:%S"),
+                    created_by=user,
                                        )
                 booking.save()
-                messages.success(request, 'Your booking was successfully registered')
+                messages.success(
+                    request, 'Your booking was successfully registered')
                 return HttpResponseRedirect('/bookings/createbookings')
             else:
-                messages.error(request, 'There was a problem submiting your booking.'
-                               ' Please try again!')
+                messages.error(
+                    request, 'There was a problem submiting your booking.'
+                    ' Please try again!')
                 return HttpResponseRedirect('/bookings/createbookings')
         else:
             booking_form = NewBookingForm(request.GET)
 
-        return render(request, 'booking.html', {'booking_form': booking_form, })
+        return render(request, 'booking.html',
+                      {'booking_form': booking_form, })
 
 
 class BookingMealsList(LoginRequiredMixin, UserPassesTestMixin, FilterView):
     """
-    A view that provides bookings and favourite meals data that coresponds to authenticated user
+    A view that provides bookings and favourite meals
+    data that coresponds to authenticated user
     """
 
     template_name = 'profile.html'
@@ -103,14 +109,15 @@ class BookingMealsList(LoginRequiredMixin, UserPassesTestMixin, FilterView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        favourites = Favourite.objects.filter(user_id=self.request.user.email).values_list('meal')
+        favourites = Favourite.objects.filter(
+            user_id=self.request.user.email).values_list('meal')
         context['fav_meals'] = Meal.objects.filter(pk__in=favourites)
         return context
 
     def get_queryset(self):
         today = date.today()
-        return BookingModel.objects.filter(Q(created_by=self.request.user.email) &\
-                                           Q(date__gte=today))
+        return BookingModel.objects.filter(
+            Q(created_by=self.request.user.email) & Q(date__gte=today))
 
     def test_func(self):
         return not self.request.user.is_staff
@@ -119,7 +126,8 @@ class BookingMealsList(LoginRequiredMixin, UserPassesTestMixin, FilterView):
 class BookingDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     A view that deletes a booking entry from the database.
-    The action is performed only if the authenticated user is the author of the booking.
+    The action is performed only if the authenticated user
+    is the author of the booking.
     """
 
     model = BookingModel
@@ -137,8 +145,9 @@ class BookingDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class BookingListAdmin(LoginRequiredMixin, UserPassesTestMixin, ListView):
     """
-    A view that provides the list of bookings to be accesed only by a staff member.
-    The view also provides a form to filter the bookings by date.
+    A view that provides the list of bookings to be accesed
+    only by a staff member. The view also provides a form to
+    filter the bookings by date.
     """
 
     model = BookingModel
@@ -181,8 +190,8 @@ class BookingDeleteViewAdmin(LoginRequiredMixin, UserPassesTestMixin, DeleteView
     def get_success_url(self):
         bdate = self.get_object().date
         csrf = base64.b64encode(os.urandom(64))
-        return '/bookings/managebookings/?csrfmiddlewaretoken=' + csrf.decode("utf-8") +\
-               '&date=' + bdate.strftime("%Y-%m-%d")
+        return '/bookings/managebookings/?csrfmiddlewaretoken=' +\
+               csrf.decode("utf-8") + '&date=' + bdate.strftime("%Y-%m-%d")
 
     def test_func(self):
         return self.request.user.is_staff

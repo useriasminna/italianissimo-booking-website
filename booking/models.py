@@ -31,9 +31,9 @@ class Booking(models.Model):
                                           blank=True)
     customer_email = models.EmailField(max_length=200, blank=True)
     created_on = models.DateTimeField(blank=True)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                                   to_field='email',
-                                   blank=True)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        to_field='email', blank=True)
 
     class Meta:
         ordering = ['date', 'start_time']

@@ -16,9 +16,9 @@ class NewBookingForm(forms.ModelForm):
     """
     date = forms.DateField(widget=forms.DateInput(attrs={
         'id': 'datePicker', 'class': 'form-control', 'type': 'date'}))
-    start_time = forms.TimeField(widget=forms.TimeInput(
-                 attrs={'id': 'startTime', 'class': 'form-control', 'type': 'time',
-                        'step': '3600'}))
+    start_time = forms.TimeField(widget=forms.TimeInput(attrs={
+        'id': 'startTime', 'class': 'form-control', 'type': 'time',
+        'step': '3600'}))
     end_time = forms.TimeField(widget=forms.TimeInput(
                attrs={'id': 'endTime', 'class': 'form-control',
                       'type': 'time', 'step': '3600'}))
@@ -32,8 +32,10 @@ class NewBookingForm(forms.ModelForm):
                    attrs={'id': 'bookAuthenticate', 'type': 'checkbox'}))
     table_code = forms.ChoiceField(widget=forms.Select(
                  attrs={'id': 'tableCode', 'class': 'form-select'}),
-                 choices=(("A1", "A1"), ("A2", "A2"), ("A3", "A3"), ("B1", "B1"),
-                          ("B2", "B2"), ("B3", "B3"), ("C1", "C1"), ("C2", "C2"), ("C3", "C3")))
+                 choices=(
+                     ("A1", "A1"), ("A2", "A2"), ("A3", "A3"), ("B1", "B1"),
+                     ("B2", "B2"), ("B3", "B3"), ("C1", "C1"), ("C2", "C2"),
+                     ("C3", "C3")))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -64,9 +66,9 @@ class DateBookingForm(forms.ModelForm):
     Form for the BookingQuery Model
     It is used for filtering the bookings in admin manage booking page
     """
-    date = forms.DateField(widget=forms.DateInput(attrs={'id': 'datePicker',
-                                                         'class': 'form-control',
-                                                         'type': 'date'}),
+    date = forms.DateField(widget=forms.DateInput(
+        attrs={'id': 'datePicker', 'class': 'form-control',
+               'type': 'date'}),
                            initial=date.today())
 
     def __init__(self, *args, **kwargs):
