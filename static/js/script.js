@@ -600,7 +600,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if(user.value == "authenticated" && status.value == "client"){
       const rating = document.getElementsByClassName('rating')[0];
       const stars = rating.getElementsByTagName('button');
-      const rateValue = document.querySelector('#rateValue');
+      // console.log(window.getComputedStyle(document.getElementById('addReviewForm'), null).display == "block")
+      // console.log(window.getComputedStyle(document.getElementById('myReview'), null).display == "block")
+      if(document.querySelector('#myReview'))
+      {
+        var rateValue = document.querySelector('#updateRateValue');
+        console.log("TRUE")
+        
+      }
+      else{
+        var rateValue = document.querySelector('#rateValue');
+      }
+        
       const displayUpdateForm = document.querySelector('#displayUpdateForm');
       const myReview = document.querySelector('#myReview');
       const reviewExists = document.querySelector('#reviewExists');
@@ -658,7 +669,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         const reviewTextInput = updateReviewForm.querySelector('#updateReviewText');
         const updateRating = updateReviewForm.querySelectorAll('.rating')[0].querySelectorAll('button');
         const updateRate = updateReviewForm.getElementsByClassName("rate")[0];
-        const formRate = updateReviewForm.querySelector('#rateValue');
+        const formRate = updateReviewForm.querySelector('#updateRateValue');
 
         myReview.style.display = "none";
         updateReviewForm.style.display = "block";
