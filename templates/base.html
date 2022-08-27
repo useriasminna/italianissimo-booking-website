@@ -151,7 +151,12 @@
                     {% if forloop.last %}
                         {% if message.message == "Logged in as" %}
                         <div class="alert alert-success formAlert" role="alert" >
+                            {% if user.staff %}
+                            {{ message }} staff member
+                            {% else %}
                             {{ message }} {{user.get_full_name}}
+                            {% endif %}
+                            
                         </div>
                         {% else %}
                         {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
