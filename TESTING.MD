@@ -12,7 +12,7 @@ Back to [README.MD](README.MD)<br>
 ## User Story and Feature Testing
 All the user stories were tested manually, that including all the representative features, and were described bellow with a summary of the steps made for demonstrating the validation of the tests: <br>
 
-### CONTENT AND NAVIGATION<hr>
+### CONTENT AND NAVIGATION<
 #### 1A: As a user, I want to see a menu so I can easily navigate through website content  
 * **Acceptance Criteria:** A site user should always have access to the navigation menu so he can easily switch between pages at any time.
 * **Summary:**<br>
@@ -46,7 +46,7 @@ All the user stories were tested manually, that including all the representative
 
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br>
 * **Outcome:** Pass   
-### USER REGISTRATION/AUTENTHICATION<hr>
+### USER REGISTRATION/AUTENTHICATION
 #### 2A: As a user, I want to be able to register on the website
 * **Acceptance Criteria:** A site user should be able to create an account by filling in a form on the website.   
 * **Summary:**<br>
@@ -74,7 +74,7 @@ All the user stories were tested manually, that including all the representative
     
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** Pass
-### BOOKING<hr>
+### BOOKING
 #### 3A: As a logged in user, I want to be able to find the available tables for a specific date and time
 * **Acceptance Criteria:** A logged user should be provided a booking system that generates the tables availability.  
 * **Summary:**<br> 
@@ -106,7 +106,7 @@ All the user stories were tested manually, that including all the representative
 
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** Pass
-### MENU<hr>
+### MENU
 #### 4A: As a user, I want to see the restaurant's menu with details about ingredients and price, so that I can be completely aware of everything I want to order
 * **Acceptance Criteria:** A user should be provided with a list of the menu content, as essential information for a restaurant client.
 * **Summary:**<br>
@@ -131,7 +131,7 @@ All the user stories were tested manually, that including all the representative
 
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** Pass 
-### USER PROFILE<hr>
+### USER PROFILE
 #### 5A: As a logged in user, I want to view a list of my upcoming bookings
 * **Acceptance Criteria:** A logged in user should be able to see all the upcoming reservations made on his account. 
 * **Summary:**<br>
@@ -165,7 +165,7 @@ All the user stories were tested manually, that including all the representative
 
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** Pass
-### STAFF MANAGE BOOKINGS<hr>
+### STAFF MANAGE BOOKINGS
 #### 6A: As a logged in staff member, I want to see the restaurant's upcoming bookings for the current day sorted by time
 * **Acceptance Criteria:** A logged in staff member should be able to see bookings from all the users ordered by time and grouped by date.   
 * **Summary:**<br>
@@ -196,7 +196,7 @@ All the user stories were tested manually, that including all the representative
     -It has been tested the removal of a *booking* entry using the URL and no action is performed. Also when it was tested from a not-staff account, the custom 403(forbidden) page appears.<br><br>
 
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
-* **Outcome:** Pass
+* **Outcome:** 
 ### REVIEWS<hr>
 #### 7A: As a user, I want to see the restaurant's customer reviews on the website
 * **Acceptance Criteria:**  A user should have access to a way of seeing all the reviews added on the website for creating a better idea about the offered services.
@@ -228,7 +228,7 @@ All the user stories were tested manually, that including all the representative
 
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** Pass
-### CONTACT<hr>
+### CONTACT
 #### 8A: As a user, I want to see the restaurant's opening and closing hours
 * **Acceptance Criteria:** A site user should be provided information about opening and closing hours for every day.
 * **Summary:**<br>  
@@ -281,10 +281,8 @@ All the user stories were tested manually, that including all the representative
 
 * Ensure the external links to social media present in the footer open up in new tabs.
 
----
-
 ## Automated View Testing
-### Test Overview<hr>
+### Test Overview
 * **Home App**<br>
 Tests applied for user stories: **1B**<br>
 <img src="static/italianissimo/media/tst_home.png"><br><br>
@@ -489,11 +487,11 @@ The accesibility of the website was tested with [Wave](https://wave.webaim.org/)
 **Wave results:**<br>
 <details>
 <summary>Home page</summary>
-<img src="static/italianissimo/media/wv_home.png" width="60%"><br><br>
+<img src="static/italianissimo/media/wv_home.png" width="30%"><br><br>
 </details>
 <details>
 <summary>Menu page</summary>
-<img src="static/italianissimo/media/wv_menu.png" width="60%"><br><br>
+<img src="static/italianissimo/media/wv_menu.png" width="30%"><br><br>
 </details>
 <details>
 <summary>Where to find us page</summary>
@@ -504,23 +502,23 @@ As the google map is built of multiple images without an alt attribute, I didn't
 </details>
 <details>
 <summary>Reviews page</summary>
-<img src="static/italianissimo/media/wv_reviews.png" width="60%"><br><br>
+<img src="static/italianissimo/media/wv_reviews.png" width="30%"><br><br>
 </details>
 <details>
 <summary>Profile page</summary>
-<img src="static/italianissimo/media/wv_profile.png" width="60%"><br><br>
+<img src="static/italianissimo/media/wv_profile.png" width="30%"><br><br>
 </details>
 <details>
 <summary>Manage bookings page</summary>
-<img src="static/italianissimo/media/wv_manage.png" width="60%"><br><br>
+<img src="static/italianissimo/media/wv_manage.png" width="30%"><br><br>
 </details>
 <details>
 <summary>Login page</summary>
-<img src="static/italianissimo/media/wv_login.png" width="60%"><br><br>
+<img src="static/italianissimo/media/wv_login.png" width="30%"><br><br>
 </details>
 <details>
 <summary>Register page</summary>
-<img src="static/italianissimo/media/wv_register.png" width="60%"><br><br>
+<img src="static/italianissimo/media/wv_register.png" width="30%"><br><br>
 </details><br>
 
 ### Performance
@@ -589,6 +587,29 @@ The performance of the website was tested with [Google Lighthouse](https://devel
 * Register page<br>
 <img src="static/italianissimo/media/mb_register.png" width="60%"><br><br>
 </details><br>
+
+## Bugs 
+
+* **Booking form validation**<br>
+    When implementing the booking form I found it very difficult to understand how to create the validation for the form considering that each section has to be validated separately before the next section appears. The form that I have implemented is a single form that is already validated by pieces when trying to submit. The validation for each section is implemented with *javascript* and is triggered when the user clicks on the buttons with <code>class="continue"</code>. <br>
+    Although the booking form works accordingly, I later found that another way of implementing this feature without javascript would be to create multiple forms in another one, that will be validated accordingly to Django methods. 
+    I didn't take into consideration changing the way I already implemented my code because of time constraints, but I memorised what is a more correct way of utilising Django. 
+
+* **Alert Message for DeleteView**<br>
+    I have implemented the alerts to display a message for the user every time an action has been performed successfully.<br>
+    Although I consider that the *Profile* and *Manage bookings* pages have a correct way of giving feedback to the user when a booking is deleted, I also tried to create a <code>succes_message</code> to be displayed as an alert.
+    For achieving this I had to override the <code>delete method</code> in <code>BookingDeleteView</code> and <code>BookingDeleteViewAdmin</code> classes, found in booking/views.py., as follows: <br>
+
+    ```
+    def delete(self, request, *args, **kwargs):
+            messages.success(self.request, "The booking was succesfully removed")
+            return super().delete(request, *args, **kwargs)
+
+    ```
+    Apparently, the fix didn't work and for some reason, the message is not added to the list. I couldn't find the cause of the issue and neither how to fix it.
+
+* **Menu page reloads when user add meal to Favourites**
+    The bug here is the fact that every time a user creates or removes a Favourite entry from the database, the menu page is reloaded which means that the user is brought back to the top of the content. The effect can be seen better on mobile devices where the user has to scroll more for getting to certain elements in the menu. This is considered a bug because it affects the User Experience when navigating and utilising the feature on the menu page. I still couldn't figure out a way for the user to be redirected to the section where he was before triggering the reload.<br><br>
 
 Back to [README.MD](README.MD)<br>
  
