@@ -7,6 +7,7 @@ Back to [README.MD](README.MD)<br>
 * [Automated View Testing](#automated-view-testing)
 * [Browser Testing](#browser-testing)
 * [Code Validation](#code-validation)
+* [Bugs](#bugs)
 
 
 ## User Story and Feature Testing
@@ -197,7 +198,7 @@ All the user stories were tested manually, that including all the representative
 
     *By testing all these features, it can be affirmed that the user story is accomplished.*<br> 
 * **Outcome:** 
-### REVIEWS<hr>
+### REVIEWS
 #### 7A: As a user, I want to see the restaurant's customer reviews on the website
 * **Acceptance Criteria:**  A user should have access to a way of seeing all the reviews added on the website for creating a better idea about the offered services.
 * **Summary:**<br>
@@ -303,7 +304,7 @@ Tests applied for user stories: **4A, 4B, 5C**<br>
 Tests applied for user stories: **7A, 7B**<br>
 <img src="static/italianissimo/media/tst_review.png"><br><br>
 
-### Test Coverage<hr>
+### Test Coverage
 For generating a report with the coverage of the automated tests, [coverage](https://coverage.readthedocs.io/en/coverage-5.5/) module was used.<br>
 The full report can be found [here]("static/reports/test_coverage.xlsx").
 
@@ -608,7 +609,7 @@ The performance of the website was tested with [Google Lighthouse](https://devel
     ```
     Apparently, the fix didn't work and for some reason, the message is not added to the list. I couldn't find the cause of the issue and neither how to fix it.
 
-* **Menu page reloads when user add meal to Favourites**
+* **Menu page reloads when user add meal to Favourites**<br>
     The bug here is the fact that every time a user creates or removes a Favourite entry from the database, the menu page is reloaded which means that the user is brought back to the top of the content. The effect can be seen better on mobile devices where the user has to scroll more for getting to certain elements in the menu. This is considered a bug because it affects the User Experience when navigating and utilising the feature on the menu page. I still couldn't figure out a way for the user to be redirected to the section where he was before triggering the reload.<br><br>
 
 Back to [README.MD](README.MD)<br>
